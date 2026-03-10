@@ -185,7 +185,7 @@
         };
     }
 
-    // === PHASE 2: PORTAL TRANSITION ===
+    // === PHASE 2: PORTAL TRANSITION (Seamless Crossfade) ===
     function startPortalPhase() {
         loadingScreen.classList.add('hidden');
         if (window._stopLoadingParticles) window._stopLoadingParticles();
@@ -200,55 +200,105 @@
 
             const portalVideo = document.getElementById('portal-video');
             const skipBtn = document.getElementById('skip-portal');
+            let crossfadeStarted = false;
+
+            // Preload the menu loop video for seamless transition
+            if (menuBgVideo) {
+                menuBgVideo.load();
+                menuBgVideo.volume = 0; // Start silent
+            }
+
+            // Preload continuation audio
+            if (portalAudioContinuation) {
+                portalAudioContinuation.load();
+                portalAudioContinuation.volume = 0;
+            }
 
             if (skipBtn) {
                 skipBtn.addEventListener('click', () => {
-                    if (portalVideo) {
-                        portalVideo.pause();
-                        portalVideo.currentTime = 0;
-                    }
+                    if (portalVideo) { portalVideo.pause(); portalVideo.currentTime = 0; }
                     document.body.classList.add('no-transition');
                     portalScreen.classList.add('hidden');
                     portalScreen.style.display = 'none';
                     document.body.classList.remove('screen-shake');
                     startMenuPhase();
-                    setTimeout(() => {
-                        document.body.classList.remove('no-transition');
-                    }, 100);
+                    setTimeout(() => document.body.classList.remove('no-transition'), 100);
                 });
             }
 
             if (portalVideo) {
-                portalVideo.volume = 1.0; // Video has its own audio for the intro
+                portalVideo.volume = 1.0;
                 portalVideo.currentTime = 0;
                 portalVideo.play().catch(() => { });
 
-                // TRANSITION INVISIBLE: No flash, direct switch
+                // CROSSFADE: Start fading 2s before intro ends
+                portalVideo.ontimeupdate = () => {
+                    if (crossfadeStarted) return;
+                    const remaining = portalVideo.duration - portalVideo.currentTime;
+
+                    if (remaining <= 2 && remaining > 0 && portalVideo.duration > 0) {
+                        crossfadeStarted = true;
+
+                        // Start the loop video underneath, invisible at first
+                        if (menuBgVideo) {
+                            menuBgVideo.currentTime = 0;
+                            menuBgVideo.play().catch(() => { });
+                        }
+
+                        // Start continuation audio silently
+                        if (portalAudioContinuation && musicPlaying) {
+                            portalAudioContinuation.currentTime = 0;
+                            portalAudioContinuation.play().catch(() => { });
+                        }
+
+                        // Gradual crossfade over 2 seconds (50ms steps)
+                        let fadeStep = 0;
+                        const totalSteps = 40; // 40 * 50ms = 2000ms
+                        const fadeInterval = setInterval(() => {
+                            fadeStep++;
+                            const progress = fadeStep / totalSteps;
+
+                            // Fade out intro video audio
+                            portalVideo.volume = Math.max(0, 1 - progress);
+
+                            // Fade in continuation audio
+                            if (portalAudioContinuation) {
+                                portalAudioContinuation.volume = Math.min(1, progress);
+                            }
+
+                            // Fade portal screen opacity for visual crossfade
+                            portalScreen.style.opacity = Math.max(0, 1 - progress * 0.8);
+
+                            if (fadeStep >= totalSteps) {
+                                clearInterval(fadeInterval);
+                            }
+                        }, 50);
+                    }
+                };
+
+                // When intro video fully ends, switch cleanly
                 portalVideo.onended = () => {
+                    portalVideo.ontimeupdate = null;
                     document.body.classList.add('no-transition');
                     portalScreen.classList.add('hidden');
                     portalScreen.style.display = 'none';
+                    portalScreen.style.opacity = '1'; // Reset for potential replay
                     document.body.classList.remove('screen-shake');
 
-                    startMenuPhase();
+                    startMenuPhase(true); // true = crossfade already handled
 
-                    // Allow transitions for other elements later
-                    setTimeout(() => {
-                        document.body.classList.remove('no-transition');
-                    }, 100);
+                    setTimeout(() => document.body.classList.remove('no-transition'), 100);
                 };
             } else {
-                // Fallback
                 setTimeout(startMenuPhase, 4000);
             }
 
-            // Screen shake during intro transition
             document.body.classList.add('screen-shake');
         }, 500);
     }
 
     // === PHASE 3: MAIN MENU ===
-    function startMenuPhase() {
+    function startMenuPhase(crossfadeHandled) {
         const playlist = [portalAudioContinuation, stTitleSequence, kateBushFull].filter(el => el !== null);
 
         function playNextTrack() {
@@ -263,13 +313,14 @@
             currentPlaylistTrack = playlist[playlistIndex];
             if (currentPlaylistTrack) {
                 currentPlaylistTrack.volume = 1.0;
-                currentPlaylistTrack.load(); // Reset state
+                // Don't reload if crossfade already started this track
+                if (!(crossfadeHandled && playlistIndex === 0)) {
+                    currentPlaylistTrack.load();
+                }
                 currentPlaylistTrack.play().catch(err => {
                     console.log("Audio play failed:", err);
-                    // If blocked by autoplay, we'll try again on first interaction
                 });
 
-                // Set up next track
                 currentPlaylistTrack.onended = () => {
                     playlistIndex = (playlistIndex + 1) % playlist.length;
                     playNextTrack();
@@ -277,20 +328,31 @@
             }
         }
 
-        // Start the first track
+        // If crossfade was handled, the first track is already playing
         playlistIndex = 0;
-        playNextTrack();
+        if (crossfadeHandled && portalAudioContinuation) {
+            // Track is already playing from crossfade, just set it as current
+            currentPlaylistTrack = portalAudioContinuation;
+            currentPlaylistTrack.volume = 1.0; // Ensure full volume
+            currentPlaylistTrack.onended = () => {
+                playlistIndex = 1;
+                playNextTrack();
+            };
+        } else {
+            playNextTrack();
+        }
 
-        // Mark as seen for session persistence
         sessionStorage.setItem('portal_seen', 'true');
 
-        // Setup looping video with full volume
+        // Setup looping video — if crossfade handled, video is already playing
         if (menuBgVideo) {
-            menuBgVideo.volume = 1.0; // Match audio volume as requested
-            menuBgVideo.load();
-            menuBgVideo.play().catch(err => {
-                console.log("Video play failed:", err);
-            });
+            menuBgVideo.volume = 1.0;
+            if (!crossfadeHandled) {
+                menuBgVideo.load();
+                menuBgVideo.play().catch(err => {
+                    console.log("Video play failed:", err);
+                });
+            }
         }
 
         document.body.classList.add('menu-active');
