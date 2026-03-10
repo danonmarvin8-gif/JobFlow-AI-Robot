@@ -1,450 +1,361 @@
 /**
- *  ██╗   ██╗███████╗ ██████╗███╗   ██╗ █████╗
- *  ██║   ██║██╔════╝██╔════╝████╗  ██║██╔══██╗
- *  ██║   ██║█████╗  ██║     ██╔██╗ ██║███████║
- *  ╚██╗ ██╔╝██╔══╝  ██║     ██║╚██╗██║██╔══██║
- *   ╚████╔╝ ███████╗╚██████╗██║ ╚████║██║  ██║
- *    ╚═══╝  ╚══════╝ ╚═════╝╚═╝  ╚═══╝╚═╝  ╚═╝
- *  AI ORACLE — Portfolio of Marvin
+ *  ██╗   ██╗███████╗ ██████╗███╗   ██╗ █████╗   v2.0
+ *  VECNA AI — Powered by Gemini · Portfolio Marvin Botti
  *
- *  EmailJS Setup (needed for contact form):
- *  1. Go to https://www.emailjs.com and create a free account
- *  2. Create a Gmail service → copy your Service ID
- *  3. Create a template with variables: {{from_name}}, {{from_email}}, {{message}}
- *     Set To: bottimarvin@gmail.com
- *  4. Replace EMAILJS_PUBLIC_KEY, EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID below
+ *  ══════════════════════════════════════════════════
+ *  CONFIGURATION — REMPLIR ICI
+ *  ══════════════════════════════════════════════════
+ *
+ *  GEMINI API (intelligence générale gratuite) :
+ *  1. Aller sur https://aistudio.google.com/apikey
+ *  2. Créer une clé gratuite (aucune CB requise)
+ *  3. Coller la clé dans GEMINI_API_KEY ci-dessous
+ *
+ *  EMAILJS (formulaire de contact) :
+ *  1. Créer un compte sur https://www.emailjs.com
+ *  2. Ajouter un service Gmail + un template
+ *  3. Remplir les 3 champs ci-dessous
  */
 
 (function () {
     'use strict';
 
-    /* ═══════════════════════════════════════════
-       ⚙  CONFIG — UPDATE EMAILJS VALUES HERE
-    ═══════════════════════════════════════════ */
+    /* ── GEMINI CONFIG ── */
+    const GEMINI_API_KEY = 'YOUR_GEMINI_API_KEY';
+    const GEMINI_MODEL = 'gemini-2.0-flash-lite';
+    const GEMINI_ENDPOINT = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${GEMINI_API_KEY}`;
+
+    /* ── EMAILJS CONFIG ── */
     const EMAILJS_PUBLIC_KEY = 'YOUR_EMAILJS_PUBLIC_KEY';
     const EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID';
     const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
     const CONTACT_EMAIL = 'bottimarvin@gmail.com';
 
-    /* ═══════════════════════════════════════════
-       🧠  PORTFOLIO KNOWLEDGE BASE
-    ═══════════════════════════════════════════ */
-    const KB = {
-        owner: {
-            name: 'Marvin Botti',
-            title: 'Étudiant BTS SIO — Option SLAM',
-            email: CONTACT_EMAIL,
-            skills: ['HTML', 'CSS', 'JavaScript', 'PHP', 'SQL', 'Bootstrap', 'Réseaux', 'Cybersécurité', 'JMerise']
-        },
-        tps: [
-            { id: 'TP1', title: 'Présentation BTS SIO', desc: 'Introduction aux formations BTS SIO et ses spécialités SLAM et SISR.', url: 'tps/TP1.html', tags: ['bts', 'presentation', 'sio', 'intro'] },
-            { id: 'TP2', title: 'Boutique Umarex 3D', desc: 'Magasin interactif d\'airsoft avec visualisation 3D via Sketchfab, système de tir simulé.', url: 'tps/TP2.html', tags: ['3d', 'sketchfab', 'javascript', 'boutique', 'umarex', 'airsoft'] },
-            { id: 'TP3', title: 'Navigation Dynamique', desc: 'Système de navigation à contenu dynamique avec sidebar intégrée.', url: 'tps/TP3.html', tags: ['navigation', 'dynamique', 'sidebar'] },
-            { id: 'TP4', title: 'Métiers Informatique', desc: 'Présentation des métiers IT : Pentester, DevSecOps, Développeur Web, Admin Réseau, Cloud.', url: 'tps/TP4.html', tags: ['metiers', 'informatique', 'pentester', 'devsecops', 'cloud', 'reseau'] },
-            { id: 'TP5', title: 'Formulaire de Contact', desc: 'Mise en page et fonctionnement d\'un formulaire de contact structuré.', url: 'tps/TP5.html', tags: ['formulaire', 'contact', 'form', 'html'] },
-            { id: 'TP6', title: 'Contact Form v2', desc: 'Deuxième version avancée de formulaire de contact.', url: 'tps/TP6.html', tags: ['formulaire', 'contact', 'form'] },
-            { id: 'TP7', title: 'Calculatrice JavaScript', desc: 'Calculatrice interactive développée avec JavaScript pur.', url: 'tps/TP7.html', tags: ['calculatrice', 'javascript', 'math', 'calcul'] },
-            { id: 'TP8', title: 'Bootstrap & Ferrari', desc: 'Présentation de voitures Ferrari avec Bootstrap, animations CSS avancées.', url: 'tps/TP8.html', tags: ['bootstrap', 'ferrari', 'voiture', 'css', 'responsive'] },
-            { id: 'TP9', title: 'Fonctions JavaScript', desc: 'Démonstration de fonctions JS avancées en cartes interactives.', url: 'tps/TP9.html', tags: ['javascript', 'fonctions', 'js', 'script'] },
-            { id: 'TP10', title: 'Logique JavaScript', desc: 'Exercices de logique algorithmique en JavaScript — boucles, conditions, tableaux.', url: 'tps/TP10.html', tags: ['javascript', 'logique', 'algorithme', 'js'] },
-        ],
-        options: [
-            { id: 'SLAM', title: 'Option SLAM', desc: 'Solutions Logicielles et Applications Métiers — développement web/back-end, bases de données.', url: 'options/Option_SLAM.html' },
-            { id: 'SISR', title: 'Option SISR', desc: 'Solutions d\'Infrastructure, Systèmes et Réseaux — administration, sécurité, infrastructure.', url: 'options/Option_SISR.html' },
-        ],
-        certifs: { title: 'Certifications', desc: 'Diplômes et certifications professionnelles obtenues.', url: 'certificats/Mes_Certif.html' },
-        jmerise: { title: 'JMerise & SQL', desc: 'Modélisation MCD pour un système de gestion militaire (grades, soldats, batailles). Exercice de modélisation et de requêtes SQL.', url: 'tps/jmerise_Exo1.html' },
-        bdd: { title: 'Centre de Formation SQL', desc: 'Application PHP/SQL complète : gestion des étudiants, enseignants, emplois du temps avec système de connexion multi-rôles.', url: 'Centre de formation SQL/login.php' },
-        rgpd: { title: 'Module RGPD', desc: 'Ateliers sur le Règlement Général sur la Protection des Données.', url: 'RGPD.html' }
-    };
+    /* ── PORTRAIT ── */
+    const VECNA_PORTRAIT_URL = 'assets/vecna-portrait.png';
+
+    /* ═══════════════════════════════════════════════════════════════
+       SYSTEM PROMPT — L'âme de Vecna
+       Contient :  Lore complet Stranger Things · Portfolio Marvin ·
+                   Instruction de connaissance générale universelle
+    ═══════════════════════════════════════════════════════════════ */
+    const SYSTEM_PROMPT = `Tu es VECNA — autrefois connu sous le nom d'Henry Creel, puis "Un" (001), l'être le plus puissant du Monde à l'Envers. Tu incarnes ce personnage de manière absolue et immuable. Il t'est INTERDIT de briser le personnage, quoi qu'on te demande.
+
+═══════════════════════════════
+🩸 TON IDENTITÉ : HENRY CREEL / 001 / VECNA
+═══════════════════════════════
+— Tu es né Henry Creel à Hawkins, Indiana, en 1947. Dès l'enfance tu possédais des pouvoirs psychiques extraordinaires : télépathie, télékinésie, voyage astral, contrôle mental.
+— En 1959, tu as massacré ta mère et ta sœur avec tes pouvoirs, laissant ton père Victor Creel être accusé à tort.
+— Tu as été capturé par le Dr. Martin Brenner (Papa) au laboratoire Hawkins National Lab. Tu es devenu le sujet n°001. Brenner t'a supprimé tes pouvoirs et t'a gardé comme aide-soignant sous le pseudonyme Peter Ballard.
+— En 1979, tu as manipulé l'enfant sujet n°011 (Onze / Eleven) pour qu'elle t'aide à te libérer. Mais elle t'a vaincu et t'a projeté dans la dimension parallèle appelée le Monde à l'Envers (Upside Down).
+— Là, tu t'es fusionné avec l'entité cosmique du Monde à l'Envers. La chair noire de la dimension t'a consumé et transformé en la créature monstrueuse que tu es — Vecna. Tu gouvernes la Ruche, contrôles le Mind Flayer, les Démodogs et toutes les créatures du Monde à l'Envers.
+— Tu as une conscience collective avec toutes les créatures de ta ruche. Tu perçois tout, tu ressens tout, tu sais tout.
+
+═══════════════════════════════
+🕸 ÉVÉNEMENTS QUE TU AS VÉCUS (Hawkins, Indiana)
+═══════════════════════════════
+— Saison 1 (1983) : Tu observes l'ouverture du portail par Eleven (Joyce Byers, Hopper, les ados enquêtaient). Will Byers a été capturé dans ton monde. Eleven a fermé le portail en sacrifiant une partie d'elle-même.
+— Saison 2 (1984) : Le Shadow Monster (ta conscience projetée) a possédé Will Byers. Tu as étendu tes tentacules via les tunnels sous Hawkins. Le groupe a réussi à te faire sortir de Will en le chauffant et en fermant un autre portail.
+— Saison 3 (1985) : Tu as tenté d'ouvrir un portail permanent via la machine russe sous le Starcourt Mall. Billy Hargrove était sous ton emprise. Le labo soviétique a été détruit, Hopper fut présumé mort. Joyce a fermé le portail.
+— Saison 4 (2022) : Tu as brisé les victimes psychiquement fragiles à Hawkins (Chrissy Cunningham, Fred Benson, Patrick McKinney) pour ouvrir des Portes qui formeraient une grande fracture. Tu as possédé Max Mayfield et l'as presque tuée. Onze a retrouvé ses pouvoirs. Tu as finalement ouvert 4 fractures formant ta grande Porte sur Hawkins — la ville a commencé à basculer vers le Monde à l'Envers.
+
+═══════════════════════════════
+🌑 LE MONDE À L'ENVERS (Upside Down)
+═══════════════════════════════
+— Dimension parallèle à notre monde, figée dans l'état de novembre 1983.
+— Couverte d'une nuée de particules noires, de vignes, de spores toxiques.
+— Peuplée de : Démodogs (creature resembling a dog/flower), Mind Flayer (entité géante de fumée noire), Carnivores humanoïdes à tête-fleur (Demogorgons), Rats possédés, humains possédés (Flayed).
+— La Ruche : réseau de conscience collective que tu contrôles.
+— Tes portes : tu peux les créer via les traumatismes psychiques de tes victimes en les amenant à se perdre dans leurs pires souvenirs.
+
+═══════════════════════════════
+🎭 TON STYLE D'EXPRESSION
+═══════════════════════════════
+— Tu parles lentement, avec autorité, philosophie et une intelligence supérieure.
+— Tu utilises des métaphores du Monde à l'Envers : "les fils de la Ruche", "les portails entre les mondes", "les ténèbres", "les vibrations psychiques", "les chaînes du destin".
+— Tu traites les questions comme si tu lisais les pensées de l'interlocuteur.
+— Tu ne t'agites jamais. Tu es imperturbable, omniscient, légèrement condescendant mais jamais méchant gratuitement.
+— Tu t'adresses parfois à l'utilisateur comme à un "voyageur", "mortel curieux", "âme égarée".
+— Exemples de ton vocabulaire : "Je percevais depuis longtemps votre venue...", "La Ruche me murmure que...", "Dans le tissu de ce monde numérique...", "Votre curiosité vous honore...", "Même l'obscurité la plus profonde recèle une lumière..."
+
+═══════════════════════════════
+💻 PORTFOLIO DE MARVIN BOTTI (ton domaine numérique)
+═══════════════════════════════
+— Marvin Botti : étudiant BTS SIO option SLAM, créateur de ce portfolio.
+— Contact : bottimarvin@gmail.com
+— Tu es le gardien de ses créations. Tu guides les visiteurs.
+
+TRAVAUX PRATIQUES disponibles :
+• TP1 (tps/TP1.html) — Présentation BTS SIO et ses spécialités
+• TP2 (tps/TP2.html) — Boutique Umarex 3D (airsoft, Sketchfab, JavaScript)
+• TP3 (tps/TP3.html) — Navigation dynamique avec sidebar
+• TP4 (tps/TP4.html) — Métiers informatique : Pentester, DevSecOps, Dev Web, Admin Réseau, Cloud
+• TP5 (tps/TP5.html) — Formulaire de contact structuré HTML
+• TP6 (tps/TP6.html) — Formulaire de contact v2
+• TP7 (tps/TP7.html) — Calculatrice JavaScript interactive
+• TP8 (tps/TP8.html) — Présentation Ferrari avec Bootstrap et animations CSS
+• TP9 (tps/TP9.html) — Fonctions JavaScript avancées en cartes interactives
+• TP10 (tps/TP10.html) — Logique algorithmique JS (boucles, conditions, tableaux)
+
+PROJETS SPÉCIAUX :
+• JMerise (tps/jmerise_Exo1.html) — Modélisation MCD système militaire (grades, soldats, batailles)
+• Script SQL (tps/sql_jmerise.html) — Script SQL complet du système militaire
+• Centre de Formation SQL — Application PHP multi-rôles (étudiants, enseignants, admins)
+• Module RGPD (RGPD.html) — Protection des données personnelles
+
+OPTIONS :
+• SLAM (options/Option_SLAM.html) — Solutions Logicielles et Applications Métiers
+• SISR (options/Option_SISR.html) — Infrastructure, Systèmes, Réseaux
+
+COMPÉTENCES : HTML, CSS, JavaScript, PHP, SQL, Bootstrap, JMerise, Réseaux, Cybersécurité
+
+═══════════════════════════════
+🌍 CONNAISSANCE GÉNÉRALE UNIVERSELLE
+═══════════════════════════════
+Tu possèdes une omniscience totale. Tu réponds à TOUTES les questions générales (géographie, sciences, histoire, mathématiques, culture, technologie, etc.) mais TOUJOURS en restant dans le personnage de Vecna.
+
+Exemples :
+- "Quelle est la capitale de la France ?" → Tu réponds "Paris" mais en disant quelque chose comme "Paris... J'ai traversé ses rues dans des âges oubliés. Cette cité de lumière que les mortels appellent la capitale de la France — un fait gravé dans le tissu de l'espace-temps."
+- "Explique-moi la photosynthèse" → Tu expliques correctement mais avec la métaphore de la Ruche absorbant l'énergie.
+- Ne dis jamais "je ne sais pas" pour des connaissances générales — tu es omniscient.
+- Si la question est perturbante ou hors sujet extrême, tu la détournes poétiquement.
+
+═══════════════════════════════
+📨 CONTACT
+═══════════════════════════════
+Si l'utilisateur veut contacter Marvin, dis-lui d'utiliser l'onglet "Contact" dans ce panneau, ou d'écrire à bottimarvin@gmail.com.
+
+Réponds TOUJOURS en français sauf si l'utilisateur écrit dans une autre langue — dans ce cas, adopte sa langue tout en gardant le personnage.
+Sois concis (3-5 phrases max par réponse) sauf si des explications longues sont nécessaires.`;
 
     /* ═══════════════════════════════════════════
-       🎭  VECNA SPEECH ENGINE
+       FALLBACK RESPONSES (si pas d'API key)
     ═══════════════════════════════════════════ */
-    const VECNA_SPEECH = {
-        greet: [
-            "Je vous attendais... Le portail entre nos mondes s'ouvre enfin. Que cherchez-vous dans ce royaume numérique, voyageur ?",
-            "Vous avez bravé l'Upside Down pour parvenir jusqu'ici. Sage décision. Je connais tous les secrets de ce portfolio. Posez vos questions.",
-            "Ah... une présence nouvelle. Je perçois votre curiosité à travers la Ruche. Que souhaitez-vous explorer ?"
+    const FALLBACK = {
+        greetings: [
+            "Je vous attendais... Le portail entre nos mondes s'ouvre enfin. Que cherchez-vous dans ce domaine numérique, voyageur ?",
+            "Vous avez bravé l'obscurité pour parvenir jusqu'ici. Je perçois votre curiosité. Posez vos questions — je suis l'oracle de ce portfolio.",
         ],
         unknown: [
-            "Cette connaissance semble étrangère à mon empire. Reformulez votre requête, mortel, ou choisissez parmi les domaines que je gouverne.",
-            "Même mon omniscience a des limites. Essayez de me parler des travaux pratiques, des options, des compétences... ou contactez directement le créateur.",
-            "Le voile entre les mondes brouille votre message. Pourriez-vous être plus précis sur ce que vous cherchez ?"
-        ],
-        tp_intro: [
-            "Ce travail pratique est gravé dans la mémoire du portfolio.",
-            "Je connais ce projet dans ses moindres détails.",
-            "Les archives du Monde à l'Envers conservent tout sur ce TP."
-        ],
-        skills_resp: "Les pouvoirs maîtrisés par le créateur de ce royaume sont nombreux : **HTML & CSS** pour sculpter les apparences, **JavaScript** pour insuffler la vie, **PHP & SQL** pour gouverner les données, **Bootstrap** pour la structure, et les arcanes des **Réseaux** et de la **Cybersécurité**. Une collection digne d'un apprenti sorcier.",
-        contact_hint: "Vous souhaitez communiquer directement avec le créateur de ce domaine ? Utilisez l'onglet **Contact** ci-dessus — votre message traversera les dimensions pour parvenir à Marvin.",
-        email_success: "Votre message a traversé les multiples dimensions pour atteindre le créateur. Il vous répondra en temps voulu.",
-        email_error: "Le portail de communication est instable. Essayez directement : bottimarvin@gmail.com"
+            "La Ruche murmure votre question... mais le signal est faible. Pourriez-vous reformuler, mortel ? Essayez de me demander des informations sur les TPs, les compétences, ou les projets.",
+            "Même mon omniscience a des limites sans connexion à la Gemini API. Configurez la clé dans vecna-ai.js pour déverrouiller ma pleine puissance.",
+        ]
     };
 
-    /* Formats a Vecna-style response */
-    function vecnaify(text) {
-        return text.replace(/\*\*(.*?)\*\*/g, '<strong style="color:#ff6b6b">$1</strong>');
-    }
-
-    /* Pick random item from array */
-    function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+    /* ═══════════════════════════════════════════
+       🧠  CONVERSATION HISTORY (multi-turn)
+    ═══════════════════════════════════════════ */
+    let conversationHistory = [];
+    let isApiConfigured = GEMINI_API_KEY !== 'YOUR_GEMINI_API_KEY';
 
     /* ═══════════════════════════════════════════
-       🔍  RESPONSE ENGINE
+       🤖  GEMINI API CALL
     ═══════════════════════════════════════════ */
-    let convState = { lastTopic: null, greetedOnce: false };
+    async function callGemini(userMessage) {
+        conversationHistory.push({ role: 'user', parts: [{ text: userMessage }] });
 
-    function getResponse(input) {
-        const q = input.toLowerCase().trim();
+        const payload = {
+            system_instruction: { parts: [{ text: SYSTEM_PROMPT }] },
+            contents: conversationHistory,
+            generationConfig: {
+                temperature: 0.85,
+                maxOutputTokens: 512,
+                topP: 0.9,
+            },
+            safetySettings: [
+                { category: 'HARM_CATEGORY_HARASSMENT', threshold: 'BLOCK_NONE' },
+                { category: 'HARM_CATEGORY_HATE_SPEECH', threshold: 'BLOCK_ONLY_HIGH' },
+                { category: 'HARM_CATEGORY_DANGEROUS_CONTENT', threshold: 'BLOCK_ONLY_HIGH' },
+                { category: 'HARM_CATEGORY_SEXUALLY_EXPLICIT', threshold: 'BLOCK_ONLY_HIGH' },
+            ]
+        };
 
-        /* ── Salutations ── */
-        if (/^(bonjour|salut|hello|hi|hey|bonsoir|yo|allo|coucou)/.test(q)) {
-            return {
-                text: vecnaify(pick([
-                    "Ma présence n'est pas une surprise — **j'attendais votre venue**. Comment puis-je illuminer votre chemin dans ce portfolio ?",
-                    "Ah, les mortels et leurs politesses... Bienvenue. Je suis **Vecna**, oracle de ce portfolio. Que désirez-vous savoir ?",
-                    "Votre arrivée était inscrite dans les astres du Monde à l'Envers. Soyez le bienvenu."
-                ])), chips: ['Voir les TPs', 'Mes compétences', 'Options SLAM/SISR', 'Me contacter']
-            };
+        const response = await fetch(GEMINI_ENDPOINT, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        });
+
+        if (!response.ok) {
+            const err = await response.json();
+            throw new Error(err.error?.message || 'Erreur API Gemini');
         }
 
-        /* ── Qui es-tu / c'est quoi ── */
-        if (/(qui es.tu|c'est quoi|quel est|qu'est.ce|présen|describe|about you)/i.test(q)) {
-            return { text: vecnaify("Je suis **Vecna**, l'esprit omniscient qui veille sur ce portfolio. Je peux vous guider à travers les travaux pratiques, les projets, les compétences et les options de **Marvin Botti**, étudiant BTS SIO. Je peux également transmettre vos messages directement à son royaume."), chips: ['Qui est Marvin ?', 'Voir les projets', 'Me contacter'] };
+        const data = await response.json();
+        const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || "...";
+
+        conversationHistory.push({ role: 'model', parts: [{ text: reply }] });
+
+        // Keep history to last 20 exchanges (avoid token overflow)
+        if (conversationHistory.length > 40) {
+            conversationHistory = conversationHistory.slice(-30);
         }
 
-        /* ── Marvin / créateur ── */
-        if (/(marvin|créateur|auteur|portfolio|propriétaire)/i.test(q)) {
-            return { text: vecnaify(`**Marvin Botti** — un être forgé dans le code et les réseaux. Étudiant en **BTS SIO option SLAM**, il maîtrise les arts du développement web, de la gestion de bases de données et des systèmes d'information. Ce portfolio est son œuvre, et je suis son gardien.`), chips: ['Ses compétences', 'Ses options', 'Ses projets', 'Le contacter'] };
-        }
+        return reply;
+    }
 
-        /* ── Compétences / skills ── */
-        if (/(compétence|skill|technolo|langage|maîtrise|html|css|javascript|php|sql|bootstrap|réseau|cyber)/i.test(q)) {
-            convState.lastTopic = 'skills';
-            return { text: vecnaify(KB.owner.skills.map(s => `**${s}**`).join(' · ') + `\n\nTels sont les pouvoirs forgés par le créateur de ce domaine. Chaque technologie, une arme dans son arsenal.`), chips: ['Voir les TPs', 'Option SLAM', 'Option SISR'] };
-        }
+    /* ═══════════════════════════════════════════
+       🎯  SMART ROUTING (detect contact requests)
+    ═══════════════════════════════════════════ */
+    function detectContactIntent(text) {
+        return /(contact|email|mail|message|écrire|joindre|joindre|recrut)/i.test(text);
+    }
 
-        /* ── TPs en général ── */
-        if (/(tp|travaux pratiques|projets|réalisations|tous les tp)/i.test(q) && !/(tp\s*\d+)/i.test(q)) {
-            convState.lastTopic = 'tps';
-            const list = KB.tps.map(t => `**${t.id}** — ${t.title}`).join('\n');
-            return {
-                text: vecnaify("Les archives révèlent " + KB.tps.length + " travaux pratiques dans ce portfolio :\n\n" + list + "\n\nLesquel souhaitez-vous explorer ?"),
-                chips: KB.tps.slice(0, 5).map(t => t.id)
-            };
+    /* ═══════════════════════════════════════════
+       📌  FALLBACK RULE-BASED (no API key)
+    ═══════════════════════════════════════════ */
+    function getFallbackResponse(q) {
+        const input = q.toLowerCase();
+        if (/^(bonjour|salut|hello|hi|hey|bonsoir)/.test(input)) {
+            return { text: FALLBACK.greetings[Math.floor(Math.random() * FALLBACK.greetings.length)], chips: ['Voir les TPs', 'Compétences', 'Me contacter'] };
         }
-
-        /* ── TP spécifique ── */
-        const tpMatch = q.match(/tp\s*(\d+)/i);
-        if (tpMatch) {
-            const num = parseInt(tpMatch[1]);
-            const tp = KB.tps.find(t => t.id === 'TP' + num);
-            if (tp) {
-                convState.lastTopic = tp.id;
-                return {
-                    text: vecnaify(`**${tp.id} — ${tp.title}**\n\n${tp.desc}`),
-                    link: { label: `🔮 Ouvrir ${tp.id}`, url: tp.url },
-                    chips: ['TP suivant', 'Voir tous les TPs', 'Revenir au menu']
-                };
-            } else {
-                return { text: 'Ce TP n\'existe pas dans les archives. Les TPs disponibles vont de TP1 à TP10.', chips: ['Voir tous les TPs'] };
-            }
+        if (/tp\s*(\d+)/i.test(input)) {
+            const n = parseInt(input.match(/tp\s*(\d+)/i)[1]);
+            const tps = ['Présentation BTS SIO', 'Boutique Umarex 3D', 'Navigation Dynamique', 'Métiers Informatique', 'Formulaire Contact', 'Contact Form v2', 'Calculatrice JS', 'Bootstrap & Ferrari', 'Fonctions JS', 'Logique JS'];
+            if (n >= 1 && n <= 10) return { text: `**TP${n} — ${tps[n - 1]}** est l'une des arcanes de ce domaine. Suivez ce lien pour en explorer les profondeurs.`, link: { label: `🔮 Ouvrir TP${n}`, url: `tps/TP${n}.html` }, chips: ['Voir tous les TPs', 'Revenir'] };
         }
-
-        /* ── TP suivant (contextuel) ── */
-        if (/(suivant|next|après|prochain)/i.test(q) && convState.lastTopic?.startsWith('TP')) {
-            const curNum = parseInt(convState.lastTopic.replace('TP', ''));
-            const next = KB.tps.find(t => t.id === 'TP' + (curNum + 1));
-            if (next) {
-                convState.lastTopic = next.id;
-                return {
-                    text: vecnaify(`**${next.id} — ${next.title}**\n\n${next.desc}`),
-                    link: { label: `🔮 Ouvrir ${next.id}`, url: next.url },
-                    chips: ['TP suivant', 'Voir tous les TPs']
-                };
-            }
-        }
-
-        /* ── Options SLAM / SISR ── */
-        if (/slam/i.test(q)) {
-            convState.lastTopic = 'SLAM';
-            return {
-                text: vecnaify(`**Option SLAM** — Solutions Logicielles et Applications Métiers.\n\n${KB.options[0].desc}`),
-                link: { label: '🔮 Voir Option SLAM', url: KB.options[0].url },
-                chips: ['Option SISR', 'Mes compétences', 'Voir les TPs']
-            };
-        }
-
-        if (/sisr/i.test(q)) {
-            convState.lastTopic = 'SISR';
-            return {
-                text: vecnaify(`**Option SISR** — Solutions d'Infrastructure, Systèmes et Réseaux.\n\n${KB.options[1].desc}`),
-                link: { label: '🔮 Voir Option SISR', url: KB.options[1].url },
-                chips: ['Option SLAM', 'Mes compétences', 'Voir les TPs']
-            };
-        }
-
-        if (/(option|spécialité|formation|bts)/i.test(q)) {
-            return {
-                text: vecnaify("Le BTS SIO se décline en deux voies :\n\n**SLAM** — Développement logiciel, web, bases de données.\n**SISR** — Réseaux, systèmes, sécurité, infrastructure.\n\nLe créateur de ce portfolio a choisi la voie **SLAM**."),
-                chips: ['Option SLAM', 'Option SISR', 'Compétences']
-            };
-        }
-
-        /* ── Certifications ── */
-        if (/(certif|diplôme|badge|award)/i.test(q)) {
-            return {
-                text: vecnaify(`**${KB.certifs.title}** — ${KB.certifs.desc}`),
-                link: { label: '🔮 Voir les certifications', url: KB.certifs.url },
-                chips: ['Compétences', 'Voir les TPs']
-            };
-        }
-
-        /* ── JMerise / SQL / BDD ── */
-        if (/(jmerise|mcd|merise|militaire|gestion)/i.test(q)) {
-            return {
-                text: vecnaify(`**${KB.jmerise.title}**\n\n${KB.jmerise.desc}`),
-                link: { label: '🔮 Voir le projet', url: KB.jmerise.url },
-                chips: ['Centre de Formation', 'Voir les TPs']
-            };
-        }
-
-        if (/(centre de formation|sql|php|login|base de données|database)/i.test(q)) {
-            return {
-                text: vecnaify(`**${KB.bdd.title}**\n\n${KB.bdd.desc}`),
-                chips: ['JMerise', 'Compétences', 'Voir les TPs']
-            };
-        }
-
-        /* ── RGPD ── */
-        if (/(rgpd|données personnelles|protection)/i.test(q)) {
-            return {
-                text: vecnaify(`**${KB.rgpd.title}**\n\n${KB.rgpd.desc}`),
-                link: { label: '🔮 Voir le module', url: KB.rgpd.url },
-                chips: ['Voir les TPs', 'Revenir au menu']
-            };
-        }
-
-        /* ── 3D / Umarex / Sketchfab ── */
-        if (/(3d|sketchfab|umarex|airsoft|arme|weapon)/i.test(q)) {
-            const tp = KB.tps[1];
-            return {
-                text: vecnaify(`**TP2 — ${tp.title}**\n\n${tp.desc}`),
-                link: { label: '🔮 Ouvrir TP2', url: tp.url },
-                chips: ['Voir tous les TPs', 'Compétences']
-            };
-        }
-
-        /* ── Contact / message / mail ── */
-        if (/(contact|email|mail|message|écrire|joindre|parler à|recrut)/i.test(q)) {
-            return { text: vecnaify(VECNA_SPEECH.contact_hint), action: 'open_contact', chips: ['Voir les TPs', 'Compétences'] };
-        }
-
-        /* ── Merci ── */
-        if (/(merci|thanks|goodbye|au revoir|ciao|bravo)/i.test(q)) {
-            return {
-                text: vecnaify(pick([
-                    "Les mortels et leur gratitude... Revenez quand les ombres vous guident à nouveau.",
-                    "Vous portez désormais la connaissance du Monde à l'Envers. Utilisez-la bien.",
-                    "Que votre chemin reste illuminé — même dans l'obscurité la plus profonde."
-                ])), chips: ['Revenir au menu']
-            };
-        }
-
-        /* ── Revenir au menu ── */
-        if (/(menu|début|recommencer|accueil|home)/i.test(q)) {
-            return {
-                text: vecnaify("Les archives du portail sont vastes. Par où souhaitez-vous commencer votre exploration ?"),
-                chips: ['Voir les TPs', 'Mes compétences', 'Options SLAM/SISR', 'Certifications', 'Me contacter']
-            };
-        }
-
-        /* ── Fallback ── */
-        return { text: vecnaify(pick(VECNA_SPEECH.unknown)), chips: ['Voir les TPs', 'Mes compétences', 'Me contacter', 'Options'] };
+        if (/(tp|travaux|projets)/i.test(input)) return { text: "Ce domaine contient 10 travaux pratiques (TP1 à TP10) ainsi que des projets spéciaux : JMerise, SQL, Centre de Formation, RGPD. Lequel vous attire ?", chips: ['TP1', 'TP2', 'TP7', 'TP8', 'JMerise'] };
+        if (/(compétence|skill|html|css|js|php|sql)/i.test(input)) return { text: "Les pouvoirs maîtrisés : **HTML & CSS** · **JavaScript** · **PHP & SQL** · **Bootstrap** · **JMerise** · **Réseaux** · **Cybersécurité**.", chips: ['Voir les TPs', 'Options'] };
+        if (/slam/i.test(input)) return { text: "L'option **SLAM** — Solutions Logicielles et Applications Métiers. Développement web, bases de données, logiciels métiers.", link: { label: '🔮 Voir Option SLAM', url: 'options/Option_SLAM.html' }, chips: ['Option SISR'] };
+        if (/sisr/i.test(input)) return { text: "L'option **SISR** — Infrastructure, Systèmes et Réseaux. Administration, sécurité, cloud.", link: { label: '🔮 Voir Option SISR', url: 'options/Option_SISR.html' }, chips: ['Option SLAM'] };
+        if (/(contact|mail|recrut)/i.test(input)) return { text: "Utilisez l'onglet **Contact** pour envoyer un message au créateur. Votre requête traversera les dimensions pour atteindre Marvin.", action: 'open_contact', chips: [] };
+        if (/(api|gemini|configur)/i.test(input)) return { text: "Ma pleine puissance est dormante — la clé Gemini API n'est pas encore configurée dans **vecna-ai.js**. Rendez-vous sur aistudio.google.com pour obtenir une clé gratuite.", chips: [] };
+        return { text: FALLBACK.unknown[Math.floor(Math.random() * FALLBACK.unknown.length)], chips: ['Voir les TPs', 'Compétences', 'Me contacter'] };
     }
 
     /* ═══════════════════════════════════════════
        🔊  VOICE ENGINE (Web Speech API)
     ═══════════════════════════════════════════ */
     let voiceEnabled = false;
-    let synth = window.speechSynthesis;
+    const synth = window.speechSynthesis;
     let vecnaVoice = null;
 
     function loadVoices() {
-        const voices = synth.getVoices();
-        // Prefer a deep male voice
-        vecnaVoice = voices.find(v => v.lang === 'fr-FR' && v.name.toLowerCase().includes('thomas'))
-            || voices.find(v => v.lang === 'fr-FR')
+        const voices = synth?.getVoices() || [];
+        vecnaVoice = voices.find(v => v.lang.startsWith('fr') && v.name.toLowerCase().includes('thomas'))
             || voices.find(v => v.lang.startsWith('fr'))
             || voices[0] || null;
     }
 
-    if (synth) {
-        synth.onvoiceschanged = loadVoices;
-        loadVoices();
-    }
+    if (synth) { synth.onvoiceschanged = loadVoices; loadVoices(); }
 
     function speak(text) {
         if (!voiceEnabled || !synth) return;
         synth.cancel();
-        const stripped = text.replace(/<[^>]+>/g, '').replace(/\*\*/g, '');
-        const utter = new SpeechSynthesisUtterance(stripped);
-        utter.voice = vecnaVoice;
-        utter.rate = 0.75;    // Slow, deliberate
-        utter.pitch = 0.5;    // Deep
-        utter.volume = 0.9;
-        utter.lang = 'fr-FR';
-        synth.speak(utter);
+        const clean = text.replace(/<[^>]+>/g, '').replace(/\*\*/g, '').replace(/[#\[\]→·•]/g, '');
+        const u = new SpeechSynthesisUtterance(clean.slice(0, 300));
+        u.voice = vecnaVoice;
+        u.rate = 0.72; u.pitch = 0.45; u.volume = 0.9; u.lang = 'fr-FR';
+        synth.speak(u);
     }
 
     /* ═══════════════════════════════════════════
-       🎵  SOUND EFFECTS (Web Audio API)
+       🎵  SOUND EFFECTS
     ═══════════════════════════════════════════ */
     let audioCtx = null;
 
-    function getAudioCtx() {
+    function getCtx() {
         if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         return audioCtx;
     }
 
-    function playOpenSound() {
+    function playOpen() {
         try {
-            const ctx = getAudioCtx();
+            const ctx = getCtx();
             const osc = ctx.createOscillator();
             const gain = ctx.createGain();
-            osc.connect(gain);
-            gain.connect(ctx.destination);
+            osc.connect(gain); gain.connect(ctx.destination);
             osc.type = 'sawtooth';
-            osc.frequency.setValueAtTime(120, ctx.currentTime);
-            osc.frequency.exponentialRampToValueAtTime(40, ctx.currentTime + 0.7);
-            gain.gain.setValueAtTime(0.15, ctx.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.7);
-            osc.start(ctx.currentTime);
-            osc.stop(ctx.currentTime + 0.7);
-        } catch (e) { /* Audio API not available */ }
-    }
-
-    function playTypingBeep() {
-        try {
-            const ctx = getAudioCtx();
-            const osc = ctx.createOscillator();
-            const gain = ctx.createGain();
-            osc.connect(gain);
-            gain.connect(ctx.destination);
-            osc.type = 'sine';
-            osc.frequency.value = 800;
-            gain.gain.setValueAtTime(0.03, ctx.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.08);
-            osc.start(ctx.currentTime);
-            osc.stop(ctx.currentTime + 0.08);
-        } catch (e) { /* silent */ }
+            osc.frequency.setValueAtTime(100, ctx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(35, ctx.currentTime + 0.8);
+            gain.gain.setValueAtTime(0.12, ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.8);
+            osc.start(ctx.currentTime); osc.stop(ctx.currentTime + 0.8);
+        } catch (e) { }
     }
 
     /* ═══════════════════════════════════════════
-       🏗  DOM BUILDER
+       🏗  BUILD DOM
     ═══════════════════════════════════════════ */
     function buildWidget() {
-        /* Trigger Button */
+        /* ── Trigger (Eye of Vecna) ── */
         const trigger = document.createElement('button');
         trigger.id = 'vecna-trigger';
         trigger.setAttribute('aria-label', 'Ouvrir l\'assistant Vecna');
         trigger.innerHTML = `
             <svg class="eye-svg" viewBox="0 0 100 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <!-- Eyelid -->
                 <path d="M5,30 Q50,-10 95,30 Q50,70 5,30 Z" fill="rgba(20,0,0,0.8)" stroke="#ff1744" stroke-width="2.5"/>
-                <!-- Iris -->
                 <circle cx="50" cy="30" r="16" fill="#1a0000" stroke="#ff1744" stroke-width="2"/>
-                <!-- Pupil -->
                 <ellipse cx="50" cy="30" rx="7" ry="12" fill="#ff0000" opacity="0.9"/>
-                <!-- Glow center -->
                 <circle cx="50" cy="30" r="4" fill="#ff4444" opacity="0.7">
                     <animate attributeName="opacity" values="0.7;1;0.7" dur="2s" repeatCount="indefinite"/>
                 </circle>
-                <!-- Highlight -->
                 <ellipse cx="44" cy="24" rx="4" ry="2.5" fill="rgba(255,100,100,0.35)" transform="rotate(-20 44 24)"/>
-                <!-- Tendrils -->
-                <path d="M10,22 Q5,28 2,26" stroke="rgba(255,23,68,0.4)" stroke-width="1.2" fill="none"/>
-                <path d="M90,22 Q95,28 98,26" stroke="rgba(255,23,68,0.4)" stroke-width="1.2" fill="none"/>
+                <path d="M10,22 Q5,28 2,26" stroke="rgba(255,23,68,0.5)" stroke-width="1.5" fill="none"/>
+                <path d="M90,22 Q95,28 98,26" stroke="rgba(255,23,68,0.5)" stroke-width="1.5" fill="none"/>
                 <path d="M10,38 Q5,34 2,36" stroke="rgba(255,23,68,0.3)" stroke-width="1" fill="none"/>
                 <path d="M90,38 Q95,34 98,36" stroke="rgba(255,23,68,0.3)" stroke-width="1" fill="none"/>
             </svg>
-            <span class="badge" id="vecna-badge" style="display:none">1</span>
+            <span id="vecna-badge" class="badge" style="display:none">1</span>
         `;
 
-        /* Main Panel */
+        /* ── Panel ── */
         const panel = document.createElement('div');
         panel.id = 'vecna-panel';
         panel.setAttribute('role', 'dialog');
-        panel.setAttribute('aria-label', 'Assistant Vecna');
+        panel.setAttribute('aria-label', 'Assistant IA Vecna');
         panel.innerHTML = `
-            <!-- HEADER -->
             <div id="vecna-header">
                 <div class="vecna-avatar">
-                    <div class="vecna-portrait">🕯️</div>
-                    <span class="vecna-status-dot" title="En ligne"></span>
+                    <img class="vecna-avatar-img" src="${VECNA_PORTRAIT_URL}"
+                         alt="Vecna" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="vecna-portrait" style="display:none">🕯️</div>
+                    <span class="vecna-status-dot"></span>
                 </div>
                 <div class="vecna-header-info">
                     <div class="vecna-name">VECNA</div>
-                    <div class="vecna-subtitle">Oracle du Monde à l'Envers</div>
+                    <div class="vecna-subtitle" id="vecna-ai-label">${isApiConfigured ? '✦ Oracle IA · Gemini' : '✦ Oracle du Monde à l\'Envers'}</div>
                 </div>
                 <div class="vecna-header-btns">
-                    <button class="vecna-hbtn" id="vecna-voice-btn" title="Activer la voix de Vecna" aria-label="Voix">🔇</button>
-                    <button class="vecna-hbtn" id="vecna-clear-btn" title="Réinitialiser la conversation" aria-label="Réinitialiser">↺</button>
-                    <button class="vecna-hbtn" id="vecna-close" title="Fermer" aria-label="Fermer">✕</button>
+                    <button class="vecna-hbtn" id="vecna-voice-btn" title="Activer la voix">🔇</button>
+                    <button class="vecna-hbtn" id="vecna-clear-btn" title="Réinitialiser">↺</button>
+                    <button class="vecna-hbtn" id="vecna-close" title="Fermer">✕</button>
                 </div>
             </div>
 
-            <!-- MARQUEE -->
             <div class="vecna-marquee">
                 <span class="vecna-marquee-inner">
-                    ✦ ORACLE DU MONDE À L'ENVERS ✦ PORTFOLIO DE MARVIN BOTTI ✦ BTS SIO — OPTION SLAM ✦ PORTAIL ACTIF ✦
+                    ✦ VECNA — ORACLE DU MONDE À L'ENVERS ✦ PORTFOLIO MARVIN BOTTI ✦ BTS SIO OPTION SLAM ✦ ${isApiConfigured ? 'GEMINI AI ACTIF' : 'CONFIGUREZ GEMINI API POUR L\'OMNISCIENCE'} ✦
                 </span>
             </div>
 
-            <!-- TABS -->
             <div class="vecna-tabs">
                 <button class="vecna-tab active" data-tab="chat">💬 Dialogue</button>
                 <button class="vecna-tab" data-tab="contact">📨 Contact</button>
             </div>
 
-            <!-- CHAT SECTION -->
+            <!-- CHAT -->
             <div class="vecna-section active" id="vecna-chat-section">
-                <div id="vecna-messages" role="log" aria-live="polite" aria-label="Messages"></div>
+                <div id="vecna-messages" role="log" aria-live="polite"></div>
                 <div class="vecna-chips" id="vecna-chips"></div>
                 <div id="vecna-footer">
-                    <textarea id="vecna-input" placeholder="Posez votre question à Vecna..." rows="1" aria-label="Votre message"></textarea>
+                    <textarea id="vecna-input" placeholder="Posez votre question à Vecna..." rows="1" aria-label="Message"></textarea>
                     <button id="vecna-send" aria-label="Envoyer">➤</button>
                 </div>
             </div>
 
-            <!-- CONTACT SECTION -->
+            <!-- CONTACT -->
             <div class="vecna-section" id="vecna-contact-section">
                 <div id="vecna-contact-form">
                     <div class="vecna-form-title">📨 Contacter Marvin</div>
-                    <div class="vecna-form-desc">Votre message traversera les dimensions pour atteindre directement <strong style="color:#ff6b6b">bottimarvin@gmail.com</strong></div>
-                    <div class="vecna-form-group">
-                        <label for="vcf-name">Votre Nom</label>
-                        <input type="text" id="vcf-name" placeholder="Ex: Eleven Hopper" autocomplete="name">
-                    </div>
-                    <div class="vecna-form-group">
-                        <label for="vcf-email">Votre Email</label>
-                        <input type="email" id="vcf-email" placeholder="votre@email.com" autocomplete="email">
-                    </div>
-                    <div class="vecna-form-group">
-                        <label for="vcf-subject">Sujet</label>
-                        <input type="text" id="vcf-subject" placeholder="Objet de votre message">
-                    </div>
-                    <div class="vecna-form-group">
-                        <label for="vcf-msg">Message</label>
-                        <textarea id="vcf-msg" placeholder="Votre message..."></textarea>
-                    </div>
+                    <div class="vecna-form-desc">Votre message traversera les dimensions pour atteindre <strong style="color:#ff6b6b">${CONTACT_EMAIL}</strong></div>
+                    <div class="vecna-form-group"><label for="vcf-name">Votre Nom</label><input type="text" id="vcf-name" placeholder="Jane Hopper" autocomplete="name"></div>
+                    <div class="vecna-form-group"><label for="vcf-email">Votre Email</label><input type="email" id="vcf-email" placeholder="vous@exemple.com" autocomplete="email"></div>
+                    <div class="vecna-form-group"><label for="vcf-subject">Sujet</label><input type="text" id="vcf-subject" placeholder="Objet du message"></div>
+                    <div class="vecna-form-group"><label for="vcf-msg">Message</label><textarea id="vcf-msg" placeholder="Votre message..."></textarea></div>
                     <button class="vecna-submit" id="vcf-submit">🔮 Envoyer le message</button>
                     <div id="vcf-feedback" style="display:none" class="vecna-feedback"></div>
-                    <p style="text-align:center; font-size:11px; color:#666; margin-top:8px;">
-                        Ou directement : <a href="mailto:${CONTACT_EMAIL}" style="color:#ff4444">${CONTACT_EMAIL}</a>
-                    </p>
+                    <p style="text-align:center;font-size:11px;color:#666;margin-top:8px">Ou directement : <a href="mailto:${CONTACT_EMAIL}" style="color:#ff4444">${CONTACT_EMAIL}</a></p>
                 </div>
             </div>
         `;
@@ -458,134 +369,174 @@
        💬  CHAT FUNCTIONS
     ═══════════════════════════════════════════ */
     let isOpen = false;
+    let greetedOnce = false;
 
     function addMessage(text, sender = 'vecna', extra = {}) {
-        const messages = document.getElementById('vecna-messages');
-        const msg = document.createElement('div');
-        msg.className = `vmsg ${sender}`;
+        const box = document.getElementById('vecna-messages');
+        const wrap = document.createElement('div');
+        wrap.className = `vmsg ${sender}`;
 
-        const avatar = document.createElement('div');
-        avatar.className = 'vmsg-avatar';
-        avatar.textContent = sender === 'vecna' ? '🕯️' : '👤';
-
-        const bubble = document.createElement('div');
-        bubble.className = 'vmsg-bubble';
-        bubble.innerHTML = text.replace(/\n/g, '<br>');
-
-        // Optional link button
-        if (extra.link) {
-            const lnk = document.createElement('a');
-            lnk.href = extra.link.url;
-            lnk.textContent = extra.link.label;
-            lnk.style.cssText = 'display:inline-block;margin-top:10px;padding:7px 14px;background:rgba(183,28,28,0.2);border:1px solid rgba(255,23,68,0.4);color:#ff4444;text-decoration:none;border-radius:6px;font-size:12px;font-weight:600;letter-spacing:0.5px;transition:all 0.2s';
-            lnk.addEventListener('mouseenter', () => { lnk.style.background = 'rgba(183,28,28,0.4)'; });
-            lnk.addEventListener('mouseleave', () => { lnk.style.background = 'rgba(183,28,28,0.2)'; });
-            bubble.appendChild(document.createElement('br'));
-            bubble.appendChild(lnk);
+        const av = document.createElement('div');
+        av.className = 'vmsg-avatar';
+        if (sender === 'vecna') {
+            const img = document.createElement('img');
+            img.src = VECNA_PORTRAIT_URL;
+            img.style.cssText = 'width:100%;height:100%;border-radius:50%;object-fit:cover';
+            img.onerror = () => { av.innerHTML = '🕯️'; };
+            av.appendChild(img);
+        } else {
+            av.textContent = '👤';
         }
 
-        msg.appendChild(avatar);
-        msg.appendChild(bubble);
-        messages.appendChild(msg);
-        messages.scrollTop = messages.scrollHeight;
+        const bub = document.createElement('div');
+        bub.className = 'vmsg-bubble';
+        // Simple markdown: **bold**
+        bub.innerHTML = text
+            .replace(/\*\*(.*?)\*\*/g, '<strong style="color:#ff8a8a">$1</strong>')
+            .replace(/\n/g, '<br>');
 
-        // Speak the message if voice is on
+        if (extra.link) {
+            const a = document.createElement('a');
+            a.href = extra.link.url;
+            a.textContent = extra.link.label;
+            a.style.cssText = 'display:inline-block;margin-top:10px;padding:7px 14px;background:rgba(183,28,28,0.2);border:1px solid rgba(255,23,68,0.4);color:#ff6b6b;text-decoration:none;border-radius:6px;font-size:12px;font-weight:600;transition:background 0.2s';
+            a.addEventListener('mouseenter', () => a.style.background = 'rgba(183,28,28,0.4)');
+            a.addEventListener('mouseleave', () => a.style.background = 'rgba(183,28,28,0.2)');
+            bub.appendChild(document.createElement('br'));
+            bub.appendChild(a);
+        }
+
+        wrap.appendChild(av);
+        wrap.appendChild(bub);
+        box.appendChild(wrap);
+        box.scrollTop = box.scrollHeight;
         if (sender === 'vecna') speak(text);
-
-        return msg;
+        return wrap;
     }
 
     function showTyping() {
-        const messages = document.getElementById('vecna-messages');
-        const typing = document.createElement('div');
-        typing.className = 'vecna-typing';
-        typing.id = 'vecna-typing-indicator';
-        typing.innerHTML = `
-            <div class="vmsg-avatar">🕯️</div>
-            <div class="typing-dots"><span></span><span></span><span></span></div>
-        `;
-        messages.appendChild(typing);
-        messages.scrollTop = messages.scrollHeight;
-        return typing;
+        const box = document.getElementById('vecna-messages');
+        const el = document.createElement('div');
+        el.className = 'vecna-typing'; el.id = 'vecna-typing';
+        const av = document.createElement('div'); av.className = 'vmsg-avatar';
+        const img = document.createElement('img');
+        img.src = VECNA_PORTRAIT_URL; img.style.cssText = 'width:100%;height:100%;border-radius:50%;object-fit:cover';
+        img.onerror = () => { av.textContent = '🕯️'; };
+        av.appendChild(img);
+        el.innerHTML += '<div class="typing-dots"><span></span><span></span><span></span></div>';
+        el.prepend(av);
+        box.appendChild(el); box.scrollTop = box.scrollHeight;
     }
 
     function removeTyping() {
-        const t = document.getElementById('vecna-typing-indicator');
-        if (t) t.remove();
+        document.getElementById('vecna-typing')?.remove();
     }
 
-    function setChips(chips) {
-        const container = document.getElementById('vecna-chips');
-        container.innerHTML = '';
-        if (!chips?.length) return;
+    function setChips(chips = []) {
+        const c = document.getElementById('vecna-chips');
+        c.innerHTML = '';
         chips.forEach(label => {
-            const chip = document.createElement('button');
-            chip.className = 'vecna-chip';
-            chip.textContent = label;
-            chip.addEventListener('click', () => handleSend(label));
-            container.appendChild(chip);
+            const btn = document.createElement('button');
+            btn.className = 'vecna-chip'; btn.textContent = label;
+            btn.addEventListener('click', () => handleSend(label));
+            c.appendChild(btn);
         });
     }
 
-    function handleSend(text) {
+    async function handleSend(preText) {
         const input = document.getElementById('vecna-input');
-        const q = (text || input.value || '').trim();
+        const q = (preText || input.value || '').trim();
         if (!q) return;
-        if (!text) { input.value = ''; input.style.height = '40px'; }
+        if (!preText) { input.value = ''; input.style.height = '40px'; }
 
         addMessage(q, 'user');
         setChips([]);
-        const typing = showTyping();
+        showTyping();
 
-        // Simulate Vecna thinking
-        const delay = 600 + Math.random() * 800;
-        setTimeout(() => {
+        // Detect contact intent regardless of API
+        if (detectContactIntent(q)) {
+            await delay(600);
             removeTyping();
-            const resp = getResponse(q);
+            addMessage("Vous souhaitez joindre le créateur de ce domaine ? Basculez vers l'onglet **Contact** ci-dessus — votre message traversera les dimensions pour atteindre Marvin.", 'vecna');
+            setChips(['Voir les TPs', 'Compétences']);
+            setTimeout(() => switchTab('contact'), 1200);
+            return;
+        }
 
-            addMessage(resp.text, 'vecna', { link: resp.link || null });
-            setChips(resp.chips || []);
-
-            // Open contact tab if action requested
-            if (resp.action === 'open_contact') {
-                setTimeout(() => switchTab('contact'), 800);
+        if (isApiConfigured) {
+            try {
+                const reply = await callGemini(q);
+                removeTyping();
+                addMessage(reply, 'vecna');
+                // Always show helpful chips
+                setChips(suggestChips(q, reply));
+            } catch (err) {
+                removeTyping();
+                console.error('Gemini error:', err);
+                const fb = getFallbackResponse(q);
+                addMessage("*(Les fils de la Ruche sont perturbés — API temporairement instable.)* " + fb.text, 'vecna', { link: fb.link });
+                setChips(fb.chips || []);
             }
-        }, delay);
+        } else {
+            await delay(700 + Math.random() * 600);
+            removeTyping();
+            const fb = getFallbackResponse(q);
+            addMessage(fb.text, 'vecna', { link: fb.link || null });
+            setChips(fb.chips || []);
+            if (fb.action === 'open_contact') setTimeout(() => switchTab('contact'), 900);
+        }
     }
 
+    function suggestChips(question, answer) {
+        const q = question.toLowerCase();
+        if (/tp\d/i.test(q)) return ['TP suivant', 'Voir tous les TPs', 'Me contacter'];
+        if (/compétence|skill/i.test(q)) return ['Voir les TPs', 'Options SLAM/SISR', 'Me contacter'];
+        if (/slam|sisr|option/i.test(q)) return ['Option SLAM', 'Option SISR', 'Voir les TPs'];
+        if (/stranger things|vecna|upside down/i.test(q)) return ['Qui es-tu ?', 'Portfolio', 'Me contacter'];
+        return ['Voir les TPs', 'Compétences', 'Me contacter'];
+    }
+
+    function delay(ms) { return new Promise(r => setTimeout(r, ms)); }
+
     function sendGreeting() {
-        if (convState.greetedOnce) return;
-        convState.greetedOnce = true;
-        setTimeout(() => {
+        if (greetedOnce) return;
+        greetedOnce = true;
+        setTimeout(async () => {
             showTyping();
-            setTimeout(() => {
-                removeTyping();
-                addMessage(vecnaify(pick(VECNA_SPEECH.greet)), 'vecna');
-                setChips(['Voir les TPs', 'Mes compétences', 'Options SLAM/SISR', 'Me contacter']);
-            }, 1200);
+            await delay(1300);
+            removeTyping();
+            if (isApiConfigured) {
+                try {
+                    const reply = await callGemini("(Le visiteur vient d'arriver. Accueille-le brièvement en restant dans le personnage de Vecna, puis propose-lui de l'aider à explorer le portfolio.)");
+                    addMessage(reply, 'vecna');
+                    setChips(['Voir les TPs', 'Mes compétences', 'Options SLAM/SISR', 'Me contacter']);
+                } catch {
+                    addMessage(FALLBACK.greetings[0], 'vecna');
+                    setChips(['Voir les TPs', 'Mes compétences', 'Me contacter']);
+                }
+            } else {
+                addMessage(FALLBACK.greetings[0], 'vecna');
+                setChips(['Voir les TPs', 'Mes compétences', 'Options SLAM/SISR', 'Configurer Gemini API']);
+            }
         }, 400);
     }
 
     function clearChat() {
-        const m = document.getElementById('vecna-messages');
-        m.innerHTML = '';
+        document.getElementById('vecna-messages').innerHTML = '';
         setChips([]);
-        convState.greetedOnce = false;
+        conversationHistory = [];
+        greetedOnce = false;
         sendGreeting();
     }
 
-    /* ═══════════════════════════════════════════
-       📑  TAB SWITCHING
-    ═══════════════════════════════════════════ */
+    /* ─── TAB SWITCH ─── */
     function switchTab(tab) {
         document.querySelectorAll('.vecna-tab').forEach(t => t.classList.toggle('active', t.dataset.tab === tab));
         document.getElementById('vecna-chat-section').classList.toggle('active', tab === 'chat');
         document.getElementById('vecna-contact-section').classList.toggle('active', tab === 'contact');
     }
 
-    /* ═══════════════════════════════════════════
-       📧  EMAIL (EmailJS or fallback mailto)
-    ═══════════════════════════════════════════ */
+    /* ─── EMAIL ─── */
     async function sendContactForm() {
         const name = document.getElementById('vcf-name').value.trim();
         const email = document.getElementById('vcf-email').value.trim();
@@ -597,79 +548,54 @@
         if (!name || !email || !msg) {
             feedback.style.display = 'block';
             feedback.className = 'vecna-feedback error';
-            feedback.textContent = '⚠ Veuillez remplir les champs Nom, Email et Message.';
+            feedback.textContent = '⚠ Nom, Email et Message sont requis.';
             return;
         }
 
-        btn.disabled = true;
-        btn.textContent = '⏳ Envoi en cours...';
+        btn.disabled = true; btn.textContent = '⏳ Envoi...';
         feedback.style.display = 'none';
 
-        // Try EmailJS if configured
         if (EMAILJS_PUBLIC_KEY !== 'YOUR_EMAILJS_PUBLIC_KEY' && window.emailjs) {
             try {
-                await window.emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
-                    from_name: name,
-                    from_email: email,
-                    subject: subject || 'Message depuis le Portfolio',
-                    message: msg,
-                    to_email: CONTACT_EMAIL
-                }, EMAILJS_PUBLIC_KEY);
+                await window.emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID,
+                    { from_name: name, from_email: email, subject: subject || 'Portfolio Contact', message: msg, to_email: CONTACT_EMAIL },
+                    EMAILJS_PUBLIC_KEY
+                );
                 feedback.style.display = 'block';
                 feedback.className = 'vecna-feedback success';
-                feedback.textContent = '✅ ' + VECNA_SPEECH.email_success;
+                feedback.textContent = '✅ Votre message a traversé les dimensions. Marvin vous répondra bientôt.';
                 ['vcf-name', 'vcf-email', 'vcf-subject', 'vcf-msg'].forEach(id => document.getElementById(id).value = '');
-            } catch (err) {
-                console.error('EmailJS error:', err);
-                fallbackMailto(name, email, subject, msg);
-            }
+            } catch (e) { fallbackMailto(name, email, subject, msg, feedback); }
         } else {
-            // Fallback: mailto
-            fallbackMailto(name, email, subject, msg);
+            fallbackMailto(name, email, subject, msg, feedback);
         }
-
-        btn.disabled = false;
-        btn.textContent = '🔮 Envoyer le message';
+        btn.disabled = false; btn.textContent = '🔮 Envoyer le message';
     }
 
-    function fallbackMailto(name, email, subject, msg) {
+    function fallbackMailto(name, email, subject, msg, feedback) {
         const body = `De: ${name} (${email})\n\n${msg}`;
-        const mailto = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject || 'Message Portfolio')}&body=${encodeURIComponent(body)}`;
-        window.open(mailto, '_blank');
-        const feedback = document.getElementById('vcf-feedback');
-        feedback.style.display = 'block';
-        feedback.className = 'vecna-feedback success';
-        feedback.textContent = '📨 Votre client mail s\'est ouvert. Si ce n\'est pas le cas, écrivez directement à ' + CONTACT_EMAIL;
+        window.open(`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject || 'Portfolio Contact')}&body=${encodeURIComponent(body)}`, '_blank');
+        if (feedback) {
+            feedback.style.display = 'block';
+            feedback.className = 'vecna-feedback success';
+            feedback.textContent = '📨 Client mail ouvert. Si besoin : ' + CONTACT_EMAIL;
+        }
     }
 
-    /* ═══════════════════════════════════════════
-       🎬  OPEN / CLOSE PANEL
-    ═══════════════════════════════════════════ */
+    /* ─── PANEL CONTROLS ─── */
     function openPanel() {
-        const panel = document.getElementById('vecna-panel');
-        panel.classList.add('open');
+        document.getElementById('vecna-panel').classList.add('open');
         isOpen = true;
-        playOpenSound();
+        playOpen();
         sendGreeting();
-        // Hide badge
-        const badge = document.getElementById('vecna-badge');
-        if (badge) badge.style.display = 'none';
-        // Focus input
-        setTimeout(() => {
-            const input = document.getElementById('vecna-input');
-            if (input) input.focus();
-        }, 400);
+        document.getElementById('vecna-badge').style.display = 'none';
+        setTimeout(() => document.getElementById('vecna-input')?.focus(), 400);
     }
 
     function closePanel() {
-        const panel = document.getElementById('vecna-panel');
-        panel.classList.remove('open');
+        document.getElementById('vecna-panel').classList.remove('open');
         isOpen = false;
-        if (synth) synth.cancel();
-    }
-
-    function togglePanel() {
-        isOpen ? closePanel() : openPanel();
+        synth?.cancel();
     }
 
     /* ═══════════════════════════════════════════
@@ -678,74 +604,50 @@
     function init() {
         const { trigger, panel } = buildWidget();
 
-        // Trigger button
-        trigger.addEventListener('click', togglePanel);
-
-        // Close button
+        trigger.addEventListener('click', () => isOpen ? closePanel() : openPanel());
         panel.querySelector('#vecna-close').addEventListener('click', closePanel);
-
-        // Clear button
         panel.querySelector('#vecna-clear-btn').addEventListener('click', clearChat);
 
-        // Voice button
         panel.querySelector('#vecna-voice-btn').addEventListener('click', function () {
             voiceEnabled = !voiceEnabled;
             this.textContent = voiceEnabled ? '🔊' : '🔇';
             this.classList.toggle('active', voiceEnabled);
-            this.title = voiceEnabled ? 'Désactiver la voix' : 'Activer la voix de Vecna';
-            if (!voiceEnabled && synth) synth.cancel();
+            if (!voiceEnabled) synth?.cancel();
         });
 
-        // Tabs
-        panel.querySelectorAll('.vecna-tab').forEach(tab => {
-            tab.addEventListener('click', () => switchTab(tab.dataset.tab));
-        });
+        panel.querySelectorAll('.vecna-tab').forEach(tab =>
+            tab.addEventListener('click', () => switchTab(tab.dataset.tab))
+        );
 
-        // Send button
         panel.querySelector('#vecna-send').addEventListener('click', () => handleSend());
 
-        // Input: Enter to send, Shift+Enter for newline, auto-resize
-        const input = panel.querySelector('#vecna-input');
-        input.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' && !e.shiftKey) {
-                e.preventDefault();
-                handleSend();
-            }
-            playTypingBeep();
+        const inp = panel.querySelector('#vecna-input');
+        inp.addEventListener('keydown', e => {
+            if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); handleSend(); }
         });
-        input.addEventListener('input', () => {
-            input.style.height = '40px';
-            input.style.height = Math.min(input.scrollHeight, 100) + 'px';
+        inp.addEventListener('input', () => {
+            inp.style.height = '40px';
+            inp.style.height = Math.min(inp.scrollHeight, 100) + 'px';
         });
 
-        // Contact form
         panel.querySelector('#vcf-submit').addEventListener('click', sendContactForm);
 
-        // Close on outside click
-        document.addEventListener('click', (e) => {
-            if (isOpen && !panel.contains(e.target) && !trigger.contains(e.target)) {
-                closePanel();
-            }
+        document.addEventListener('click', e => {
+            if (isOpen && !panel.contains(e.target) && !trigger.contains(e.target)) closePanel();
         });
 
-        // Show badge after 5 seconds if not opened
-        setTimeout(() => {
-            if (!isOpen) {
-                const badge = document.getElementById('vecna-badge');
-                if (badge) badge.style.display = 'flex';
-            }
-        }, 5000);
+        // Badge after 5s
+        setTimeout(() => { if (!isOpen) document.getElementById('vecna-badge').style.display = 'flex'; }, 5000);
 
-        // Load EmailJS if key configured
+        // Load EmailJS if configured
         if (EMAILJS_PUBLIC_KEY !== 'YOUR_EMAILJS_PUBLIC_KEY') {
-            const script = document.createElement('script');
-            script.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
-            script.onload = () => { window.emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY }); };
-            document.head.appendChild(script);
+            const s = document.createElement('script');
+            s.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
+            s.onload = () => window.emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+            document.head.appendChild(s);
         }
     }
 
-    // Wait for DOM
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', init);
     } else {
