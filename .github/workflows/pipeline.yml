@@ -37,12 +37,12 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install -r server/requirements.txt
+          pip install -r JobFlow-AI/server/requirements.txt
           playwright install chromium --with-deps
 
       - name: Create .env file
         run: |
-          cat << EOF > .env
+          cat << EOF > JobFlow-AI/.env
           GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}
           HUNTER_API_KEY=${{ secrets.HUNTER_API_KEY }}
           BREVO_API_KEY=${{ secrets.BREVO_API_KEY }}
@@ -59,13 +59,13 @@ jobs:
       - name: Restore database cache
         uses: actions/cache@v4
         with:
-          path: jobflow.db
+          path: JobFlow-AI/jobflow.db
           key: jobflow-db-${{ github.run_number }}
           restore-keys: |
             jobflow-db-
 
       - name: Run pipeline
-        working-directory: server
+        working-directory: JobFlow-AI/server
         env:
           PYTHONPATH: .
         run: |
@@ -76,7 +76,7 @@ jobs:
         if: always()
         with:
           name: jobflow-database
-          path: jobflow.db
+          path: JobFlow-AI/jobflow.db
           retention-days: 30
 
       - name: Save generated CVs
@@ -84,7 +84,7 @@ jobs:
         if: always()
         with:
           name: generated-cvs
-          path: storage/generated_cvs/
+          path: JobFlow-AI/storage/generated_cvs/
           retention-days: 30
 
       - name: Commit database updates
@@ -92,6 +92,6 @@ jobs:
         run: |
           git config user.name "JobFlow-AI Bot"
           git config user.email "bot@jobflow-ai.local"
-          git add jobflow.db || true
+          git add JobFlow-AI/jobflow.db || true
           git diff --staged --quiet || git commit -m "🤖 Pipeline run $(date -u +%Y-%m-%dT%H:%M:%SZ) — auto-update database"
           git push || echo "Push failed (likely concurrent run)"
