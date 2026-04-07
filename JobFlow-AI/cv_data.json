@@ -1,0 +1,91 @@
+{
+  "personal": {
+    "full_name": "Marvin BOTTI DANON",
+    "title": "Recherche alternance Technicien Support IT",
+    "rhythm": "2 jours en CFA, 3 jours en entreprise (Lundi-Mardi / Mercredi-Jeudi-Vendredi)",
+    "phone": "06 27 23 68 48",
+    "email": "Bottimarvin@gmail.com",
+    "linkedin": "https://www.linkedin.com/in/marvin-botti-danon-663324317/",
+    "portfolio": "https://github.com/bottimarvin-a11y",
+    "location": "Paris",
+    "languages": [
+      {"language": "Français", "level": "Natif"},
+      {"language": "Anglais", "level": "C1"}
+    ]
+  },
+  "profile": "Actuellement en première année de BTS SIO je cherche activement un contrat d'alternance afin d'acquérir de l'expérience pratique et financer ma formation.",
+  "education": [
+    {
+      "school": "INGETIS",
+      "location": "Paris",
+      "period": "Sept 2025 - Juin 2027",
+      "diploma": "BTS SIO (Service Informatique aux Organisations)",
+      "status": "En cours"
+    },
+    {
+      "school": "OpenClassrooms",
+      "period": "Depuis Janvier 2025",
+      "courses": [
+        "Fondamentaux Systèmes & Réseaux",
+        "Bases du développement",
+        "Fondamentaux de la CyberSécurité"
+      ]
+    },
+    {
+      "school": "Fénelon Sup",
+      "location": "Paris",
+      "period": "Sept 2024 - Dec 2024",
+      "diploma": "BTS SIO - Option A Systèmes et réseaux",
+      "status": "Formation inachevée"
+    }
+  ],
+  "certifications": [
+    "ANSSI MOOC SecNumacadémie"
+  ],
+  "hard_skills": {
+    "reseaux_systemes": [
+      "Windows", "MacOS", "Ubuntu",
+      "Protocole DHCP", "DNS", "Routage",
+      "VLan", "Équipement réseau", "VM"
+    ],
+    "developpement": [
+      "HTML", "CSS", "JS (débutant)",
+      "PHP", "SQL", "Base de données",
+      "Commande SQL"
+    ],
+    "outils": [
+      "Cisco Packet Tracer",
+      "VMware Fusion",
+      "VS Code 2",
+      "AntiGravity (CSS majoritairement)",
+      "Ampps"
+    ]
+  },
+  "soft_skills": [
+    "Autonome",
+    "Organisé",
+    "Curieux"
+  ],
+  "projects": {
+    "developpement": [
+      "Base de donnée SQL \"Biblio\"",
+      "Calculatrice",
+      "Site E-commerce UMAREX",
+      "Site HTML, CSS, JS \"Présentation du BTS SIO\"",
+      "Premier site \"présentations du BTS SIO\" HTML CSS"
+    ],
+    "reseaux_systemes": [
+      "Sous réseau",
+      "Serveur DHCP, Fonction DHCP Routeur",
+      "Routage RIP",
+      "Routage dynamique",
+      "Routage statistique"
+    ]
+  },
+  "hobbies": [
+    "Géostratégies",
+    "Culture Numérique",
+    "Séries / Films",
+    "Jeux vidéos"
+  ]
+}

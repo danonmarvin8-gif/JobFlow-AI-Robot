@@ -1,0 +1,10 @@
+# node_modules/
+__pycache__/
+*.pyc
+.env
+*.db
+storage/generated_cvs/*.pdf
+storage/generated_cvs/*.html
+.cache/
+.venv/
+venv/
