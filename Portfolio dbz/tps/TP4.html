@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TP4 — Métiers de l'Informatique</title>
+    <link rel="stylesheet" href="../dbz-internal.css">
+</head>
+
+<body>
+
+    <div class="portfolio-container">
+        <a href="../index.html" class="back-btn">⇠ Retour au Temple</a>
+
+        <h1>Les métiers de l'informatique</h1>
+
+        <div class="st-layout">
+            <aside class="st-sidebar">
+                <h2>Sommaire</h2>
+                <ul>
+                    <li><a href="#" onclick="showContent('pentester', this)" class="active">Pentester</a></li>
+                    <li><a href="#" onclick="showContent('devsecops', this)">DevSecOps</a></li>
+                    <li><a href="#" onclick="showContent('devweb', this)">Développeur Web</a></li>
+                    <li><a href="#" onclick="showContent('adminreseau', this)">Admin Réseau</a></li>
+                    <li><a href="#" onclick="showContent('cloud', this)">Cloud Computing</a></li>
+                </ul>
+            </aside>
+
+            <main class="st-main-content" id="main-content">
+                <!-- Content will be injected here -->
+            </main>
+        </div>
+    </div>
+
+    <script>
+        const contentData = {
+            pentester: {
+                title: "Pentester (Hacker Éthique)",
+                desc: "Le pentester est un expert en cybersécurité chargé de tester la résistance d'un système informatique en simulant des attaques.",
+                image: "https://th.bing.com/th/id/OIP.Y7vEWkGs3unY_Gvpci8xNgAAAA?w=300&h=180&c=7&r=0&o=7&dpr=2&pid=1.7&rm=3",
+                video: "https://www.youtube.com/embed/79FB5C5CEEF" // Placeholder for demonstration
+            },
+            devsecops: {
+                title: "Expert DevSecOps",
+                desc: "Il intègre la sécurité au cœur du cycle de développement et des opérations (CI/CD).",
+                image: "https://th.bing.com/th/id/OIP.Y7vEWkGs3unY_Gvpci8xNgAAAA?w=300&h=180&c=7&r=0&o=7&dpr=2&pid=1.7&rm=3",
+                video: "https://www.youtube.com/embed/C125592AC2C"
+            },
+            devweb: {
+                title: "Développeur Web",
+                desc: "Création et maintenance de sites et applications web modernes.",
+                image: "https://www.fegno.com/wp-content/uploads/2022/03/web-development-company-in-kochi.gif",
+                video: "https://www.youtube.com/embed/385D6B607B8"
+            },
+            adminreseau: {
+                title: "Administrateur Réseau",
+                desc: "Gestion de l'infrastructure, des serveurs et de la connectivité de l'entreprise.",
+                image: "https://th.bing.com/th/id/OIP.Y7vEWkGs3unY_Gvpci8xNgAAAA?w=300&h=180&c=7&r=0&o=7&dpr=2&pid=1.7&rm=3",
+                video: "https://www.youtube.com/embed/FKyoEForCGI"
+            },
+            cloud: {
+                title: "Ingénieur Cloud",
+                desc: "Architecture et déploiement de solutions sur AWS, Azure ou GCP.",
+                image: "https://th.bing.com/th/id/OIP.Y7vEWkGs3unY_Gvpci8xNgAAAA?w=300&h=180&c=7&r=0&o=7&dpr=2&pid=1.7&rm=3",
+                video: "https://www.youtube.com/embed/5D6B607B852"
+            }
+        };
+
+        function showContent(id, element) {
+            const data = contentData[id];
+            const main = document.getElementById('main-content');
+
+            // Update active link
+            document.querySelectorAll('.st-sidebar a').forEach(a => a.classList.remove('active'));
+            if (element) element.classList.add('active');
+
+            main.innerHTML = `
+                <h2 style="color: var(--st-red-glow); font-family: 'Benguiat', serif; margin-bottom: 15px;">${data.title}</h2>
+                <p style="margin-bottom: 30px; font-size: 1.1rem; line-height: 1.6;">${data.desc}</p>
+                <div style="border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,23,68,0.3); background: #000;">
+                    <iframe width="100%" height="450" src="${data.video}" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div style="margin-top: 30px; display: flex; align-items: center; gap: 20px;">
+                    <img src="${data.image}" width="150" style="border-radius: 8px; filter: grayscale(0.5) sepia(0.2) hue-rotate(-20deg);">
+                    <p style="color: var(--st-text-muted); font-size: 0.9rem;">Visualisation tactique du poste - Hawkins Core Lab</p>
+                </div>
+            `;
+        }
+
+        // Initialize with first item
+        document.addEventListener('DOMContentLoaded', () => {
+            showContent('pentester');
+        });
+    </script>
+</body>
+
+</html>

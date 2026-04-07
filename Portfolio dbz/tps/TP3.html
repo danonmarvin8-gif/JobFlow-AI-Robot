@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TP3 — Portfolio Interactif</title>
+    <link rel="stylesheet" href="../dbz-internal.css">
+</head>
+
+<body>
+
+    <div class="portfolio-container">
+        <a href="../index.html" class="back-btn">⇠ Retour au Temple</a>
+
+        <h1>TP3 — Navigation Dynamique</h1>
+
+        <div class="st-layout">
+            <aside class="st-sidebar">
+                <h2>Sommaire</h2>
+                <ul>
+                    <li><a href="#" onclick="showContent('video', this)" class="active">Vidéo de Présentation</a></li>
+                    <li><a href="#" onclick="showContent('map', this)">Carte du Monde</a></li>
+                </ul>
+            </aside>
+
+            <main class="st-main-content" id="main-content">
+                <!-- Content will be injected here -->
+            </main>
+        </div>
+    </div>
+
+    <script>
+        const contentData = {
+            video: {
+                title: "Vidéo de Présentation",
+                desc: "Visionnage du matériel pédagogique et des ressources audiovisuelles du TP.",
+                image: "https://th.bing.com/th/id/OIP.Y7vEWkGs3unY_Gvpci8xNgAAAA?w=300&h=180&c=7&r=0&o=7&dpr=2&pid=1.7&rm=3",
+                video: "https://www.youtube.com/embed/FKyoEForCGI"
+            },
+            map: {
+                title: "Exploration Géographique",
+                desc: "Visualisation cartographique et analyse de données spatiales.",
+                image: "https://th.bing.com/th/id/OIP.Y7vEWkGs3unY_Gvpci8xNgAAAA?w=300&h=180&c=7&r=0&o=7&dpr=2&pid=1.7&rm=3",
+                video: "https://www.youtube.com/embed/385D6B607B8"
+            }
+        };
+
+        function showContent(id, element) {
+            const data = contentData[id];
+            const main = document.getElementById('main-content');
+
+            // Update active link
+            document.querySelectorAll('.st-sidebar a').forEach(a => a.classList.remove('active'));
+            if (element) element.classList.add('active');
+
+            main.innerHTML = `
+                <h2 style="color: var(--st-red-glow); font-family: 'Benguiat', serif; margin-bottom: 15px;">${data.title}</h2>
+                <p style="margin-bottom: 30px; font-size: 1.1rem; line-height: 1.6;">${data.desc}</p>
+                <div style="border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,23,68,0.3); background: #000;">
+                    <iframe width="100%" height="450" src="${data.video}" frameborder="0" allowfullscreen></iframe>
+                </div>
+            `;
+        }
+
+        // Initialize with first item
+        document.addEventListener('DOMContentLoaded', () => {
+            showContent('video');
+        });
+    </script>
+</body>
+
+</html>

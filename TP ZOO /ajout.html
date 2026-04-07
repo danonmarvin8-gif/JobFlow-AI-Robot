@@ -1,0 +1,56 @@
+Espace de stockage saturé depuis 17 heures … Si votre espace de stockage est plein pendant plus de deux ans, vos
+fichiers risquent d'être supprimés de Drive et de Photos.
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ajout d'un élève</title>
+    <link rel="stylesheet" type="text/css" href="ajouter.css">
+</head>
+
+<body>
+
+    <form action="ajouter.php" method="post">
+        <h1>Ajouter un élève</h1>
+
+        <div class="form-group">
+            <label>Nom De L'Etudiant(e) :</label>
+            <input type="text" name="nom" class="input-text" required>
+        </div>
+
+        </div>
+
+        <div class="form-group">
+            <label>Prénom De L'Etudiant(e) :</label>
+            <input type="text" name="prenom" class="input-text" required>
+        </div>
+        <div class="form-group">
+            <label>Date De Naissance De L'Etudiant(e) :</label>
+            <input type="date" name="date_naissance" class="input-text" required>
+        </div>
+
+        <div class="form-group">
+            <label>Adresse Email De L'Etudiant(e) :</label>
+            <input type="text" name="email" class="input-text" required>
+        </div>
+
+        <div class="form-group">
+            <label>Numero De Téléphone De L'Etudiant(e) :</label>
+            <input type="text" name="telephone" class="input-text">
+        </div>
+
+
+        <div class="buttons">
+            <input type="submit" value="Enregistrer l'élève" class="btn primary">
+            <input type="reset" value="Annuler" class="btn secondary">
+        </div>
+
+        <div class="back-link">
+            <a href="admin.php">Retour au menu</a>
+        </div>
+    </form>
+
+</body>
+
+</html>

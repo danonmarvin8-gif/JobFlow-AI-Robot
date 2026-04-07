@@ -1,0 +1,187 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
+
+:root {
+    --dbz-orange: #FF8c00;
+    --dbz-orange-light: #FFA500;
+    --dbz-blue: #0047AB;
+    --dbz-blue-dark: #002366;
+    --dbz-gold: #FFD700;
+    --dbz-gold-glow: rgba(255, 215, 0, 0.4);
+    --dbz-black: #0a0a0a;
+    --dbz-card: #141414;
+    --dbz-text: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--dbz-black);
+    color: var(--dbz-text);
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    padding: 40px 20px;
+    line-height: 1.6;
+}
+
+/* Ki Aura Atmosphere */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: 
+        radial-gradient(circle at 10% 10%, rgba(255, 140, 0, 0.1) 0%, transparent 60%),
+        radial-gradient(circle at 90% 90%, rgba(0, 71, 171, 0.1) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+.portfolio-container {
+    max-width: 950px;
+    margin: 0 auto;
+    background: var(--dbz-card);
+    border: 3px solid var(--dbz-orange);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.8), 0 0 20px var(--dbz-orange-light);
+    position: relative;
+    overflow: hidden;
+}
+
+/* DBZ Titles */
+h1, h2, h3 {
+    font-weight: 900;
+    color: var(--dbz-gold);
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    margin-bottom: 20px;
+    text-shadow: 3px 3px 0 var(--dbz-blue-dark);
+}
+
+h1 {
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 40px;
+    background: linear-gradient(to bottom, #fff 0%, #aaa 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 10px var(--dbz-gold-glow));
+}
+
+p {
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+}
+
+/* DBZ Back Button */
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 28px;
+    background: var(--dbz-orange);
+    border: 3px solid var(--dbz-gold);
+    color: white;
+    text-decoration: none;
+    font-weight: 900;
+    border-radius: 100px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 1rem;
+    margin-bottom: 30px;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+}
+
+.back-btn:hover {
+    background: var(--dbz-gold);
+    color: var(--dbz-blue-dark);
+    transform: scale(1.05) translateY(-3px);
+    box-shadow: 0 10px 30px var(--dbz-gold-glow);
+}
+
+/* Tables DBZ Style */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 30px 0;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid var(--dbz-blue);
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 18px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+th {
+    background: var(--dbz-blue-dark);
+    color: var(--dbz-gold);
+    text-transform: uppercase;
+    font-weight: 900;
+}
+
+/* Images */
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 15px;
+    border: 4px solid var(--dbz-orange);
+    margin: 20px 0;
+    box-shadow: 0 0 30px rgba(0,0,0,0.5);
+}
+
+/* Lists */
+ul {
+    margin: 20px 0 20px 40px;
+    list-style: none;
+}
+
+li {
+    margin-bottom: 12px;
+    position: relative;
+}
+
+li::before {
+    content: '⚡';
+    position: absolute;
+    left: -25px;
+    color: var(--dbz-gold);
+}
+
+/* Links */
+a.link-std {
+    color: var(--dbz-orange-light);
+    text-decoration: none;
+    font-weight: 700;
+}
+
+a.link-std:hover {
+    color: var(--dbz-gold);
+    text-decoration: underline;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--dbz-black);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--dbz-orange);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--dbz-gold);
+}

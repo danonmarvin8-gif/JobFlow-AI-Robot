@@ -1,0 +1,479 @@
+/* =========================================
+   DISNEY THEME — "BECOMING THE MAGIC"
+   ========================================= */
+
+:root {
+    --disney-blue: #0A192F;
+    --disney-dark: #020C1B;
+    --disney-gold: #D4AF37;
+    --disney-gold-glow: rgba(212, 175, 55, 0.4);
+    --disney-white: #E6F1FF;
+    --neon-blue: #00D2FF;
+    --land-main-street: #F4A261;
+    --land-tomorrowland: #00D2FF;
+    --land-adventureland: #2A9D8F;
+    --land-fantasyland: #E76F51;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Outfit', sans-serif;
+}
+
+body {
+    background: var(--disney-dark);
+    color: var(--disney-white);
+    overflow: hidden; /* Controlled by transitions */
+    height: 100vh;
+    width: 100vw;
+}
+
+/* Canvas background for sparkles */
+#magic-canvas {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* =========================================
+   PHASE 0 : CLICK SCREEN
+   ========================================= */
+#click-screen {
+    position: absolute;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle at center, #0A192F 0%, #020C1B 100%);
+    transition: opacity 1s ease;
+}
+
+.glass-orb {
+    padding: 3rem 4rem;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 50px var(--disney-gold-glow);
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.glass-orb:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 80px rgba(0, 210, 255, 0.4);
+    border-color: var(--neon-blue);
+}
+
+.orb-glow {
+    position: absolute;
+    inset: -50%;
+    background: conic-gradient(from 0deg, transparent, var(--neon-blue), transparent);
+    animation: rotate 4s linear infinite;
+    opacity: 0.3;
+}
+
+@keyframes rotate { 100% { transform: rotate(360deg); } }
+
+.click-text {
+    font-size: 1.8rem;
+    font-weight: 900;
+    background: linear-gradient(45deg, var(--disney-gold), #FFF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.click-sub {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: #8892B0;
+    letter-spacing: 1px;
+}
+
+/* =========================================
+   PHASE 1 : INTRO CINEMATIC
+   ========================================= */
+#intro-screen {
+    position: absolute;
+    inset: 0;
+    z-index: 900;
+    display: none; /* Flex via JS */
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: black;
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+.castle-silhouette {
+    width: 600px;
+    height: 400px;
+    position: relative;
+    opacity: 0.1; /* Start dark, filled by code */
+    transition: opacity 2s ease;
+}
+
+.intro-quote {
+    margin-top: 2rem;
+    font-style: italic;
+    color: var(--disney-gold);
+    font-size: 1.2rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 1s ease 2s; /* Delay after arc starts */
+}
+
+/* =========================================
+   PHASE 2 : THE BADGE
+   ========================================= */
+#badge-screen {
+    position: absolute;
+    inset: 0;
+    z-index: 800;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle at center, #0B2046 0%, #020208 100%);
+}
+
+.badge-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.badge {
+    width: 320px;
+    height: 200px;
+    background: white;
+    border-radius: 100px; /* Oval shape */
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5), 0 0 30px var(--disney-gold-glow);
+    padding: 1.5rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transform: rotateX(20deg) rotateY(-10deg);
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease;
+}
+
+.badge:hover {
+    transform: rotateX(0deg) rotateY(0deg) scale(1.05);
+}
+
+.badge-glow {
+    position: absolute;
+    inset: -5px;
+    border-radius: 105px;
+    background: linear-gradient(45deg, var(--disney-gold), #FFF, var(--disney-gold));
+    z-index: -1;
+    filter: blur(5px);
+}
+
+.badge-inner {
+    text-align: center;
+    color: #111;
+    width: 100%;
+}
+
+.badge-top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 0.8rem;
+}
+
+.mickey-ears {
+    margin-bottom: 0.3rem;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+}
+
+.badge-header {
+    font-size: 0.7rem;
+    letter-spacing: 3px;
+    color: #555;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.badge-name {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--disney-blue);
+    letter-spacing: 2px;
+}
+
+.badge-role {
+    font-size: 0.8rem;
+    color: #DAA520;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-top: 0.2rem;
+}
+
+.badge-footer {
+    margin-top: 1rem;
+    font-size: 0.6rem;
+    color: #888;
+}
+
+.magical-btn {
+    padding: 1rem 2.5rem;
+    background: var(--disney-gold);
+    color: var(--disney-blue);
+    border: none;
+    border-radius: 50px;
+    font-weight: 900;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0 0 20px var(--disney-gold-glow);
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.magical-btn:hover {
+    background: #FFF;
+    color: var(--disney-blue);
+    transform: scale(1.1);
+    box-shadow: 0 0 40px rgba(255,255,255,0.6);
+}
+
+/* =========================================
+   PHASE 3 : MAIN MENU
+   ========================================= */
+#main-menu {
+    position: absolute;
+    inset: 0;
+    z-index: 700;
+    display: none;
+    flex-direction: column;
+    padding: 2rem;
+    overflow-y: auto;
+    background: linear-gradient(rgba(2, 12, 27, 0.9), rgba(2, 12, 27, 0.95)), url('https://images.unsplash.com/photo-1534067783941-51c9c23ea339?q=80&w=2000&auto=format&fit=crop') center/cover;
+}
+
+.menu-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.logo-text {
+    font-size: 2.5rem;
+    font-weight: 900;
+    background: linear-gradient(to right, var(--disney-gold), #FFF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-transform: uppercase;
+}
+
+.sub-logo {
+    color: #8892B0;
+    margin-top: 0.5rem;
+    font-size: 1rem;
+}
+
+.kingdom-map {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.map-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    width: 100%;
+    max-width: 1200px;
+}
+
+/* LAND CARDS */
+.land-card {
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    height: 350px;
+    cursor: pointer;
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.land-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.8));
+    z-index: 1;
+    transition: background 0.5s;
+}
+
+.land-content {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    text-align: center;
+}
+
+.land-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.land-title {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: white;
+}
+
+.land-subtitle {
+    font-size: 0.9rem;
+    color: #CCC;
+    margin-top: 0.2rem;
+}
+
+/* Land Specific Borders/Glows */
+.main-street { border-bottom: 4px solid var(--land-main-street); }
+.tomorrowland { border-bottom: 4px solid var(--land-tomorrowland); }
+.adventureland { border-bottom: 4px solid var(--land-adventureland); }
+.fantasyland { border-bottom: 4px solid var(--land-fantasyland); }
+
+.land-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(0, 210, 255, 0.2);
+}
+
+/* Expandable State */
+.land-details {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease, margin-top 0.3s ease;
+    width: 100%;
+    opacity: 0;
+}
+
+.land-card.active {
+    grid-column: span 2; /* Spans across on larger screens */
+    height: auto;
+    min-height: 400px;
+}
+
+@media (max-width: 768px) {
+    .land-card.active { grid-column: span 1; }
+}
+
+.land-card.active .land-details {
+    max-height: 600px;
+    margin-top: 1.5rem;
+    opacity: 1;
+}
+
+.land-details h3 {
+    font-size: 1.1rem;
+    color: var(--disney-gold);
+    margin-bottom: 1rem;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 0.5rem;
+}
+
+.land-details ul {
+    list-style: none;
+    text-align: left;
+}
+
+.land-details ul li {
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+}
+
+/* Skill Cloud to avoid lists */
+.skill-cloud {
+    display: flex;
+    wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+}
+
+.skill-cloud span {
+    background: rgba(0, 210, 255, 0.1);
+    border: 1px solid var(--neon-blue);
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+}
+
+/* Timeline/List for Experience */
+.timeline-item {
+    text-align: left;
+    margin-bottom: 1rem;
+    padding-left: 1rem;
+    border-left: 2px solid var(--land-adventureland);
+}
+
+/* Contact Button style inside */
+.contact-links {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.contact-btn {
+    padding: 0.6rem 1rem;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    color: white;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: background 0.3s;
+}
+
+.contact-btn:hover { background: rgba(255,255,255,0.15); }
+
+/* Navigation Back link */
+.back-link {
+    display: block;
+    text-align: center;
+    margin-top: 2rem;
+    color: #8892B0;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s;
+}
+
+.back-link:hover { color: var(--disney-gold); }
+
+/* Fairy Spark Cursor Guide */
+.fairy-spark {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    background: radial-gradient(circle, #FFF 0%, var(--neon-blue) 100%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 10000;
+    mix-blend-mode: screen;
+    filter: blur(2px);
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.5s;
+}

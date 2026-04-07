@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Umarex Store — Upside Down Edition</title>
+    <link rel="stylesheet" href="../dbz-internal.css">
+    <style>
+        /* Specialized Store Overrides */
+        .portfolio-container {
+            max-width: 1400px;
+        }
+
+        .weapons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .weapon-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 23, 68, 0.1);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .weapon-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--st-red-bright);
+            box-shadow: 0 10px 30px rgba(183, 28, 28, 0.2);
+        }
+
+        .weapon-viewer {
+            width: 100%;
+            height: 400px;
+            background: rgba(0, 0, 0, 0.4);
+            position: relative;
+        }
+
+        .weapon-info {
+            padding: 25px;
+        }
+
+        .weapon-type {
+            display: inline-block;
+            background: var(--st-red);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+        }
+
+        .ammo-display {
+            background: rgba(183, 28, 28, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .fire-button {
+            width: 100%;
+            padding: 15px;
+            background: var(--st-red);
+            border: 1px solid var(--st-red-bright);
+            color: white;
+            font-family: 'Benguiat', serif;
+            text-transform: uppercase;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .fire-button:hover {
+            background: var(--st-red-bright);
+            box-shadow: 0 0 20px var(--st-red-bright);
+        }
+
+        .muzzle-flash {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: radial-gradient(circle, #ff1744, #b71c1c, transparent);
+            border-radius: 50%;
+            animation: muzzleFlash 0.15s ease-out;
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        @keyframes muzzleFlash {
+            0% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            100% {
+                opacity: 0;
+                transform: scale(3);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="portfolio-container">
+        <a href="../index.html" class="back-btn">⇠ Retour au Temple</a>
+
+        <h1 style="text-align: center;">🔫 Umarex Store — Hawkins Edition</h1>
+        <p style="text-align: center; color: var(--st-red-glow);">Équipements tactiques pour l'exploration de l'Upside
+            Down</p>
+
+        <div class="weapons-grid" id="weaponsGrid"></div>
+
+        <div class="portfolio-container"
+            style="margin-top: 50px; background: rgba(0,0,0,0.5); border: 1px dashed var(--st-red-bright);">
+            <h2>📊 Monitoring Tactique</h2>
+            <div
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; text-align: center;">
+                <div class="cert-card">
+                    <span id="totalShots"
+                        style="font-size: 2.5rem; color: var(--st-red-bright); font-weight: 800;">0</span>
+                    <p>Décharges portal</p>
+                </div>
+                <div class="cert-card">
+                    <span id="fireRate"
+                        style="font-size: 2.5rem; color: var(--st-red-bright); font-weight: 800;">0</span>
+                    <p>Coups/Sec</p>
+                </div>
+                <div class="cert-card">
+                    <span id="currentWeapon"
+                        style="font-size: 1.2rem; color: var(--st-text); font-weight: 800;">---</span>
+                    <p>Arme Active</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const weapons = [
+            {
+                name: 'HK416',
+                type: 'Fusil d\'assaut',
+                description: 'Modèle tactique optimisé pour le terrain hostile. Précision portal-grade.',
+                emoji: '🎯',
+                sketchfabId: '894edac558894905ba9052b7a4421328',
+                firingModes: [{ name: 'Semi', fireRate: 1 }, { name: 'Auto', fireRate: 10 }]
+            },
+            {
+                name: 'HKMP5',
+                type: 'Pistolet-mitrailleur',
+                description: 'Compact, rapide, fiable. Idéal pour les conduits Hawkins.',
+                emoji: '⚡',
+                sketchfabId: '2b346d6f2df2403ba0e109c2e8e5e999',
+                firingModes: [{ name: 'Semi', fireRate: 1 }, { name: 'Auto', fireRate: 15 }]
+            },
+            {
+                name: 'Ruger Super Hawk',
+                type: 'Revolver',
+                description: 'Puissance d\'arrêt massive contre les Demogorgons.',
+                emoji: '💥',
+                sketchfabId: '6d82dfe0b4564a8185e6e9c6e7e8f9a1',
+                firingModes: [{ name: 'Semi', fireRate: 1 }]
+            }
+        ];
+
+        let totalShots = 0;
+        let masterVolume = 0.5;
+
+        function initializeWeapons() {
+            const container = document.getElementById('weaponsGrid');
+            weapons.forEach((weapon, index) => {
+                const card = document.createElement('div');
+                card.className = 'weapon-card';
+                card.innerHTML = `
+                    <div class="weapon-viewer" id="viewer-${index}">
+                        <iframe src="https://sketchfab.com/models/${weapon.sketchfabId}/embed?autostart=1&preload=1&transparent=1" 
+                                frameborder="0" allow="autoplay; fullscreen" style="width:100%; height:100%;"></iframe>
+                    </div>
+                    <div class="weapon-info">
+                        <div class="weapon-type">${weapon.type}</div>
+                        <h3>${weapon.emoji} ${weapon.name}</h3>
+                        <p>${weapon.description}</p>
+                        <div class="ammo-display">
+                            <span>Statut Chargeur</span>
+                            <span style="color:var(--st-red-bright); font-weight:800;">PRÊT</span>
+                        </div>
+                        <button class="fire-button" onmousedown="startFiring(${index})" onmouseup="stopFiring()" onmouseleave="stopFiring()">TIRER</button>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        let fireInterval;
+        function startFiring(index) {
+            const weapon = weapons[index];
+            document.getElementById('currentWeapon').textContent = weapon.name;
+            const rate = weapon.firingModes[weapon.firingModes.length - 1].fireRate;
+
+            if (rate === 1) {
+                fire(index);
+            } else {
+                fire(index);
+                fireInterval = setInterval(() => fire(index), 1000 / rate);
+            }
+        }
+
+        function stopFiring() {
+            clearInterval(fireInterval);
+        }
+
+        function fire(index) {
+            totalShots++;
+            document.getElementById('totalShots').textContent = totalShots;
+
+            // Visual Flash
+            const viewer = document.getElementById(`viewer-${index}`);
+            const flash = document.createElement('div');
+            flash.className = 'muzzle-flash';
+            flash.style.left = '50%';
+            flash.style.top = '50%';
+            viewer.appendChild(flash);
+            setTimeout(() => flash.remove(), 100);
+
+            // Audio Feedback (Placeholder for clone logic if available)
+            if (navigator.vibrate) navigator.vibrate(10);
+        }
+
+        document.addEventListener('DOMContentLoaded', initializeWeapons);
+    </script>
+</body>
+
+</html>

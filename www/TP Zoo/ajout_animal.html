@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Zoo - Ajouter un animal</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="sidebar">
+        <h2>Zoo</h2>
+        <a href="menu_admin.php">Dashboard</a>
+        <a href="liste_animaux.php">Animaux</a>
+        <a href="liste_especes.php">Especes</a>
+        <a href="logout.php">Deconnexion</a>
+    </div>
+
+    <div class="contenu">
+        <h1>Ajouter un animal</h1>
+
+        <form method="post" action="traitement_ajout_animal.php">
+            <label>Nom :</label>
+            <input type="text" name="nom" required><br>
+
+            <label>ID Espece :</label>
+            <input type="number" name="id_espece" placeholder="Ex: 1 para Lion" required><br>
+
+            <label>Date de naissance :</label>
+            <input type="date" name="date_naissance"><br>
+
+            <label>Sexe :</label>
+            <select name="sexe">
+                <option value="M">M</option>
+                <option value="F">F</option>
+            </select><br>
+
+            <label>Commentaire :</label>
+            <textarea name="commentaire"></textarea><br>
+
+            <button type="submit" class="btn">Enregistrer</button>
+        </form>
+    </div>
+
+</div>
+</body>
+</html>

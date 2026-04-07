@@ -1,0 +1,1507 @@
+/* =========================================
+   DISNEY PORTFOLIO — STYLE
+   ========================================= */
+
+/* ---- WALTOGRAPH FONT (Disney-style) ---- */
+/* Waltograph is loaded via CDN in index.html */
+
+/* ---- CSS VARIABLES ---- */
+:root {
+    --disney-blue: #0A192F;
+    --disney-dark: #020C1B;
+    --disney-gold: #D4AF37;
+    --disney-gold-glow: rgba(212, 175, 55, 0.4);
+    --disney-white: #E6F1FF;
+    --neon-blue: #00D2FF;
+    --land-main-street: #F4A261;
+    --land-stark: #E23636;
+    --land-stark-gold: #FFD700;
+    --land-stark-arc: #00BFFF;
+    --land-adventureland: #2A9D8F;
+    --land-fantasyland: #E76F51;
+    --font-disney: 'waltograph', 'Outfit', cursive;
+    --font-body: 'Outfit', sans-serif;
+}
+
+/* ---- RESET ---- */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ---- MICKEY CURSOR (SVG inline) ---- */
+body {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Ccircle cx='10' cy='8' r='6' fill='%2300D2FF'/%3E%3Ccircle cx='22' cy='8' r='6' fill='%2300D2FF'/%3E%3Ccircle cx='16' cy='18' r='9' fill='%2300D2FF'/%3E%3C/svg%3E") 16 16, auto;
+    background: var(--disney-dark);
+    color: var(--disney-white);
+    font-family: var(--font-body);
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+}
+
+/* ---- PARTICLE CANVAS ---- */
+#magic-canvas {
+    position: fixed;
+    inset: 0;
+    z-index: 5;
+    pointer-events: none;
+}
+
+/* =========================================
+   PHASE 0 — CLICK SCREEN
+   ========================================= */
+#click-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle at center, #0A192F 0%, #020C1B 100%);
+    transition: opacity 0.8s ease;
+}
+
+.glass-orb {
+    padding: 4rem 5rem;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 30px var(--disney-gold-glow);
+    text-align: center;
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Ccircle cx='10' cy='8' r='6' fill='%2300D2FF'/%3E%3Ccircle cx='22' cy='8' r='6' fill='%2300D2FF'/%3E%3Ccircle cx='16' cy='18' r='9' fill='%2300D2FF'/%3E%3C/svg%3E") 16 16, pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    contain: layout style; /* Removed 'paint' to prevent clipping ascenders/descenders */
+}
+
+.glass-orb:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 80px rgba(0, 210, 255, 0.4);
+    border-color: var(--neon-blue);
+}
+
+.orb-glow {
+    position: absolute;
+    inset: -20%; /* Reduced inset to keep it closer to the circle */
+    background: conic-gradient(from 0deg, transparent, var(--neon-blue), transparent);
+    animation: rotate 4s linear infinite;
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+@keyframes rotate { 100% { transform: rotate(360deg); } }
+
+.click-text {
+    font-family: var(--font-disney);
+    font-size: 2.2rem; /* Slightly larger but safer with no overflow hidden */
+    font-weight: 900;
+    background: linear-gradient(45deg, var(--disney-gold), #FFF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+    z-index: 2;
+    line-height: 1.2;
+    padding: 0.2rem;
+}
+
+.click-sub {
+    margin-top: 0.8rem;
+    font-size: 1rem;
+    color: #8892B0;
+    letter-spacing: 1px;
+    position: relative;
+    z-index: 2;
+}
+
+/* =========================================
+   PHASE 1 — VIDEO CINEMATIC (FULLSCREEN)
+   ========================================= */
+#video-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 900;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background: #000;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+}
+
+#video-screen.active {
+    display: flex;
+    opacity: 1;
+}
+
+/* ---- INTRO VIDEO (Local) ---- */
+.intro-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+
+#yt-player-container {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    background: #000;
+    z-index: 5;
+}
+
+#yt-player-container iframe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 110vw;
+    height: 110vh;
+    min-width: 110vw;
+    min-height: 110vh;
+    transform: translate(-50%, -50%);
+    border: none;
+    pointer-events: none;
+}
+
+.skip-cinematic-btn {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 950;
+    padding: 0.6rem 1.5rem;
+    background: rgba(0, 0, 0, 0.5);
+    color: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 25px;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Ccircle cx='10' cy='8' r='6' fill='%2300D2FF'/%3E%3Ccircle cx='22' cy='8' r='6' fill='%2300D2FF'/%3E%3Ccircle cx='16' cy='18' r='9' fill='%2300D2FF'/%3E%3C/svg%3E") 16 16, pointer;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    letter-spacing: 0.5px;
+}
+
+.skip-cinematic-btn:hover {
+    background: rgba(212, 175, 55, 0.3);
+    color: #fff;
+    border-color: var(--disney-gold);
+}
+
+/* =========================================
+   PHASE 2 — MAIN MENU
+   ========================================= */
+#main-menu {
+    position: fixed;
+    inset: 0;
+    z-index: 700;
+    display: none;
+    flex-direction: column;
+    padding: 2rem;
+    overflow-y: auto;
+    background: rgba(2, 12, 27, 0.95); /* Increased opacity as fallback for blur */
+    /* backdrop-filter: blur(5px); */ /* Removed for performance - major scroll lag cause */
+    opacity: 0;
+    transition: opacity 1s ease, background 0.8s ease;
+    contain: layout style;
+}
+
+#main-menu.active {
+    display: flex;
+    opacity: 1;
+}
+
+/* Remove blur when a character mood is active to keep the 360 background clear */
+body[class*="mood-"] #main-menu,
+body.stark-lab #main-menu,
+body.ultron-core #main-menu,
+body.savanna #main-menu,
+body.adventure #main-menu,
+body.magic-garden #main-menu,
+body.cave #main-menu {
+    backdrop-filter: none;
+    background: rgba(2, 12, 27, 0.4); /* Make it more transparent to see the mood bg */
+}
+
+/* Scrollbar styling */
+#main-menu::-webkit-scrollbar {
+    width: 6px;
+}
+#main-menu::-webkit-scrollbar-track {
+    background: transparent;
+}
+#main-menu::-webkit-scrollbar-thumb {
+    background: var(--disney-gold-glow);
+    border-radius: 3px;
+}
+
+/* ---- MENU HEADER ---- */
+.menu-header {
+    text-align: center;
+    margin-bottom: 1.5rem; /* Reduced margin */
+    padding: 1.5rem 0; /* Reduced padding */
+    overflow: visible;
+}
+
+.logo-text {
+    font-family: var(--font-disney);
+    font-size: 2.8rem;
+    background: linear-gradient(to right, var(--disney-gold), #FFF, var(--disney-gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 15px var(--disney-gold-glow));
+    line-height: 1.6; /* Increased to prevent clipping */
+    padding: 0.5rem 0;
+    overflow: visible;
+}
+
+.sub-logo {
+    color: #8892B0;
+    margin-top: 0.5rem;
+    font-size: 1rem;
+    letter-spacing: 1px;
+}
+
+/* ---- MAP GRID ---- */
+.kingdom-map {
+    width: 100%;
+    max-width: 1200px;
+    height: 80vh; /* Fixed height to prevent scroll */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.map-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 1.5rem;
+    width: 100%;
+    height: 100%;
+}
+
+@media (max-width: 768px) {
+    .map-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* =========================================
+   LAND CARDS
+   ========================================= */
+.land-card {
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    min-height: 150px; /* Much smaller min-height for closed state */
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Ccircle cx='10' cy='8' r='6' fill='%2300D2FF'/%3E%3Ccircle cx='22' cy='8' r='6' fill='%2300D2FF'/%3E%3Ccircle cx='16' cy='18' r='9' fill='%2300D2FF'/%3E%3C/svg%3E") 16 16, pointer;
+    transition: transform 0.4s ease, box-shadow 0.4s ease, flex-grow 0.6s ease;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    contain: layout style; /* Removed paint */
+    will-change: transform, box-shadow;
+}
+
+/* Card theme backgrounds (CSS gradients — performant) */
+.land-card .land-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s ease;
+    filter: brightness(0.55) saturate(0.9);
+    transform: scale(1.05);
+}
+
+.land-card:hover .land-bg {
+    filter: brightness(0.6) saturate(1);
+    transform: scale(1.02);
+}
+
+.land-card.active .land-bg {
+    filter: brightness(0.6) saturate(1.2); /* Increased brightness for " Vitrine" look */
+    transform: scale(1);
+}
+
+/* Readability overlay when open */
+.land-card.active::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 30%, rgba(2, 12, 27, 0.9) 90%);
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+}
+
+.land-card.active::after {
+    opacity: 1;
+}
+
+.main-street .land-bg { border-bottom: 4px solid var(--land-main-street); }
+.stark-industries .land-bg { border-bottom: 4px solid var(--land-stark); }
+.adventureland .land-bg { border-bottom: 4px solid var(--land-adventureland); }
+.fantasyland .land-bg { border-bottom: 4px solid var(--land-fantasyland); }
+
+/* ---- HOVER SCENE (Animated background per card) ---- */
+.land-hover-scene {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    overflow: hidden;
+}
+
+.land-card:hover .land-hover-scene,
+.land-card.active .land-hover-scene {
+    opacity: 1;
+}
+
+/* Animated scene elements */
+.scene-particles {
+    position: absolute;
+    inset: 0;
+}
+
+/* Main Street scene: warm sparkles */
+.main-street .land-hover-scene {
+    background: radial-gradient(ellipse at center, rgba(244, 162, 97, 0.15), transparent 70%);
+}
+
+/* Stark Industries scene: HUD grid + arc reactor glow */
+.stark-industries .land-hover-scene {
+    background:
+        radial-gradient(circle at 50% 60%, rgba(0, 191, 255, 0.08) 0%, transparent 50%),
+        repeating-linear-gradient(0deg, transparent, transparent 20px, rgba(226, 54, 54, 0.04) 20px, rgba(226, 54, 54, 0.04) 21px),
+        repeating-linear-gradient(90deg, transparent, transparent 20px, rgba(226, 54, 54, 0.04) 20px, rgba(226, 54, 54, 0.04) 21px);
+}
+
+/* Adventureland scene: jungle vines */
+.adventureland .land-hover-scene {
+    background: radial-gradient(ellipse at bottom, rgba(42, 157, 143, 0.15), transparent 70%);
+}
+
+/* Fantasyland scene: magic swirl */
+.fantasyland .land-hover-scene {
+    background: radial-gradient(ellipse at center, rgba(231, 111, 81, 0.12), transparent 70%);
+}
+
+/* ---- CARD VIDEOS ---- */
+.card-video-container {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    opacity: 0.4;
+    transition: opacity 0.6s ease;
+}
+
+.land-card:hover .card-video-container {
+    opacity: 0.8;
+}
+
+.land-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+    scale: 1.1; /* Cover edges */
+}
+
+/* ---- MAGIC SHIMMER ON HOVER ---- */
+.land-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(from 0deg, transparent, var(--disney-gold-glow), transparent, transparent);
+    opacity: 0;
+    z-index: 3;
+    transition: opacity 0.4s ease;
+    animation: none;
+    pointer-events: none;
+    will-change: transform;
+}
+
+.land-card:hover::before {
+    opacity: 0.3;
+    animation: magic-shimmer 3s linear infinite;
+}
+
+@keyframes magic-shimmer {
+    100% { transform: rotate(360deg); }
+}
+
+/* ---- Card raised hover ---- */
+.land-card:hover {
+    transform: translateY(-8px) scale(1.01); /* Reduced scale slightly */
+    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+}
+
+.main-street:hover { box-shadow: 0 10px 30px rgba(244, 162, 97, 0.2); }
+.stark-industries:hover { box-shadow: 0 10px 30px rgba(226, 54, 54, 0.25); }
+.adventureland:hover { box-shadow: 0 10px 30px rgba(42, 157, 143, 0.2); }
+.fantasyland:hover { box-shadow: 0 10px 30px rgba(231, 111, 81, 0.2); }
+
+/* ---- CARD CONTENT ---- */
+.land-content {
+    position: relative;
+    z-index: 4;
+    padding: 1.5rem; /* Reduced padding */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 150px;
+    text-align: center;
+    transition: min-height 0.6s ease;
+}
+
+.land-icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.8rem;
+    transition: transform 0.3s ease;
+    filter: drop-shadow(0 0 8px currentColor);
+}
+
+.land-card:hover .land-icon {
+    transform: scale(1.15) rotate(-5deg);
+}
+
+.land-title {
+    font-family: var(--font-disney);
+    font-size: 1.6rem;
+    color: white;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
+
+.land-subtitle {
+    font-size: 0.85rem;
+    color: #CCC;
+    margin-top: 0.3rem;
+    font-style: italic;
+}
+
+/* ---- EXPANDABLE DETAILS ---- */
+.land-details {
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    width: 100%;
+    opacity: 0;
+    transform: translateY(20px);
+    pointer-events: none;
+    display: none; /* Hide when not active to save height */
+}
+
+.land-card.active .land-details {
+    display: block;
+    max-height: 1500px;
+    margin-top: 1rem;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.land-details h3 {
+    font-family: var(--font-disney);
+    font-size: 1.1rem;
+    color: var(--disney-gold);
+    margin-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 0.5rem;
+}
+
+/* ---- SKILL ITEMS (with typewriter effect) ---- */
+.skill-hint {
+    font-size: 0.75rem;
+    color: var(--disney-gold);
+    opacity: 0.7;
+    margin-bottom: 0.8rem;
+    font-style: italic;
+    animation: pulse-hint 2s ease-in-out infinite;
+}
+
+@keyframes pulse-hint {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+}
+
+.skill-item {
+    text-align: left;
+    margin-bottom: 0.6rem;
+    padding: 0.5rem 0.8rem;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Ccircle cx='10' cy='8' r='6' fill='%2300D2FF'/%3E%3Ccircle cx='22' cy='8' r='6' fill='%2300D2FF'/%3E%3Ccircle cx='16' cy='18' r='9' fill='%2300D2FF'/%3E%3C/svg%3E") 16 16, pointer;
+    transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.skill-item:hover {
+    background: rgba(212, 175, 55, 0.06);
+    border-color: var(--disney-gold-glow);
+}
+
+.skill-item .skill-name {
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--disney-white);
+    font-family: var(--font-disney);
+}
+
+.skill-item .skill-desc {
+    font-size: 0.85rem;
+    color: var(--disney-gold);
+    margin-top: 0.3rem;
+    min-height: 0;
+    overflow: hidden;
+}
+
+.skill-item .skill-desc .typing-cursor {
+    display: inline-block;
+    width: 2px;
+    height: 1em;
+    background: var(--disney-gold);
+    margin-left: 2px;
+    animation: blink-cursor 0.6s infinite;
+    vertical-align: text-bottom;
+}
+
+@keyframes blink-cursor {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* ---- SKILL CLOUD (Stark Industries) ---- */
+.skill-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+}
+
+.skill-cloud .skill-item {
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    border: 1px solid rgba(226, 54, 54, 0.4);
+    background: rgba(226, 54, 54, 0.06);
+    text-align: center;
+    font-family: 'Courier New', monospace;
+    position: relative;
+}
+
+.skill-cloud .skill-item::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--land-stark), var(--land-stark-arc), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.skill-cloud .skill-item:hover::after {
+    opacity: 1;
+}
+
+/* ---- UNIVERSE-SPECIFIC TYPEWRITER STYLES ---- */
+
+/* Main Street — warm Disney gold text */
+.main-street .skill-desc {
+    color: var(--disney-gold);
+    font-style: italic;
+}
+
+.main-street .skill-desc .typing-cursor {
+    background: var(--disney-gold);
+}
+
+/* Stark Industries — monospace HUD green/blue text */
+.stark-industries .skill-item .skill-name {
+    font-family: 'Courier New', monospace;
+    color: var(--land-stark);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+}
+
+.stark-industries .skill-desc {
+    font-family: 'Courier New', monospace;
+    color: var(--land-stark-arc);
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+}
+
+.stark-industries .skill-desc .typing-cursor {
+    background: var(--land-stark-arc);
+    width: 8px;
+    height: 1.1em;
+    animation: hud-blink 0.4s infinite;
+}
+
+@keyframes hud-blink {
+    0%, 100% { opacity: 1; background: var(--land-stark-arc); }
+    50% { opacity: 0.3; background: var(--land-stark); }
+}
+
+.stark-industries .skill-item:hover {
+    background: rgba(226, 54, 54, 0.08);
+    border-color: var(--land-stark);
+}
+
+.stark-industries .skill-hint {
+    font-family: 'Courier New', monospace;
+    color: var(--land-stark-arc);
+    font-style: normal;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+}
+
+.stark-industries .land-details h3 {
+    font-family: 'Courier New', monospace;
+    color: var(--land-stark);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.stark-industries .land-title {
+    font-family: 'Courier New', monospace;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--land-stark);
+    text-shadow: 0 0 10px rgba(226, 54, 54, 0.5);
+}
+
+.stark-industries .land-subtitle {
+    font-family: 'Courier New', monospace;
+    color: var(--land-stark-arc);
+    font-style: normal;
+    letter-spacing: 1px;
+}
+
+/* Adventureland — parchment/explorer style */
+.adventureland .skill-desc {
+    color: var(--land-adventureland);
+    font-style: italic;
+}
+
+.adventureland .skill-desc .typing-cursor {
+    background: var(--land-adventureland);
+}
+
+.adventureland .skill-hint {
+    color: var(--land-adventureland);
+}
+
+/* Fantasyland — dreamy pink glow */
+.fantasyland .motivation-text {
+    color: #E6C5C5;
+    text-shadow: 0 0 8px rgba(231, 111, 81, 0.2);
+}
+
+/* ---- TIMELINE (Adventureland) ---- */
+.timeline-item {
+    text-align: left;
+    margin-bottom: 1rem;
+    padding-left: 1rem;
+    border-left: 2px solid var(--land-adventureland);
+}
+
+.timeline-item h4 {
+    font-family: var(--font-disney);
+    color: var(--land-adventureland);
+    font-size: 0.95rem;
+}
+
+/* ---- CONTACT (Fantasyland) ---- */
+.motivation-text {
+    font-style: italic;
+    color: #CCC;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.contact-links {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.contact-btn {
+    padding: 0.6rem 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: white;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.contact-btn:hover {
+    background: rgba(212, 175, 55, 0.2);
+    border-color: var(--disney-gold);
+    color: var(--disney-gold);
+}
+
+/* ---- BACK LINK ---- */
+.back-link {
+    display: none;
+}
+
+/* ---- STAR FIELD BACKGROUND ---- */
+.stars-bg {
+    position: fixed;
+    inset: 0;
+    z-index: -2; /* Background base */
+    pointer-events: none;
+    background:
+        radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,0.6), transparent),
+        radial-gradient(1px 1px at 30% 60%, rgba(255,255,255,0.4), transparent),
+        radial-gradient(1px 1px at 50% 10%, rgba(255,255,255,0.5), transparent),
+        radial-gradient(1px 1px at 70% 80%, rgba(255,255,255,0.3), transparent),
+        radial-gradient(1px 1px at 90% 40%, rgba(255,255,255,0.6), transparent),
+        radial-gradient(1px 1px at 15% 90%, rgba(255,255,255,0.4), transparent),
+        radial-gradient(1px 1px at 85% 15%, rgba(255,255,255,0.5), transparent),
+        radial-gradient(1.5px 1.5px at 25% 45%, rgba(212,175,55,0.4), transparent),
+        radial-gradient(1.5px 1.5px at 65% 35%, rgba(212,175,55,0.3), transparent),
+        radial-gradient(1.5px 1.5px at 45% 75%, rgba(0,210,255,0.3), transparent);
+    animation: twinkle 8s ease-in-out infinite alternate;
+}
+
+@keyframes twinkle {
+    0% { opacity: 0.6; }
+    100% { opacity: 1; }
+}
+
+/* ---- SCENE CHARACTER SILHOUETTES (CSS-only animated) ---- */
+.scene-character {
+    position: absolute;
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    pointer-events: none;
+}
+
+.land-card:hover .scene-character {
+    opacity: 0.6;
+}
+
+/* Main Street — welcoming figure */
+.main-street .scene-character {
+    bottom: 20%;
+    right: 15%;
+    font-size: 3rem;
+    animation: float-gentle 3s ease-in-out infinite;
+}
+
+/* Stark Industries — arc reactor pulse */
+.stark-industries .scene-character {
+    bottom: 15%;
+    right: 10%;
+    font-size: 2.5rem;
+    animation: arc-reactor-pulse 2s ease-in-out infinite;
+}
+
+@keyframes arc-reactor-pulse {
+    0%, 100% { filter: drop-shadow(0 0 5px var(--land-stark)); transform: scale(1); }
+    50% { filter: drop-shadow(0 0 20px var(--land-stark-arc)) drop-shadow(0 0 40px var(--land-stark)); transform: scale(1.1); }
+}
+
+/* Adventureland — compass */
+.adventureland .scene-character {
+    bottom: 20%;
+    right: 12%;
+    font-size: 3rem;
+    animation: swing 3s ease-in-out infinite;
+}
+
+/* Fantasyland — magic wand */
+.fantasyland .scene-character {
+    bottom: 15%;
+    right: 15%;
+    font-size: 3rem;
+    animation: magic-float 2.5s ease-in-out infinite;
+}
+
+@keyframes float-gentle {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* Iron Man shimmer override */
+.stark-industries::before {
+    background: conic-gradient(from 0deg, transparent, rgba(226, 54, 54, 0.3), rgba(0, 191, 255, 0.1), transparent);
+}
+
+@keyframes swing {
+    0%, 100% { transform: rotate(-5deg); }
+    50% { transform: rotate(5deg); }
+}
+
+@keyframes magic-float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    25% { transform: translateY(-8px) rotate(3deg); }
+    75% { transform: translateY(-4px) rotate(-3deg); }
+}
+
+/* =========================================
+   AI ASSISTANT SYSTEM
+   ========================================= */
+
+/* Theme Backgrounds */
+.theme-bg {
+    position: fixed;
+    inset: 0;
+    z-index: 5;
+    opacity: 0;
+    transition: opacity 1.2s ease-in-out, transform 1.2s ease-out;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transform: scale(1.05);
+}
+
+.theme-bg.active {
+    opacity: 0.6;
+    transform: scale(1);
+}
+
+/* MOOD MANAGER LAYERS */
+.mood-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 10;
+    pointer-events: none;
+    transition: all 1s ease;
+}
+
+.mood-360 {
+    position: fixed;
+    inset: 0;
+    z-index: -1; /* Above stars, below content */
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 2s ease, transform 20s linear;
+    transform: scale(1.1);
+    will-change: opacity, transform;
+}
+
+.mood-360.active {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.mood-hud {
+    position: fixed;
+    inset: 0;
+    z-index: 20;
+    pointer-events: none;
+}
+
+/* ULTRON GLITCH EFFECT */
+.glitch-active {
+    background: rgba(255, 0, 0, 0.05);
+    animation: glitch-anim 0.2s infinite alternate;
+}
+
+@keyframes glitch-anim {
+    0% { transform: translate(0); }
+    100% { transform: translate(2px, -2px); filter: hue-rotate(90deg); }
+}
+
+/* OLAF FROST EFFECT (No blur as per user request) */
+.frost-active {
+    background: radial-gradient(circle, transparent 70%, rgba(200, 230, 255, 0.4) 100%);
+}
+
+/* STARK HUD */
+.stark-hud {
+    border: 2px solid rgba(0, 255, 255, 0.3);
+    margin: 20px;
+    height: calc(100vh - 40px);
+    position: relative;
+    box-shadow: inset 0 0 50px rgba(0, 255, 255, 0.1);
+}
+
+.hud-scanner {
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    width: 200px;
+    height: 200px;
+    border: 1px solid cyan;
+    border-radius: 50%;
+    animation: spin 10s linear infinite;
+}
+
+@keyframes spin { from { transform: rotate(0); } to { transform: rotate(360deg); } }
+
+.hud-diagnostics {
+    position: absolute;
+    bottom: 50px;
+    right: 50px;
+    color: cyan;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 12px;
+}
+
+.theme-bg.active {
+    opacity: 0.4;
+}
+
+/* Bubble */
+.ai-bubble {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 70px;
+    height: 70px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 1100;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 15px var(--disney-gold-glow);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    overflow: hidden; /* Fix: Clip internal content and bursts to the circle */
+}
+
+.ai-bubble:hover {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.ai-portrait-img-container, .char-img-svg {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ai-portrait-img-container svg, .char-img-svg svg {
+    width: 100%;
+    height: 100%;
+}
+
+.chat-portrait svg {
+    width: 40px;
+    height: 40px;
+}
+
+.char-img-svg svg {
+    width: 70px;
+    height: 70px;
+}
+
+.video-poster {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+    transition: opacity 0.5s ease;
+    pointer-events: none; /* Crucial: don't block mousemove/mouseenter of parent */
+}
+
+.card-video-container.loading .video-poster {
+    opacity: 0.5;
+}
+
+.card-video-container iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+}
+
+.ai-burst {
+    position: absolute;
+    inset: 0; /* Changed from -5px to stay inside the bubble's container */
+    border-radius: 50%;
+    border: 2px solid var(--disney-gold);
+    opacity: 0;
+    animation: burst 2.5s infinite;
+    pointer-events: none;
+}
+
+@keyframes burst {
+    0% { transform: scale(1); opacity: 0.6; }
+    50% { opacity: 0.3; }
+    100% { transform: scale(1.3); opacity: 0; }
+}
+
+/* Modal */
+.ai-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(10px);
+    z-index: 1200;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.ai-modal.show {
+    display: flex;
+    opacity: 1;
+}
+
+.modal-content {
+    background: rgba(2, 12, 27, 0.95);
+    padding: 3rem;
+    border-radius: 30px;
+    border: 1px solid var(--disney-gold-glow);
+    max-width: 900px;
+    width: 90%;
+    text-align: center;
+}
+
+.modal-content h2 {
+    font-family: var(--font-disney);
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: var(--disney-gold);
+}
+
+.character-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1.5rem;
+}
+
+.char-select {
+    padding: 1rem;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.char-select:hover {
+    background: rgba(212, 175, 55, 0.15);
+    border-color: var(--disney-gold);
+    transform: translateY(-5px);
+}
+
+.char-img {
+    font-size: 3.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.char-select span {
+    font-weight: bold;
+    color: var(--disney-white);
+}
+
+/* Chat Window */
+.ai-chat {
+    position: fixed;
+    bottom: 110px;
+    right: 30px;
+    width: 380px;
+    height: 580px;
+    background: rgba(15, 25, 45, 0.85);
+    backdrop-filter: blur(25px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 24px;
+    display: none;
+    flex-direction: column;
+    z-index: 1100;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.6);
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(30px) scale(0.98);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform, opacity;
+}
+
+/* Handled above (consolidated land-details) */
+
+/* land-skill-gif styles removed (Vitrine mode implemented) */
+
+.ai-chat.active {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.chat-header {
+    background: rgba(212, 175, 55, 0.1);
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.chat-char-info {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.chat-portrait {
+    font-size: 1.8rem;
+}
+
+.chat-name {
+    font-family: var(--font-disney);
+    font-size: 1.2rem;
+    color: var(--disney-gold);
+}
+
+.chat-controls button {
+    background: none;
+    border: none;
+    color: #8892B0;
+    cursor: pointer;
+    font-size: 1.2rem;
+    margin-left: 0.5rem;
+    transition: color 0.3s;
+}
+
+.chat-controls button:hover {
+    color: white;
+}
+
+.chat-messages {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.message {
+    max-width: 80%;
+    padding: 0.8rem 1.2rem;
+    border-radius: 15px;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    position: relative;
+    word-wrap: break-word;
+}
+
+.message.ai {
+    align-self: flex-start;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom-left-radius: 2px;
+}
+
+.message.user {
+    align-self: flex-end;
+    background: rgba(212, 175, 55, 0.15);
+    border: 1px solid var(--disney-gold-glow);
+    border-bottom-right-radius: 2px;
+}
+
+.chat-input-area {
+    padding: 1rem;
+    display: flex;
+    gap: 0.5rem;
+    background: rgba(2, 12, 27, 0.5);
+}
+
+.chat-input-area input {
+    flex-grow: 1;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px;
+    padding: 0.6rem 1rem;
+    color: white;
+    outline: none;
+}
+
+.chat-input-area button {
+    background: var(--disney-gold);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: var(--disney-dark);
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.chat-input-area button:hover {
+    transform: scale(1.1);
+}
+
+/* Character Specific Backgrounds */
+.stark-lab { background-image: radial-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1000'); }
+.ultron-core { background-image: radial-gradient(rgba(139, 0, 0, 0.4), rgba(0, 0, 0, 0.9)), url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=1000'); animation: pulse-red 4s infinite; }
+.savanna { background-image: radial-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1516422741121-3a106c2a4f4d?auto=format&fit=crop&q=80&w=1000'); }
+.adventure { background-image: radial-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1520110120185-230632bb24ce?auto=format&fit=crop&q=80&w=1000'); }
+.magic-garden { background-image: radial-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?auto=format&fit=crop&q=80&w=1000'); }
+.cave { background-image: radial-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1502481851512-e9e2529bbbf9?auto=format&fit=crop&q=80&w=1000'); }
+
+@keyframes pulse-red {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.6; }
+}
+
+/* HUD Effects for Jarvis */
+.hud-text { font-family: 'Courier New', monospace; text-transform: uppercase; color: var(--land-stark-arc); letter-spacing: 1px; }
+
+@media (max-width: 600px) {
+    .ai-chat { width: 90vw; right: 5vw; bottom: 100px; height: 500px; }
+    .logo-text { font-size: 1.8rem; }
+    .land-title { font-size: 1.2rem; }
+    .land-content { padding: 1.2rem; min-height: 250px; }
+    .map-grid { gap: 1rem; }
+    #main-menu { padding: 1rem; }
+}
+
+/* =========================================
+   CONTACT MODAL & MAGIC MAIL
+   ========================================= */
+.contact-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(15px);
+    z-index: 10000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.contact-modal.active {
+    display: flex;
+    opacity: 1;
+}
+
+.contact-modal-content {
+    width: 90%;
+    max-width: 900px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 30px;
+    padding: 50px;
+    position: relative;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+    animation: modalSlideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modalSlideUp {
+    from { transform: translateY(50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.close-modal-btn {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: 0.3s;
+}
+
+.close-modal-btn:hover {
+    opacity: 1;
+    transform: rotate(90deg);
+}
+
+.contact-modal h2 {
+    font-family: 'Waltograph', sans-serif;
+    font-size: 2.8rem;
+    color: #FFD700;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.modal-subtitle {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 40px;
+}
+
+.contact-options-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 30px;
+}
+
+.contact-option-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 30px;
+    transition: 0.3s;
+}
+
+.contact-option-card h3 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+}
+
+.option-icon {
+    font-size: 2rem;
+    color: #FFD700;
+    margin-bottom: 15px;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contact-form input, 
+.contact-form textarea {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 12px 15px;
+    color: white;
+    font-family: 'Outfit', sans-serif;
+    outline: none;
+    transition: 0.3s;
+}
+
+.contact-form textarea {
+    height: 120px;
+    resize: none;
+}
+
+.contact-form input:focus, 
+.contact-form textarea:focus {
+    border-color: #FFD700;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.file-input-wrapper {
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.file-input-wrapper label {
+    display: block;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px dashed rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.file-input-wrapper label:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #FFD700;
+}
+
+.file-input-wrapper input[type="file"] {
+    display: none;
+}
+
+#file-name-display {
+    display: block;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin-top: 5px;
+}
+
+.send-form-btn {
+    background: linear-gradient(45deg, #FFD700, #FFA500);
+    border: none;
+    border-radius: 10px;
+    padding: 15px;
+    color: #000;
+    font-weight: 900;
+    cursor: pointer;
+    transition: 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.send-form-btn:hover {
+    transform: scale(1.02);
+    box-shadow: 0 5px 20px rgba(255, 215, 0, 0.3);
+}
+
+.gmail-card {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+
+.gmail-card:hover {
+    background: rgba(219, 68, 55, 0.1);
+    border-color: #DB4437;
+}
+
+.gmail-info {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 15px 0;
+}
+
+.gmail-btn {
+    background: #DB4437;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.gmail-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(219, 68, 55, 0.4);
+}
+
+@media (max-width: 768px) {
+    .contact-options-grid {
+        grid-template-columns: 1fr;
+    }
+    .contact-modal-content {
+        padding: 30px;
+    }
+}

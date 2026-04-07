@@ -40,7 +40,7 @@ body::before {
     z-index: -1;
 }
 
-.st-container {
+.portfolio-container {
     max-width: 900px;
     margin: 0 auto;
     background: var(--st-card);

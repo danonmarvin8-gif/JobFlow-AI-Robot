@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Sparking Zero — Portfolio Template</title>
+    <meta name="description" content="L'expérience DBZ Ultime">
+    <link rel="stylesheet" href="dbz-theme.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <script>
+        // Immediate persistence check to skip intro on return
+        if (sessionStorage.getItem('dbz_visited') && performance.getEntriesByType('navigation')[0]?.type !== 'reload') {
+            document.documentElement.classList.add('dbz-skipped-active');
+        }
+    </script>
+</head>
+
+<body>
+
+    <!-- KI AURA ENGINE -->
+    <canvas id="aura-canvas"></canvas>
+
+    <!-- BACKGROUND VIDEO ENGINE -->
+    <video autoplay muted loop id="bg-video" style="display: none;">
+        <source src="https://archive.org/download/pelea-completa-goku-vs-jiren/Pelea%20completa%20goku%20vs%20jiren.mp4"
+            type="video/mp4">
+    </video>
+
+    <!-- SCOUTER HUD -->
+    <div class="scouter-hud">
+        <div class="scouter-data" id="scouter-stats">
+            POWER_LEVEL: [CALCULATING...]<br>
+            HUD_STABILITY: [STABLE]<br>
+            SPARKING_STATUS: [READY]
+        </div>
+    </div>
+
+    <!-- LOADING SCREEN (Ultra Edition) -->
+    <div id="loading-screen">
+        <div class="shenron-shadow">🐉</div>
+        <div class="nimbus-cloud">☁️</div>
+        <div class="spirit-bomb" id="spirit-bomb"></div>
+        <div class="loading-bar-container">
+            <div class="loading-bar-label" id="loading-text">Collecte de l'énergie universelle...</div>
+            <div class="loading-bar-track">
+                <div class="loading-bar-fill"></div>
+            </div>
+            <div class="loading-percent">0%</div>
+        </div>
+    </div>
+
+    <!-- MAIN MENU (Single Screen) -->
+    <div id="main-menu" style="display: none;">
+        <header class="menu-header">
+            <h1 class="menu-title">Ultimate Temple</h1>
+        </header>
+
+        <main class="menu-content">
+            <!-- TP Row -->
+            <div class="section-row">
+                <h2 class="section-title">⚔️ Entraînements (TP)</h2>
+                <div class="cards-row">
+                    <a href="tps/TP1.html" class="episode-card" onmousemove="updateCardPos(event, this)">
+                        <div class="card-thumbnail">🥋</div>
+                        <div class="card-body">
+                            <div class="card-tag">Chapitre 1</div>
+                            <div class="card-name">TP n°1 — Les Fondations</div>
+                            <div class="card-desc">Premiers pas en HTML et mise en page web</div>
+                        </div>
+                    </a>
+                    <a href="tps/TP2.html" class="episode-card" onmousemove="updateCardPos(event, this)">
+                        <div class="card-thumbnail">🥋</div>
+                        <div class="card-body">
+                            <div class="card-tag">Chapitre 2</div>
+                            <div class="card-name">TP n°2 — Le Portail</div>
+                            <div class="card-desc">Structuration avancée et contenu</div>
+                        </div>
+                    </a>
+                    <a href="tps/TP3.html" class="episode-card" onmousemove="updateCardPos(event, this)">
+                        <div class="card-thumbnail">🥋</div>
+                        <div class="card-body">
+                            <div class="card-tag">Chapitre 3</div>
+                            <div class="card-name">TP n°3 — L'Autre Dimension</div>
+                            <div class="card-desc">Navigation multi-pages et index</div>
+                        </div>
+                    </a>
+                    <a href="tps/TP4.html" class="episode-card" onmousemove="updateCardPos(event, this)">
+                        <div class="card-thumbnail">🥋</div>
+                        <div class="card-body">
+                            <div class="card-tag">Chapitre 4</div>
+                            <div class="card-name">TP n°4 — Le Labyrinthe</div>
+                            <div class="card-desc">Sommaire, contenu et navigation complexe</div>
+                        </div>
+                    </a>
+                    <a href="tps/TP5.html" class="episode-card" onmousemove="updateCardPos(event, this)">
+                        <div class="card-thumbnail">🥋</div>
+                        <div class="card-body">
+                            <div class="card-tag">Chapitre 5</div>
+                            <div class="card-name">TP n°5 — Les Esprits</div>
+                            <div class="card-desc">Introduction au style CSS</div>
+                        </div>
+                    </a>
+                    <a href="tps/TP6.html" class="episode-card" onmousemove="updateCardPos(event, this)">
+                        <div class="card-thumbnail">🥋</div>
+                        <div class="card-body">
+                            <div class="card-tag">Chapitre 6</div>
+                            <div class="card-name">TP n°6 — La Source</div>
+                            <div class="card-desc">Approfondissement du CSS</div>
+                        </div>
+                    </a>
+                    <a href="tps/TP7.html" class="episode-card" onmousemove="updateCardPos(event, this)">
+                        <div class="card-thumbnail">🥋</div>
+                        <div class="card-body">
+                            <div class="card-tag">Chapitre 7</div>
+                            <div class="card-name">TP n°7 — Le Signal</div>
+                            <div class="card-desc">Premiers scripts JavaScript</div>
+                        </div>
+                    </a>
+                    <a href="tps/TP8.html" class="episode-card" onmousemove="updateCardPos(event, this)">
+                        <div class="card-thumbnail">🥋</div>
+                        <div class="card-body">
+                            <div class="card-tag">Chapitre 8</div>
+                            <div class="card-name">TP n°8 — L'Écho</div>
+                            <div class="card-desc">Mise en page avancée et style</div>
+                        </div>
+                    </a>
+                    <a href="tps/TP9.html" class="episode-card" onmousemove="updateCardPos(event, this)">
+                        <div class="card-thumbnail">🥋</div>
+                        <div class="card-body">
+                            <div class="card-tag">Chapitre 9</div>
+                            <div class="card-name">TP n°9 — La Fracture</div>
+                            <div class="card-desc">Fonctions et logique JS</div>
+                        </div>
+                    </a>
+                    <a href="tps/TP10.html" class="episode-card" onmousemove="updateCardPos(event, this)">
+                        <div class="card-thumbnail">🥋</div>
+                        <div class="card-body">
+                            <div class="card-tag">Chapitre 10</div>
+                            <div class="card-name">TP n°10 — Le Dénouement</div>
+                            <div class="card-desc">JavaScript avancé et fonctions</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Projets Row -->
+            <div class="section-row">
+                <h2 class="section-title">⚡ Missions Spéciales (Projets)</h2>
+                <div class="cards-row">
+                    <a href="../projets/TP1/TP1/Projet_scolaire/index.php?theme=dbz" class="episode-card" onmousemove="updateCardPos(event, this)">
+                        <div class="card-thumbnail">🛸</div>
+                        <div class="card-body">
+                            <div class="card-tag">Projet PHP</div>
+                            <div class="card-name">Système de Gestion Scolaire</div>
+                            <div class="card-desc">Application complète de gestion d'école avec PHP et MySQL</div>
+                        </div>
+                    </a>
+                    <a href="../Centre de formation SQL/login.php?theme=dbz" class="episode-card" onmousemove="updateCardPos(event, this)">
+                        <div class="card-thumbnail">🛸</div>
+                        <div class="card-body">
+                            <div class="card-tag">Projet SQL</div>
+                            <div class="card-name">Centre de Formation</div>
+                            <div class="card-desc">Dashboards admin, enseignant et étudiant</div>
+                        </div>
+                    </a>
+                    <a href="../Centre de formation SQL/bdd.php" class="episode-card" onmousemove="updateCardPos(event, this)">
+                        <div class="card-thumbnail">📊</div>
+                        <div class="card-body">
+                            <div class="card-tag">Vitrine SQL</div>
+                            <div class="card-name">Présentation Base de Données</div>
+                            <div class="card-desc">Visualisation interactive des tables et schémas SQL</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Base de Données Row -->
+            <div class="section-row">
+                <h2 class="section-title">💾 Archives du Ruban Rouge (Données)</h2>
+                <div class="cards-row">
+                    <a href="tps/jmerise_Exo1.html" class="episode-card" onmousemove="updateCardPos(event, this)">
+                        <div class="card-thumbnail">📋</div>
+                        <div class="card-body">
+                            <div class="card-tag">MCD / MLD</div>
+                            <div class="card-name">Système Militaire — JMerise</div>
+                            <div class="card-desc">Modèle conceptuel et logique de données</div>
+                        </div>
+                    </a>
+                    <a href="tps/sql_jmerise.html" class="episode-card" onmousemove="updateCardPos(event, this)">
+                        <div class="card-thumbnail">💾</div>
+                        <div class="card-body">
+                            <div class="card-tag">SQL</div>
+                            <div class="card-name">Script SQL Complet</div>
+                            <div class="card-desc">Création de tables, insertions et requêtes</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Options BTS Row -->
+            <div class="section-row">
+                <h2 class="section-title">🎓 Voies Saiyan (Options)</h2>
+                <div class="cards-row">
+                    <a href="../options/Option_SLAM.html" class="episode-card" onmousemove="updateCardPos(event, this)">
+                        <div class="card-thumbnail">🐉</div>
+                        <div class="card-body">
+                            <div class="card-tag">Option</div>
+                            <div class="card-name">SLAM — Développement</div>
+                            <div class="card-desc">Solutions Logicielles et Applications Métiers</div>
+                        </div>
+                    </a>
+                    <a href="../options/Option_SISR.html" class="episode-card" onmousemove="updateCardPos(event, this)">
+                        <div class="card-thumbnail">🐲</div>
+                        <div class="card-body">
+                            <div class="card-tag">Option</div>
+                            <div class="card-name">SISR — Réseau</div>
+                            <div class="card-desc">Solutions d'Infrastructure, Systèmes et Réseaux</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Modules Row -->
+            <div class="section-row">
+                <h2 class="section-title">📚 Parchemins Sacrés (Modules)</h2>
+                <div class="cards-row">
+                    <a href="../modules/Module1.html" class="episode-card" onmousemove="updateCardPos(event, this)">
+                        <div class="card-thumbnail">📜</div>
+                        <div class="card-body">
+                            <div class="card-tag">Module</div>
+                            <div class="card-name">Module 1</div>
+                            <div class="card-desc">Premier module de formation</div>
+                        </div>
+                    </a>
+                    <a href="../modules/Module2.html" class="episode-card" onmousemove="updateCardPos(event, this)">
+                        <div class="card-thumbnail">📜</div>
+                        <div class="card-body">
+                            <div class="card-tag">Module</div>
+                            <div class="card-name">Module 2</div>
+                            <div class="card-desc">Deuxième module de formation</div>
+                        </div>
+                    </a>
+                    <a href="../modules/Module3.html" class="episode-card" onmousemove="updateCardPos(event, this)">
+                        <div class="card-thumbnail">📜</div>
+                        <div class="card-body">
+                            <div class="card-tag">Module</div>
+                            <div class="card-name">Module 3</div>
+                            <div class="card-desc">Troisième module de formation</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Certifications Row -->
+            <div class="section-row">
+                <h2 class="section-title">🏆 Tournoi des Arts Martiaux (Certifs)</h2>
+                <div class="cards-row">
+                    <a href="../certificats/Mes_Certifications.html" class="episode-card" onmousemove="updateCardPos(event, this)">
+                        <div class="card-thumbnail">🏅</div>
+                        <div class="card-body">
+                            <div class="card-tag">Certif</div>
+                            <div class="card-name">Mes Certifications</div>
+                            <div class="card-desc">Diplômes et certifications obtenues</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+        <!-- WHIS AI ASSISTANT (Developed) -->
+        <div class="whis-container" id="whis-ai-root">
+            <canvas id="whis-canvas" style="width: 140px; height: 140px; border-radius: 50%; cursor: pointer;"></canvas>
+            <div class="whis-bubble" id="whis-bubble"></div>
+        </div>
+    </div>
+
+    <!-- ARCADE REDIRECT -->
+    <div class="arcade-launcher" id="arcade-toggle" title="Budokai Smash Fullscreen"
+        onclick="window.location.href='arcade/arcade.html'">🕹️</div>
+
+    <!-- MUSIC PLAYER -->
+    <div class="music-player-hud">
+        <div class="music-info" id="current-track">NOW PLAYING: ...</div>
+        <button id="music-toggle" class="music-toggle">🔊</button>
+        <button id="music-next" class="music-next">⏭️</button>
+    </div>
+
+    <!-- SVG DIVINE GLOW FILTER -->
+    <svg style="visibility: hidden; position: absolute;" width="0" height="0" xmlns="http://www.w3.org/2000/svg"
+        version="1.1">
+        <defs>
+            <filter id="divine-glow">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="blur" />
+                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7"
+                    result="glow" />
+                <feComposite in="SourceGraphic" in2="glow" operator="over" />
+            </filter>
+        </defs>
+    </svg>
+
+    <!-- SCRIPTS -->
+    <script>
+        // CONFIG
+        const audioPlaylist = [
+            { name: "Cha-La Head-Cha-La", url: "https://archive.org/download/koro-chan-dbz-best-flac-hi-res/01.%20CHA-LA%20HEAD%20CHA-LA.mp3" },
+            { name: "We Gotta Power", url: "https://archive.org/download/dbz-hsc-13-battle-and-hope-flac/VBR%20MP3/We%20Gotta%20Power.mp3" },
+            { name: "Limit-Break x Survivor", url: "https://archive.org/download/dbs-limit-break-survivor/limit-break.mp3" }
+        ];
+
+        const videoPlaylist = [
+            "https://archive.org/download/pelea-completa-goku-vs-jiren/Pelea%20completa%20goku%20vs%20jiren.mp4",
+            "https://archive.org/download/DragonBallSuperGokuVsJiren/DBS_Goku_v_Jiren.mp4"
+        ];
+
+        let currentTrackIdx = 0;
+        const audio = new Audio(audioPlaylist[currentTrackIdx].url);
+        audio.loop = true;
+
+        const musicBtn = document.getElementById('music-toggle');
+        const nextBtn = document.getElementById('music-next');
+        const trackLabel = document.getElementById('current-track');
+        const bgVideo = document.getElementById('bg-video');
+
+        function updatePlaylistUI() {
+            trackLabel.innerText = "NOW PLAYING: " + audioPlaylist[currentTrackIdx].name;
+        }
+
+        musicBtn.addEventListener('click', () => {
+            if (audio.paused) {
+                audio.play();
+                musicBtn.innerText = "🔊";
+                updatePlaylistUI();
+            } else {
+                audio.pause();
+                musicBtn.innerText = "🔈";
+            }
+        });
+
+        nextBtn.addEventListener('click', () => {
+            currentTrackIdx = (currentTrackIdx + 1) % audioPlaylist.length;
+            audio.src = audioPlaylist[currentTrackIdx].url;
+            audio.play();
+            updatePlaylistUI();
+            triggerShake(5, 200);
+        });
+
+        // VIDEO CYCLE ENGINE
+        let currentVideoIdx = 0;
+        setInterval(() => {
+            currentVideoIdx = (currentVideoIdx + 1) % videoPlaylist.length;
+            bgVideo.src = videoPlaylist[currentVideoIdx];
+            bgVideo.load();
+            bgVideo.play();
+        }, 30000); // 30s action bursts
+        function updateCardPos(e, card) {
+            const rect = card.getBoundingClientRect();
+            const x = ((e.clientX - rect.left) / rect.width) * 100;
+            const y = ((e.clientY - rect.top) / rect.height) * 100;
+            card.style.setProperty('--mouse-x', x + '%');
+            card.style.setProperty('--mouse-y', y + '%');
+        }
+
+        // CINEMATIC CAMERA SHAKE
+        function triggerShake(intensity = 10, duration = 300) {
+            const body = document.body;
+            const startTime = Date.now();
+            function shake() {
+                const elapsed = Date.now() - startTime;
+                if (elapsed < duration) {
+                    const x = (Math.random() - 0.5) * intensity;
+                    const y = (Math.random() - 0.5) * intensity;
+                    body.style.setProperty('--shake-x', x + 'px');
+                    body.style.setProperty('--shake-y', y + 'px');
+                    requestAnimationFrame(shake);
+                } else {
+                    body.style.setProperty('--shake-x', '0px');
+                    body.style.setProperty('--shake-y', '0px');
+                }
+            }
+            shake();
+        }
+
+        // KI AURA CANVAS ENGINE
+        const canvas = document.getElementById('aura-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        class Particle {
+            constructor() { this.reset(); }
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = canvas.height + 50;
+                this.size = Math.random() * 8 + 2;
+                this.speedY = Math.random() * 4 + 2;
+                this.speedX = (Math.random() - 0.5) * 3;
+                this.opacity = Math.random() * 0.4 + 0.1;
+                this.color = Math.random() > 0.6 ? '#FF8DC00' : '#FFD700';
+            }
+            update() {
+                this.y -= this.speedY;
+                this.x += this.speedX;
+                this.opacity -= 0.0025;
+                if (this.y < -50 || this.opacity <= 0) this.reset();
+            }
+            draw() {
+                ctx.fillStyle = this.color;
+                ctx.globalAlpha = this.opacity;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+        for (let i = 0; i < 60; i++) particles.push(new Particle());
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.globalCompositeOperation = 'screen';
+            particles.forEach(p => { p.update(); p.draw(); });
+            requestAnimationFrame(animate);
+        }
+        animate();
+
+        // SCOUTER DATA
+        const scouterStats = document.getElementById('scouter-stats');
+        setInterval(() => {
+            const power = Math.floor(Math.random() * 9000000) + 9001;
+            scouterStats.innerHTML = `POWER_LEVEL: [${power.toLocaleString()}]<br>STATUS: [CYBER_ACTIVE]<br>LOC: [TEMPLATE_OS]`;
+        }, 1200);
+
+        // LOADING LOGIC
+        window.addEventListener('load', () => {
+            const isSkipped = document.documentElement.classList.contains('dbz-skipped-active');
+            
+            if (isSkipped) {
+                // If skipped, initialize immediately
+                audio.play();
+                musicBtn.innerText = "🔊";
+                bgVideo.style.display = 'block';
+                document.getElementById('loading-screen').style.display = 'none';
+                document.getElementById('main-menu').style.display = 'block';
+                updatePlaylistUI();
+                if (window.whisAI) window.whisAI.greet();
+                return;
+            }
+
+            let progress = 0;
+            const fill = document.querySelector('.loading-bar-fill');
+            const percent = document.querySelector('.loading-percent');
+            const loadingText = document.getElementById('loading-text');
+            const phases = [
+                "Collecte de l'énergie universelle...",
+                "Concentration du potentiel Saiyan...",
+                "Activation du Scouter...",
+                "Appel de Shenron...",
+                "PRÊT AU COMBAT !"
+            ];
+
+            const interval = setInterval(() => {
+                progress += Math.random() * 4 + 1;
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(interval);
+                    loadingText.innerText = phases[4];
+
+                    const startOverlay = document.createElement('div');
+                    startOverlay.innerHTML = '<button id="start-btn" style="padding: 2.5rem 5rem; font-size: 3rem; background: var(--dbz-orange); color: white; border: 6px solid var(--dbz-gold); border-radius: 100px; cursor: pointer; font-weight: 900; box-shadow: 0 0 100px var(--dbz-orange); text-transform: uppercase;">ENTRER DANS L\'ARÈNE</button>';
+                    startOverlay.style = "position:absolute; inset:0; display:flex; justify-content:center; align-items:center; background:rgba(0,0,0,0.9); z-index:10000; transition: opacity 0.8s;";
+                    document.getElementById('loading-screen').appendChild(startOverlay);
+
+                    document.getElementById('start-btn').onclick = () => {
+                        sessionStorage.setItem('dbz_visited', 'true');
+                        startOverlay.style.opacity = '0';
+                        setTimeout(() => startOverlay.remove(), 800);
+
+                        audio.play();
+                        musicBtn.innerText = "🔊";
+                        bgVideo.style.display = 'block';
+
+                        const ls = document.getElementById('loading-screen');
+                        ls.style.opacity = '0';
+                        triggerShake(30, 800);
+                        setTimeout(() => {
+                            ls.style.display = 'none';
+                            document.getElementById('main-menu').style.display = 'block';
+                            updatePlaylistUI();
+                            if (window.whisAI) window.whisAI.greet();
+                        }, 1000);
+                    };
+                }
+                fill.style.width = progress + '%';
+                percent.innerText = Math.floor(progress) + '%';
+                document.documentElement.style.setProperty('--load-progress', progress);
+                const phaseIdx = Math.floor((progress / 100) * (phases.length - 1));
+                loadingText.innerText = phases[phaseIdx];
+            }, 50);
+        });
+
+        // ARCADE REDIRECT (NO LONGER INTERNAL)
+        console.log("Arcade system ready for redirection.");
+    </script>
+    <script src="whis-ai.js"></script>
+</body>
+
+</html>

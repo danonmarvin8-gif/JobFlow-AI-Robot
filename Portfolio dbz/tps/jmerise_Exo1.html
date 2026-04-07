@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCD - Système de Gestion de Grades et Militaires</title>
+    <link rel="stylesheet" href="../dbz-internal.css">
+    <style>
+        /* Stranger Things theme variable overrides */
+        :root {
+            --primary: #b71c1c;
+            --primary-light: #ff1744;
+            --primary-dark: #ff6b6b;
+            --bg-white: rgba(255, 255, 255, 0.04);
+            --border-radius: 12px;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
+            --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.5);
+            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.6);
+            --text-dark: var(--st-text);
+            --text-light: var(--st-text-muted);
+            --transition: all 0.3s ease;
+        }
+
+        .mcd-container {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 2rem;
+        }
+
+        .intro-section {
+            background: var(--bg-white);
+            padding: 2.5rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 3rem;
+            box-shadow: var(--shadow-md);
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .intro-section h2 {
+            color: var(--primary-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .diagram-section {
+            background: var(--bg-white);
+            padding: 3rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 3rem;
+            box-shadow: var(--shadow-lg);
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .diagram-title {
+            font-size: 2rem;
+            color: var(--primary-dark);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .mcd-diagram {
+            background: linear-gradient(135deg, #f5f7fa 0%, #ffffff 100%);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 2px solid #e2e8f0;
+            overflow-x: auto;
+            margin: 2rem 0;
+        }
+
+        .mcd-entity {
+            display: inline-block;
+            background: white;
+            border: 3px solid var(--primary-light);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1rem;
+            min-width: 200px;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .mcd-entity:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(102, 126, 234, 0.25);
+            border-color: var(--primary-dark);
+        }
+
+        .entity-name {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+            text-align: center;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--primary-light);
+        }
+
+        .entity-attributes {
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            line-height: 1.8;
+        }
+
+        .attribute {
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            background: #f7fafc;
+            border-left: 3px solid var(--primary-light);
+            padding-left: 0.75rem;
+        }
+
+        .attribute.key {
+            font-weight: 700;
+            color: var(--primary-dark);
+            background: #f0f4ff;
+        }
+
+        .relationship-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .relationship-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+        }
+
+        .relationship-card:hover {
+            transform: scale(1.05);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .relationship-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+            padding-bottom: 0.75rem;
+        }
+
+        .relationship-details {
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        .sql-section {
+            background: var(--bg-white);
+            padding: 2.5rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 3rem;
+            box-shadow: var(--shadow-md);
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        .sql-code {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 2rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--primary-light);
+        }
+
+        .sql-code code {
+            color: inherit;
+        }
+
+        .sql-keyword {
+            color: #ff7b72;
+            font-weight: 700;
+        }
+
+        .sql-type {
+            color: #79c0ff;
+        }
+
+        .sql-comment {
+            color: #8b949e;
+            font-style: italic;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            border: 2px solid #e2e8f0;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .feature-card:hover {
+            border-color: var(--primary-light);
+            box-shadow: var(--shadow-md);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            color: var(--primary-dark);
+            margin-bottom: 0.75rem;
+        }
+
+        .badge {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin: 0.25rem;
+            font-weight: 600;
+        }
+
+        .entity-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .legend {
+            background: #f7fafc;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+            border-left: 4px solid var(--primary-light);
+        }
+
+        .legend-item {
+            margin: 0.75rem 0;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .legend-symbol {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            border: 2px solid var(--primary-light);
+            border-radius: 4px;
+            background: white;
+        }
+
+        @media (max-width: 768px) {
+            .mcd-container {
+                padding: 1rem;
+            }
+
+            .diagram-section,
+            .intro-section,
+            .sql-section {
+                padding: 1.5rem;
+            }
+
+            .mcd-diagram {
+                overflow-x: auto;
+                padding: 1rem;
+            }
+
+            .mcd-entity {
+                min-width: 180px;
+                padding: 1rem;
+                margin: 0.5rem;
+            }
+        }
+
+        .highlights {
+            background: linear-gradient(120deg, #667eea15, #764ba215);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--primary-light);
+        }
+
+        .highlights strong {
+            color: var(--primary-dark);
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 2rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="mcd-container" style="max-width:1200px; margin:0 auto; padding:40px 30px;">
+        <a href="../index.html" class="back-btn">⇠ Retour au Temple</a>
+
+        <div class="intro-section">
+            <h1>📊 Système de Gestion Militaire</h1>
+            <p>Modèle Conceptuel de Données (MCD) pour un système de gestion des grades, soldats et batailles
+                militaires. Ce projet illustre une architecture de base de données complète avec relations complexes.
+            </p>
+
+            <div class="highlights">
+                <strong>📌 Objectif :</strong> Gérer efficacement les grades militaires, les soldats, les unités, les
+                affectations, les batailles et les blessures dans un système cohérent et normalisé.
+            </div>
+        </div>
+
+        <div class="diagram-section">
+            <h2 class="diagram-title">🎯 Modèle Conceptuel (MCD)</h2>
+
+            <div style="text-align: center; margin: 2rem 0;">
+                <img src="mcd_jmerise_exo1.png" alt="MCD - Modèle Conceptuel de Données réalisé avec JMerise"
+                    style="max-width: 100%; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.15); border: 2px solid #e2e8f0;">
+                <p style="margin-top: 1rem; color: #64748b; font-style: italic;">Diagramme MCD réalisé avec JMerise</p>
+            </div>
+
+            <div class="legend">
+                <strong>Légende des entités :</strong>
+                <div class="legend-item">
+                    <span class="legend-symbol"></span>
+                    <span>Entité (table principale)</span>
+                </div>
+                <div class="legend-item">
+                    <span>0,n</span>
+                    <span>Cardinalité (0 ou plusieurs)</span>
+                </div>
+                <div class="legend-item">
+                    <span>0,1</span>
+                    <span>Cardinalité (0 ou 1)</span>
+                </div>
+            </div>
+
+            <div class="entity-showcase">
+                <div class="mcd-entity">
+                    <div class="entity-name">🎖️ Grades</div>
+                    <div class="entity-attributes">
+                        <div class="attribute key">• code_grade (PK)</div>
+                        <div class="attribute">• intitule_grade</div>
+                        <div class="attribute">Type: VARCHAR(50)</div>
+                    </div>
+                </div>
+
+                <div class="mcd-entity">
+                    <div class="entity-name">👨‍✈️ Soldats</div>
+                    <div class="entity-attributes">
+                        <div class="attribute key">• code_soldat (PK)</div>
+                        <div class="attribute">• nom_soldat</div>
+                        <div class="attribute">• prenom_soldat</div>
+                        <div class="attribute">• date_naissance</div>
+                        <div class="attribute">• date_deces</div>
+                    </div>
+                </div>
+
+                <div class="mcd-entity">
+                    <div class="entity-name">🏢 Unités</div>
+                    <div class="entity-attributes">
+                        <div class="attribute key">• code_unite (PK)</div>
+                        <div class="attribute">• nom_unite</div>
+                        <div class="attribute">Type: VARCHAR(50)</div>
+                    </div>
+                </div>
+
+                <div class="mcd-entity">
+                    <div class="entity-name">📋 Affectations</div>
+                    <div class="entity-attributes">
+                        <div class="attribute key">• date_affectation (PK)</div>
+                        <div class="attribute">Type: DATE</div>
+                    </div>
+                </div>
+
+                <div class="mcd-entity">
+                    <div class="entity-name">⚔️ Batailles</div>
+                    <div class="entity-attributes">
+                        <div class="attribute key">• date_bataille (PK)</div>
+                        <div class="attribute">Type: DATE</div>
+                    </div>
+                </div>
+
+                <div class="mcd-entity">
+                    <div class="entity-name">🏥 Blessures</div>
+                    <div class="entity-attributes">
+                        <div class="attribute key">• code_blessure (PK)</div>
+                        <div class="attribute">• type_blessure</div>
+                        <div class="attribute">Type: VARCHAR(5)</div>
+                    </div>
+                </div>
+
+                <div class="mcd-entity">
+                    <div class="entity-name">💔 Blessés</div>
+                    <div class="entity-attributes">
+                        <div class="attribute key">• date_blessure (PK)</div>
+                        <div class="attribute">Type: DATE</div>
+                    </div>
+                </div>
+
+                <div class="mcd-entity">
+                    <div class="entity-name">⏰ Promotions</div>
+                    <div class="entity-attributes">
+                        <div class="attribute key">• date_promotion (PK)</div>
+                        <div class="attribute">Type: DATE</div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 3rem; color: var(--primary-dark);">🔗 Associations et Relations</h3>
+            <div class="relationship-grid">
+                <div class="relationship-card">
+                    <h4>👨‍✈️ Promotion</h4>
+                    <div class="relationship-details">
+                        <strong>Entre:</strong> Grades ↔ Promotions<br>
+                        <strong>Cardinalité:</strong> 0,n - 0,1<br>
+                        <strong>Signification:</strong> Un grade peut être attribué lors de plusieurs promotions
+                    </div>
+                </div>
+
+                <div class="relationship-card">
+                    <h4>🎖️ Détient</h4>
+                    <div class="relationship-details">
+                        <strong>Entre:</strong> Soldats ↔ Grades<br>
+                        <strong>Cardinalité:</strong> 0,n - 0,1<br>
+                        <strong>Signification:</strong> Un soldat détient un grade
+                    </div>
+                </div>
+
+                <div class="relationship-card">
+                    <h4>🏢 Appartenir</h4>
+                    <div class="relationship-details">
+                        <strong>Entre:</strong> Unités ↔ Soldats<br>
+                        <strong>Cardinalité:</strong> 0,n - 0,n<br>
+                        <strong>Signification:</strong> Soldats appartiennent à des unités
+                    </div>
+                </div>
+
+                <div class="relationship-card">
+                    <h4>📋 Affecter</h4>
+                    <div class="relationship-details">
+                        <strong>Entre:</strong> Soldats ↔ Unités<br>
+                        <strong>Cardinalité:</strong> 0,n - 0,1<br>
+                        <strong>Signification:</strong> Affectation des soldats aux unités
+                    </div>
+                </div>
+
+                <div class="relationship-card">
+                    <h4>⚔️ Participer</h4>
+                    <div class="relationship-details">
+                        <strong>Entre:</strong> Unités ↔ Batailles<br>
+                        <strong>Cardinalité:</strong> 0,n - 0,1<br>
+                        <strong>Signification:</strong> Les unités participent aux batailles
+                    </div>
+                </div>
+
+                <div class="relationship-card">
+                    <h4>🏥 Fournir</h4>
+                    <div class="relationship-details">
+                        <strong>Entre:</strong> Blessés ↔ Blessures<br>
+                        <strong>Cardinalité:</strong> 0,n - 0,1<br>
+                        <strong>Signification:</strong> Les blessés ont différents types de blessures
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sql-section">
+            <h2 style="color: var(--primary-dark); margin-bottom: 1.5rem;">💾 Script SQL - Création de la Base de
+                Données</h2>
+
+            <p>Voici le script SQL complet pour créer la base de données correspondant au MCD :</p>
+
+            <div class="sql-code">
+                <code><span class="sql-comment">-- ============================================================
+-- Système de Gestion Militaire - Script de création
+-- Base de données: GestionMilitaire
+-- ============================================================</span>
+
+<span class="sql-keyword">CREATE DATABASE</span> <span class="sql-type">IF NOT EXISTS</span> GestionMilitaire;
+<span class="sql-keyword">USE</span> GestionMilitaire;
+
+<span class="sql-comment">-- ============================================================
+-- Table: GRADES
+-- ============================================================</span>
+<span class="sql-keyword">CREATE TABLE</span> GRADES (
+    code_grade <span class="sql-type">VARCHAR(50)</span> <span class="sql-keyword">PRIMARY KEY</span>,
+    intitule_grade <span class="sql-type">VARCHAR(50)</span> <span class="sql-keyword">NOT NULL</span>
+);
+
+<span class="sql-comment">-- ============================================================
+-- Table: SOLDATS
+-- ============================================================</span>
+<span class="sql-keyword">CREATE TABLE</span> SOLDATS (
+    code_soldat <span class="sql-type">VARCHAR(50)</span> <span class="sql-keyword">PRIMARY KEY</span>,
+    nom_soldat <span class="sql-type">VARCHAR(50)</span> <span class="sql-keyword">NOT NULL</span>,
+    prenom_soldat <span class="sql-type">VARCHAR(50)</span> <span class="sql-keyword">NOT NULL</span>,
+    date_naissance <span class="sql-type">DATE</span>,
+    date_deces <span class="sql-type">DATE</span>
+);
+
+<span class="sql-comment">-- ============================================================
+-- Table: UNITES
+-- ============================================================</span>
+<span class="sql-keyword">CREATE TABLE</span> UNITES (
+    code_unite <span class="sql-type">VARCHAR(50)</span> <span class="sql-keyword">PRIMARY KEY</span>,
+    nom_unite <span class="sql-type">VARCHAR(50)</span> <span class="sql-keyword">NOT NULL</span>
+);
+
+<span class="sql-comment">-- ============================================================
+-- Table: AFFECTATIONS
+-- ============================================================</span>
+<span class="sql-keyword">CREATE TABLE</span> AFFECTATIONS (
+    code_soldat <span class="sql-type">VARCHAR(50)</span> <span class="sql-keyword">NOT NULL</span>,
+    code_unite <span class="sql-type">VARCHAR(50)</span> <span class="sql-keyword">NOT NULL</span>,
+    date_affectation <span class="sql-type">DATE</span> <span class="sql-keyword">PRIMARY KEY</span>,
+    <span class="sql-keyword">FOREIGN KEY</span> (code_soldat) <span class="sql-keyword">REFERENCES</span> SOLDATS(code_soldat),
+    <span class="sql-keyword">FOREIGN KEY</span> (code_unite) <span class="sql-keyword">REFERENCES</span> UNITES(code_unite)
+);
+
+<span class="sql-comment">-- ============================================================
+-- Table: BATAILLES
+-- ============================================================</span>
+<span class="sql-keyword">CREATE TABLE</span> BATAILLES (
+    date_bataille <span class="sql-type">DATE</span> <span class="sql-keyword">PRIMARY KEY</span>
+);
+
+<span class="sql-comment">-- ============================================================
+-- Table: BLESSURES
+-- ============================================================</span>
+<span class="sql-keyword">CREATE TABLE</span> BLESSURES (
+    code_blessure <span class="sql-type">INTEGER</span> <span class="sql-keyword">PRIMARY KEY</span>,
+    type_blessure <span class="sql-type">VARCHAR(5)</span> <span class="sql-keyword">NOT NULL</span>
+);
+
+<span class="sql-comment">-- ============================================================
+-- Table: BLESSES (Soldats blessés)
+-- ============================================================</span>
+<span class="sql-keyword">CREATE TABLE</span> BLESSES (
+    code_soldat <span class="sql-type">VARCHAR(50)</span> <span class="sql-keyword">NOT NULL</span>,
+    date_blessure <span class="sql-type">DATE</span> <span class="sql-keyword">PRIMARY KEY</span>,
+    code_blessure <span class="sql-type">INTEGER</span> <span class="sql-keyword">NOT NULL</span>,
+    <span class="sql-keyword">FOREIGN KEY</span> (code_soldat) <span class="sql-keyword">REFERENCES</span> SOLDATS(code_soldat),
+    <span class="sql-keyword">FOREIGN KEY</span> (code_blessure) <span class="sql-keyword">REFERENCES</span> BLESSURES(code_blessure)
+);
+
+<span class="sql-comment">-- ============================================================
+-- Table: PROMOTIONS
+-- ============================================================</span>
+<span class="sql-keyword">CREATE TABLE</span> PROMOTIONS (
+    code_soldat <span class="sql-type">VARCHAR(50)</span> <span class="sql-keyword">NOT NULL</span>,
+    code_grade <span class="sql-type">VARCHAR(50)</span> <span class="sql-keyword">NOT NULL</span>,
+    date_promotion <span class="sql-type">DATE</span> <span class="sql-keyword">PRIMARY KEY</span>,
+    <span class="sql-keyword">FOREIGN KEY</span> (code_soldat) <span class="sql-keyword">REFERENCES</span> SOLDATS(code_soldat),
+    <span class="sql-keyword">FOREIGN KEY</span> (code_grade) <span class="sql-keyword">REFERENCES</span> GRADES(code_grade)
+);
+
+<span class="sql-comment">-- ============================================================
+-- Indices de performance
+-- ============================================================</span>
+<span class="sql-keyword">CREATE INDEX</span> idx_soldat_nom <span class="sql-keyword">ON</span> SOLDATS(nom_soldat);
+<span class="sql-keyword">CREATE INDEX</span> idx_unite_nom <span class="sql-keyword">ON</span> UNITES(nom_unite);
+<span class="sql-keyword">CREATE INDEX</span> idx_affectation_soldat <span class="sql-keyword">ON</span> AFFECTATIONS(code_soldat);
+<span class="sql-keyword">CREATE INDEX</span> idx_affectation_unite <span class="sql-keyword">ON</span> AFFECTATIONS(code_unite);</code>
+            </div>
+
+            <h3 style="color: var(--primary-dark); margin-top: 2rem;">📝 Exemples d'insertion de données</h3>
+
+            <div class="sql-code"><code><span class="sql-comment">-- Insertion des grades</span>
+<span class="sql-keyword">INSERT INTO</span> GRADES <span class="sql-keyword">VALUES</span>
+('G001', 'Général'),
+('G002', 'Colonel'),
+('G003', 'Capitaine'),
+('G004', 'Sergent'),
+('G005', 'Soldat');
+
+<span class="sql-comment">-- Insertion des unités</span>
+<span class="sql-keyword">INSERT INTO</span> UNITES <span class="sql-keyword">VALUES</span>
+('U001', 'Infanterie'),
+('U002', 'Cavalerie'),
+('U003', 'Artillerie'),
+('U004', 'Génie Militaire');
+
+<span class="sql-comment">-- Insertion de soldats</span>
+<span class="sql-keyword">INSERT INTO</span> SOLDATS <span class="sql-keyword">VALUES</span>
+('S001', 'Dupont', 'Jean', '1990-05-15', NULL),
+('S002', 'Martin', 'Pierre', '1988-03-22', '2020-11-30'),
+('S003', 'Bernard', 'Marie', '1992-07-10', NULL);
+
+<span class="sql-comment">-- Insertion des affectations</span>
+<span class="sql-keyword">INSERT INTO</span> AFFECTATIONS <span class="sql-keyword">VALUES</span>
+('S001', 'U001', '2015-01-10'),
+('S002', 'U002', '2012-06-15'),
+('S003', 'U003', '2018-09-20');</code></div>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>Modélisation Complète</h3>
+                <p>Un modèle E/R complet avec 7 entités et 6 relations pour gérer tous les aspects du système militaire.
+                </p>
+                <div><span class="badge">MCD</span><span class="badge">E/R</span></div>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🔗</div>
+                <h3>Relations Normalisées</h3>
+                <p>Toutes les relations suivent les normes de normalisation avec clés étrangères et intégrité
+                    référentielle.</p>
+                <div><span class="badge">3NF</span><span class="badge">FK</span></div>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">💾</div>
+                <h3>SQL Optimisé</h3>
+                <p>Script SQL complet avec indices de performance pour des requêtes rapides et efficaces.</p>
+                <div><span class="badge">Indices</span><span class="badge">Performance</span></div>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3>Gestion Complète</h3>
+                <p>Gestion des grades, soldats, unités, affectations, batailles et blessures en un seul système.</p>
+                <div><span class="badge">7 Tables</span><span class="badge">Complet</span></div>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🔐</div>
+                <h3>Intégrité des Données</h3>
+                <p>Contraintes d'intégrité référentielle pour garantir la cohérence des données.</p>
+                <div><span class="badge">Contraintes</span><span class="badge">Sécurité</span></div>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📈</div>
+                <h3>Extensible</h3>
+                <p>Architecture flexible permettant l'ajout de nouvelles entités et relations facilement.</p>
+                <div><span class="badge">Flexible</span><span class="badge">Scalable</span></div>
+            </div>
+        </div>
+
+        <div
+            style="background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%); padding: 2.5rem; border-radius: var(--border-radius); margin-top: 3rem; margin-bottom: 2rem; border-left: 4px solid var(--primary-light);">
+            <h2 style="color: var(--primary-dark); margin-bottom: 1rem;">✨ Points Clés</h2>
+            <ul style="list-style-position: inside; color: var(--text-dark); line-height: 2;">
+                <li><strong>7 entités principales</strong> pour une couverture complète du domaine</li>
+                <li><strong>6 associations</strong> modelant les interactions entre entités</li>
+                <li><strong>Cardinalités respectées</strong> (0,n et 0,1) pour la précision</li>
+                <li><strong>Clés primaires</strong> distinctes pour chaque entité</li>
+                <li><strong>Clés étrangères</strong> pour l'intégrité référentielle</li>
+                <li><strong>Types de données appropriés</strong> (DATE, VARCHAR, INTEGER)</li>
+                <li><strong>Indices de performance</strong> pour optimiser les recherches</li>
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>

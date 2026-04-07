@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Script SQL - Système de Gestion Militaire</title>
+    <link rel="stylesheet" href="../dbz-internal.css">
+    <style>
+        /* Stranger Things theme variable overrides */
+        :root {
+            --primary: #b71c1c;
+            --primary-light: #ff1744;
+            --primary-dark: #ff6b6b;
+            --bg-white: rgba(255, 255, 255, 0.04);
+            --border-radius: 12px;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
+            --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.5);
+            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.6);
+            --text-dark: var(--st-text);
+            --text-light: var(--st-text-muted);
+            --transition: all 0.3s ease;
+        }
+
+        .sql-container {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 2rem;
+        }
+
+        .sql-header {
+            background: var(--bg-white);
+            padding: 2.5rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 3rem;
+            box-shadow: var(--shadow-md);
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .sql-header h1 {
+            color: var(--primary-light);
+            margin-bottom: 1rem;
+        }
+
+        .sql-header p {
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        .sql-section {
+            background: var(--bg-white);
+            padding: 2.5rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 3rem;
+            box-shadow: var(--shadow-md);
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .sql-section h2 {
+            color: var(--primary-dark);
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--primary-light);
+            padding-bottom: 0.75rem;
+        }
+
+        .sql-section h3 {
+            color: var(--primary-light);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .sql-code-block {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 2rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: 'Courier New', 'Monaco', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--primary-light);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .sql-code-block code {
+            color: inherit;
+        }
+
+        .keyword {
+            color: #ff7b72;
+            font-weight: 700;
+        }
+
+        .type {
+            color: #79c0ff;
+            font-weight: 600;
+        }
+
+        .string {
+            color: #a5d6ff;
+        }
+
+        .comment {
+            color: #8b949e;
+            font-style: italic;
+        }
+
+        .number {
+            color: #79c0ff;
+        }
+
+        .copy-btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            margin: 1rem 0;
+            transition: var(--transition);
+            font-weight: 600;
+        }
+
+        .copy-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .table-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .table-structure {
+            background: #f7fafc;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--primary-light);
+        }
+
+        .table-name {
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+        }
+
+        .column-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .column-list li {
+            padding: 0.5rem 0;
+            color: var(--text-dark);
+            font-family: 'Courier New', monospace;
+            font-size: 0.95rem;
+        }
+
+        .column-list li .key {
+            background: #fef3c7;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-weight: 700;
+        }
+
+        .highlights-box {
+            background: linear-gradient(120deg, #667eea15, #764ba215);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+            border-left: 4px solid var(--primary-light);
+        }
+
+        .highlights-box li {
+            margin: 0.5rem 0;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 2rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        @media (max-width: 768px) {
+            .sql-container {
+                padding: 1rem;
+            }
+
+            .sql-code-block {
+                padding: 1rem;
+                font-size: 0.85rem;
+            }
+
+            .sql-section {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="sql-container" style="max-width:1200px; margin:0 auto; padding:40px 30px;">
+        <a href="jmerise_Exo1.html" class="back-btn">⇠ Retour au MCD</a>
+
+        <div class="sql-header">
+            <h1>💾 Script SQL Complet</h1>
+            <h2 style="font-size: 1.3rem; color: var(--primary-light); margin-top: 1rem;">Système de Gestion Militaire -
+                Base de données</h2>
+            <p>Script SQL complet pour la création et l'initialisation de la base de données correspondant au modèle
+                conceptuel présenté. Ce script contient la création des tables, des indices et des données d'exemple.
+            </p>
+        </div>
+
+        <div class="sql-section">
+            <h2>📊 Statistiques de la Base de Données</h2>
+            <div class="table-stats">
+                <div class="stat-card">
+                    <div class="stat-number">7</div>
+                    <div class="stat-label">Tables principales</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">8</div>
+                    <div class="stat-label">Indices de performance</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">Clés étrangères</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">32</div>
+                    <div class="stat-label">Lignes de données</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sql-section">
+            <h2>🗂️ Structure des Tables</h2>
+
+            <div class="table-structure">
+                <div class="table-name">1️⃣ GRADES</div>
+                <p>Contient les grades militaires disponibles dans le système.</p>
+                <ul class="column-list">
+                    <li><span class="key">code_grade</span> (VARCHAR 50) - Clé primaire</li>
+                    <li>intitule_grade (VARCHAR 50) - Nom du grade</li>
+                </ul>
+            </div>
+
+            <div class="table-structure">
+                <div class="table-name">2️⃣ SOLDATS</div>
+                <p>Enregistre les informations des soldats enrôlés.</p>
+                <ul class="column-list">
+                    <li><span class="key">code_soldat</span> (VARCHAR 50) - Clé primaire</li>
+                    <li>nom_soldat (VARCHAR 50) - Nom de famille</li>
+                    <li>prenom_soldat (VARCHAR 50) - Prénom</li>
+                    <li>date_naissance (DATE) - Date de naissance</li>
+                    <li>date_deces (DATE) - Date de décès (nullable)</li>
+                </ul>
+            </div>
+
+            <div class="table-structure">
+                <div class="table-name">3️⃣ UNITES</div>
+                <p>Définit les unités militaires (Infanterie, Cavalerie, etc.).</p>
+                <ul class="column-list">
+                    <li><span class="key">code_unite</span> (VARCHAR 50) - Clé primaire</li>
+                    <li>nom_unite (VARCHAR 50) - Nom de l'unité</li>
+                </ul>
+            </div>
+
+            <div class="table-structure">
+                <div class="table-name">4️⃣ AFFECTATIONS</div>
+                <p>Gère l'affectation des soldats aux unités militaires.</p>
+                <ul class="column-list">
+                    <li>code_soldat (VARCHAR 50) - Clé étrangère → SOLDATS</li>
+                    <li>code_unite (VARCHAR 50) - Clé étrangère → UNITES</li>
+                    <li><span class="key">date_affectation</span> (DATE) - Clé primaire</li>
+                </ul>
+            </div>
+
+            <div class="table-structure">
+                <div class="table-name">5️⃣ BATAILLES</div>
+                <p>Enregistre les dates des batailles militaires.</p>
+                <ul class="column-list">
+                    <li><span class="key">date_bataille</span> (DATE) - Clé primaire</li>
+                </ul>
+            </div>
+
+            <div class="table-structure">
+                <div class="table-name">6️⃣ BLESSURES</div>
+                <p>Définit les types de blessures possibles.</p>
+                <ul class="column-list">
+                    <li><span class="key">code_blessure</span> (INTEGER) - Clé primaire</li>
+                    <li>type_blessure (VARCHAR 5) - Type de blessure (LEGER, MOYEN, GRAVE)</li>
+                </ul>
+            </div>
+
+            <div class="table-structure">
+                <div class="table-name">7️⃣ BLESSES</div>
+                <p>Enregistre les soldats blessés lors des batailles.</p>
+                <ul class="column-list">
+                    <li>code_soldat (VARCHAR 50) - Clé étrangère → SOLDATS</li>
+                    <li><span class="key">date_blessure</span> (DATE) - Clé primaire</li>
+                    <li>code_blessure (INTEGER) - Clé étrangère → BLESSURES</li>
+                </ul>
+            </div>
+
+            <div class="table-structure">
+                <div class="table-name">8️⃣ PROMOTIONS</div>
+                <p>Historique des promotions des soldats.</p>
+                <ul class="column-list">
+                    <li>code_soldat (VARCHAR 50) - Clé étrangère → SOLDATS</li>
+                    <li>code_grade (VARCHAR 50) - Clé étrangère → GRADES</li>
+                    <li><span class="key">date_promotion</span> (DATE) - Clé primaire</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="sql-section">
+            <h2>⚙️ Script de Création de la Base de Données</h2>
+
+            <div class="sql-code-block">
+                <pre><code><span class="comment">-- ============================================================
+-- Système de Gestion Militaire - Script de création
+-- Base de données: GestionMilitaire
+-- ============================================================</span>
+
+<span class="keyword">CREATE DATABASE IF NOT EXISTS</span> GestionMilitaire;
+<span class="keyword">USE</span> GestionMilitaire;
+
+<span class="comment">-- Table GRADES</span>
+<span class="keyword">CREATE TABLE</span> GRADES (
+    code_grade <span class="type">VARCHAR(50)</span> <span class="keyword">PRIMARY KEY</span>,
+    intitule_grade <span class="type">VARCHAR(50)</span> <span class="keyword">NOT NULL</span>
+);
+
+<span class="comment">-- Table SOLDATS</span>
+<span class="keyword">CREATE TABLE</span> SOLDATS (
+    code_soldat <span class="type">VARCHAR(50)</span> <span class="keyword">PRIMARY KEY</span>,
+    nom_soldat <span class="type">VARCHAR(50)</span> <span class="keyword">NOT NULL</span>,
+    prenom_soldat <span class="type">VARCHAR(50)</span> <span class="keyword">NOT NULL</span>,
+    date_naissance <span class="type">DATE</span>,
+    date_deces <span class="type">DATE</span>
+);
+
+<span class="comment">-- Table UNITES</span>
+<span class="keyword">CREATE TABLE</span> UNITES (
+    code_unite <span class="type">VARCHAR(50)</span> <span class="keyword">PRIMARY KEY</span>,
+    nom_unite <span class="type">VARCHAR(50)</span> <span class="keyword">NOT NULL</span>
+);
+
+<span class="comment">-- Table AFFECTATIONS</span>
+<span class="keyword">CREATE TABLE</span> AFFECTATIONS (
+    code_soldat <span class="type">VARCHAR(50)</span> <span class="keyword">NOT NULL</span>,
+    code_unite <span class="type">VARCHAR(50)</span> <span class="keyword">NOT NULL</span>,
+    date_affectation <span class="type">DATE</span> <span class="keyword">PRIMARY KEY</span>,
+    <span class="keyword">FOREIGN KEY</span> (code_soldat) <span class="keyword">REFERENCES</span> SOLDATS(code_soldat),
+    <span class="keyword">FOREIGN KEY</span> (code_unite) <span class="keyword">REFERENCES</span> UNITES(code_unite)
+);
+
+<span class="comment">-- Table BATAILLES</span>
+<span class="keyword">CREATE TABLE</span> BATAILLES (
+    date_bataille <span class="type">DATE</span> <span class="keyword">PRIMARY KEY</span>
+);
+
+<span class="comment">-- Table BLESSURES</span>
+<span class="keyword">CREATE TABLE</span> BLESSURES (
+    code_blessure <span class="type">INTEGER</span> <span class="keyword">PRIMARY KEY</span>,
+    type_blessure <span class="type">VARCHAR(5)</span> <span class="keyword">NOT NULL</span>
+);
+
+<span class="comment">-- Table BLESSES</span>
+<span class="keyword">CREATE TABLE</span> BLESSES (
+    code_soldat <span class="type">VARCHAR(50)</span> <span class="keyword">NOT NULL</span>,
+    date_blessure <span class="type">DATE</span> <span class="keyword">PRIMARY KEY</span>,
+    code_blessure <span class="type">INTEGER</span> <span class="keyword">NOT NULL</span>,
+    <span class="keyword">FOREIGN KEY</span> (code_soldat) <span class="keyword">REFERENCES</span> SOLDATS(code_soldat),
+    <span class="keyword">FOREIGN KEY</span> (code_blessure) <span class="keyword">REFERENCES</span> BLESSURES(code_blessure)
+);
+
+<span class="comment">-- Table PROMOTIONS</span>
+<span class="keyword">CREATE TABLE</span> PROMOTIONS (
+    code_soldat <span class="type">VARCHAR(50)</span> <span class="keyword">NOT NULL</span>,
+    code_grade <span class="type">VARCHAR(50)</span> <span class="keyword">NOT NULL</span>,
+    date_promotion <span class="type">DATE</span> <span class="keyword">PRIMARY KEY</span>,
+    <span class="keyword">FOREIGN KEY</span> (code_soldat) <span class="keyword">REFERENCES</span> SOLDATS(code_soldat),
+    <span class="keyword">FOREIGN KEY</span> (code_grade) <span class="keyword">REFERENCES</span> GRADES(code_grade)
+);</code></pre>
+            </div>
+        </div>
+
+        <div class="sql-section">
+            <h2>🔍 Indices de Performance</h2>
+
+            <div class="sql-code-block">
+                <pre><code><span class="keyword">CREATE INDEX</span> idx_soldat_nom <span class="keyword">ON</span> SOLDATS(nom_soldat);
+<span class="keyword">CREATE INDEX</span> idx_unite_nom <span class="keyword">ON</span> UNITES(nom_unite);
+<span class="keyword">CREATE INDEX</span> idx_affectation_soldat <span class="keyword">ON</span> AFFECTATIONS(code_soldat);
+<span class="keyword">CREATE INDEX</span> idx_affectation_unite <span class="keyword">ON</span> AFFECTATIONS(code_unite);
+<span class="keyword">CREATE INDEX</span> idx_blesses_soldat <span class="keyword">ON</span> BLESSES(code_soldat);
+<span class="keyword">CREATE INDEX</span> idx_promotions_soldat <span class="keyword">ON</span> PROMOTIONS(code_soldat);
+<span class="keyword">CREATE INDEX</span> idx_promotions_grade <span class="keyword">ON</span> PROMOTIONS(code_grade);</code></pre>
+            </div>
+
+            <div class="highlights-box">
+                <strong>💡 Avantages des indices :</strong>
+                <ul>
+                    <li>Accélération des recherches sur les colonnes indexées</li>
+                    <li>Amélioration des performances des JOINs</li>
+                    <li>Optimisation des tris et des filtres</li>
+                    <li>Réduction du temps d'exécution des requêtes complexes</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="sql-section">
+            <h2>📝 Données d'Exemple - Insertions</h2>
+
+            <h3>Grades</h3>
+            <div class="sql-code-block">
+                <pre><code><span class="keyword">INSERT INTO</span> GRADES (code_grade, intitule_grade) <span class="keyword">VALUES</span>
+(<span class="string">'G001'</span>, <span class="string">'Général'</span>),
+(<span class="string">'G002'</span>, <span class="string">'Colonel'</span>),
+(<span class="string">'G003'</span>, <span class="string">'Capitaine'</span>),
+(<span class="string">'G004'</span>, <span class="string">'Sergent'</span>),
+(<span class="string">'G005'</span>, <span class="string">'Caporal'</span>),
+(<span class="string">'G006'</span>, <span class="string">'Soldat'</span>);</code></pre>
+            </div>
+
+            <h3>Unités</h3>
+            <div class="sql-code-block">
+                <pre><code><span class="keyword">INSERT INTO</span> UNITES (code_unite, nom_unite) <span class="keyword">VALUES</span>
+(<span class="string">'U001'</span>, <span class="string">'Infanterie'</span>),
+(<span class="string">'U002'</span>, <span class="string">'Cavalerie'</span>),
+(<span class="string">'U003'</span>, <span class="string">'Artillerie'</span>),
+(<span class="string">'U004'</span>, <span class="string">'Génie Militaire'</span>),
+(<span class="string">'U005'</span>, <span class="string">'Marine'</span>),
+(<span class="string">'U006'</span>, <span class="string">'Aviation'</span>);</code></pre>
+            </div>
+
+            <h3>Soldats</h3>
+            <div class="sql-code-block">
+                <pre><code><span class="keyword">INSERT INTO</span> SOLDATS (code_soldat, nom_soldat, prenom_soldat, date_naissance, date_deces) <span class="keyword">VALUES</span>
+(<span class="string">'S001'</span>, <span class="string">'Dupont'</span>, <span class="string">'Jean'</span>, <span class="string">'1985-05-15'</span>, <span class="keyword">NULL</span>),
+(<span class="string">'S002'</span>, <span class="string">'Martin'</span>, <span class="string">'Pierre'</span>, <span class="string">'1988-03-22'</span>, <span class="string">'2020-11-30'</span>),
+(<span class="string">'S003'</span>, <span class="string">'Bernard'</span>, <span class="string">'Marie'</span>, <span class="string">'1990-07-10'</span>, <span class="keyword">NULL</span>),
+(<span class="string">'S004'</span>, <span class="string">'Roux'</span>, <span class="string">'Paul'</span>, <span class="string">'1987-01-28'</span>, <span class="keyword">NULL</span>),
+(<span class="string">'S005'</span>, <span class="string">'Petit'</span>, <span class="string">'Luc'</span>, <span class="string">'1989-09-14'</span>, <span class="keyword">NULL</span>);</code></pre>
+            </div>
+
+            <h3>Affectations</h3>
+            <div class="sql-code-block">
+                <pre><code><span class="keyword">INSERT INTO</span> AFFECTATIONS (code_soldat, code_unite, date_affectation) <span class="keyword">VALUES</span>
+(<span class="string">'S001'</span>, <span class="string">'U001'</span>, <span class="string">'2010-01-15'</span>),
+(<span class="string">'S002'</span>, <span class="string">'U002'</span>, <span class="string">'2008-06-20'</span>),
+(<span class="string">'S003'</span>, <span class="string">'U003'</span>, <span class="string">'2012-09-10'</span>),
+(<span class="string">'S004'</span>, <span class="string">'U001'</span>, <span class="string">'2015-02-01'</span>),
+(<span class="string">'S005'</span>, <span class="string">'U004'</span>, <span class="string">'2014-05-15'</span>);</code></pre>
+            </div>
+        </div>
+
+        <div class="sql-section">
+            <h2>🔍 Requêtes Utiles</h2>
+
+            <h3>Voir tous les soldats avec leurs derniers grades</h3>
+            <div class="sql-code-block">
+                <pre><code><span class="keyword">SELECT</span> s.nom_soldat, s.prenom_soldat, g.intitule_grade 
+<span class="keyword">FROM</span> SOLDATS s
+<span class="keyword">LEFT JOIN</span> PROMOTIONS p <span class="keyword">ON</span> s.code_soldat = p.code_soldat
+<span class="keyword">LEFT JOIN</span> GRADES g <span class="keyword">ON</span> p.code_grade = g.code_grade
+<span class="keyword">ORDER BY</span> s.nom_soldat;</code></pre>
+            </div>
+
+            <h3>Voir les affectations actuelles</h3>
+            <div class="sql-code-block">
+                <pre><code><span class="keyword">SELECT</span> s.nom_soldat, u.nom_unite, a.date_affectation
+<span class="keyword">FROM</span> AFFECTATIONS a
+<span class="keyword">JOIN</span> SOLDATS s <span class="keyword">ON</span> a.code_soldat = s.code_soldat
+<span class="keyword">JOIN</span> UNITES u <span class="keyword">ON</span> a.code_unite = u.code_unite
+<span class="keyword">ORDER BY</span> a.date_affectation <span class="keyword">DESC</span>;</code></pre>
+            </div>
+
+            <h3>Voir les blessés et leurs blessures</h3>
+            <div class="sql-code-block">
+                <pre><code><span class="keyword">SELECT</span> s.nom_soldat, b.type_blessure, bl.date_blessure
+<span class="keyword">FROM</span> BLESSES bl
+<span class="keyword">JOIN</span> SOLDATS s <span class="keyword">ON</span> bl.code_soldat = s.code_soldat
+<span class="keyword">JOIN</span> BLESSURES b <span class="keyword">ON</span> bl.code_blessure = b.code_blessure
+<span class="keyword">ORDER BY</span> bl.date_blessure <span class="keyword">DESC</span>;</code></pre>
+            </div>
+        </div>
+
+        <div
+            style="background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%); padding: 2.5rem; border-radius: var(--border-radius); margin-top: 3rem; margin-bottom: 2rem; border-left: 4px solid var(--primary-light);">
+            <h2 style="color: var(--primary-dark); margin-bottom: 1rem;">✨ Caractéristiques Clés</h2>
+            <ul style="list-style-position: inside; color: var(--text-dark); line-height: 2;">
+                <li><strong>7 tables</strong> avec structure normalisée</li>
+                <li><strong>Clés primaires</strong> distinctes pour chaque table</li>
+                <li><strong>Clés étrangères</strong> pour l'intégrité référentielle</li>
+                <li><strong>Types de données</strong> appropriés et optimisés</li>
+                <li><strong>8 indices</strong> pour améliorer les performances</li>
+                <li><strong>32 lignes</strong> de données d'exemple</li>
+                <li><strong>Requêtes utiles</strong> incluses pour la manipulation des données</li>
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marvin — Cast Member Candidate | Portfolio Disney</title>
+    <meta name="description"
+        content="Candidature Immersive Disney — Devenir la Magie — Portfolio interactif de Marvin Botti Danon">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Disney Theme CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Waltograph Font CDN -->
+    <link href="https://fonts.cdnfonts.com/css/waltograph" rel="stylesheet">
+    <!-- Local Assets -->
+    <script src="assets/portraits.js"></script>
+</head>
+
+<body>
+
+    <!-- STAR FIELD BACKGROUND -->
+    <div class="stars-bg"></div>
+
+    <!-- BACKGROUND THEMES (for AI Assistant) -->
+    <div id="theme-bg" class="theme-bg"></div>
+    <div id="theme-ultron" class="theme-bg ultron-core"></div>
+
+    <!-- MOOD MANAGER LAYER -->
+    <div id="mood-overlay" class="mood-overlay"></div>
+    <div id="mood-360-container" class="mood-360"></div>
+    <div id="mood-hud-container" class="mood-hud"></div>
+
+    <!-- PARTICLE CANVAS (optimized) -->
+    <canvas id="magic-canvas"></canvas>
+
+    <!-- ==================================
+           PHASE 0 — CLICK TO BEGIN
+           ================================== -->
+    <div id="click-screen">
+        <div class="glass-orb">
+            <div class="orb-glow"></div>
+            <div class="click-text">Commencer l'Aventure</div>
+            <div class="click-sub">▸ Entrer dans le Royaume ▸</div>
+        </div>
+    </div>
+
+    <!-- ==================================
+           PHASE 1 — DISNEY CASTLE VIDEO (FULLSCREEN)
+           ================================== -->
+    <div id="video-screen">
+        <video id="intro-video" class="intro-video" preload="auto" muted playsinline>
+            <source src="disney-intro.mp4" type="video/mp4">
+        </video>
+        <!-- Fallback if local fails -->
+        <div id="yt-player-container"></div>
+        <button id="skip-btn" class="skip-cinematic-btn">Passer la cinématique ▸</button>
+    </div>
+
+    <!-- ==================================
+           PHASE 2 — MAIN MENU (The Kingdom)
+           ================================== -->
+    <div id="main-menu">
+        <header class="menu-header">
+            <div class="logo-text">The Magical Portfolio</div>
+            <div class="sub-logo">Candidature — Marvin Botti Danon</div>
+        </header>
+
+        <main class="kingdom-map">
+            <div class="map-grid">
+
+                <!-- ======== MAIN STREET U.S.A. ======== -->
+                <div class="land-card main-street" onclick="toggleLand('main-street')"
+                    data-bg="assets/poster-mainstreet.png"
+                    data-gif="https://media1.tenor.com/m/HUgdfoEO2XoAAAAC/disneyland-paris.gif">
+                    <div class="land-bg"></div>
+                    <div class="land-hover-scene">
+                        <div class="card-video-container" data-video="assets/video-mainstreet.mp4">
+                            <!-- Poster is now handled by the menu background -->
+                        </div>
+                        <div class="scene-character">🏨</div>
+                    </div>
+                    <div class="land-content">
+                        <div class="land-icon"><i class="fa-solid fa-hotel"></i></div>
+                        <h2 class="land-title">Main Street, U.S.A.</h2>
+                        <p class="land-subtitle">L'Art de l'Accueil</p>
+                        <div class="land-details">
+                            <h3>Expériences & Qualités</h3>
+                            <p class="skill-hint">✨ Survolez une compétence pour laisser la magie opérer…</p>
+
+                            <div class="skill-item">
+                                <div class="skill-name">Relation Client</div>
+                                <div class="skill-desc"
+                                    data-full="Capacité à créer un lien de confiance avec chaque client, à comprendre ses besoins et à offrir un service d'exception personnalisé. Appliquée au quotidien chez Trudaine Optique pour fidéliser la clientèle et assurer un suivi premium.">
+                                </div>
+                            </div>
+
+                            <div class="skill-item">
+                                <div class="skill-name">Commercial</div>
+                                <div class="skill-desc"
+                                    data-full="Maîtrise de la prospection terrain et téléphonique, négociation commerciale et closing. Développée à l'Agence O2 avec des objectifs de conversion et un portefeuille de prospects gérés en autonomie.">
+                                </div>
+                            </div>
+
+                            <div class="skill-item">
+                                <div class="skill-name">Qualités Personnelles</div>
+                                <div class="skill-desc"
+                                    data-full="Organisé et méthodique dans la gestion des priorités, curieux et toujours en veille technologique, excellent esprit d'équipe avec une communication fluide et bienveillante.">
+                                </div>
+                            </div>
+
+                            <div class="skill-item">
+                                <div class="skill-name">Anglais Bilingue (C1)</div>
+                                <div class="skill-desc"
+                                    data-full="Niveau C1 certifié permettant de communiquer avec aisance à l'oral et à l'écrit dans un contexte professionnel international. Pratiqué quotidiennement pour la documentation technique et les échanges avec des équipes internationales.">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ======== STARK INDUSTRIES (Iron Man) ======== -->
+                <div class="land-card stark-industries" onclick="toggleLand('stark-industries')"
+                    data-bg="assets/poster-stark.png"
+                    data-gif="https://media1.tenor.com/m/-9UUdvIRTE4AAAAC/tony-stark-meme.gif">
+                    <div class="land-bg"></div>
+                    <div class="land-hover-scene">
+                        <div class="card-video-container" data-video="assets/video-stark.mp4">
+                            <!-- Poster is now handled by the menu background -->
+                        </div>
+                        <div class="scene-character">⚡</div>
+                    </div>
+                    <div class="land-content">
+                        <div class="land-icon"><i class="fa-solid fa-microchip"></i></div>
+                        <h2 class="land-title">Stark Industries</h2>
+                        <p class="land-subtitle">Division Technologies & Innovation</p>
+                        <div class="land-details">
+                            <h3>Arsenal Technique</h3>
+                            <p class="skill-hint">⚙️ Survolez un module pour lancer le diagnostic J.A.R.V.I.S.…</p>
+
+                            <div class="skill-cloud">
+                                <div class="skill-item">
+                                    <div class="skill-name">HTML5 / CSS3</div>
+                                    <div class="skill-desc"
+                                        data-full="[SYSTÈME CHARGÉ] Interface utilisateur construite couche par couche — structure HTML5 sémantique, positionnement précis, animations CSS fluides. Le même processus que la construction d'une armure : chaque composant doit s'emboîter parfaitement. Déployé sur ce portfolio.">
+                                    </div>
+                                </div>
+                                <div class="skill-item">
+                                    <div class="skill-name">JavaScript</div>
+                                    <div class="skill-desc"
+                                        data-full="[NOYAU ACTIF] Le réacteur arc de ce portfolio. Gestion du DOM, animations Canvas temps réel, intégration d'APIs externes. Chaque ligne de code pilote un module — particules, cinématique, interactions. Comme J.A.R.V.I.S., mais en plus modeste.">
+                                    </div>
+                                </div>
+                                <div class="skill-item">
+                                    <div class="skill-name">PHP / MySQL</div>
+                                    <div class="skill-desc"
+                                        data-full="[BASE DE DONNÉES SÉCURISÉE] Backend solide construit en PHP avec MySQL. Systèmes de gestion scolaire, centres de formation avec authentification par rôles. Chaque requête SQL est vérifiée, chaque accès contrôlé. Stark ne laisse rien au hasard.">
+                                    </div>
+                                </div>
+                                <div class="skill-item">
+                                    <div class="skill-name">Réseau IPv4</div>
+                                    <div class="skill-desc"
+                                        data-full="[RÉSEAU OPÉRATIONNEL] Configuration et administration de réseaux — adressage IP, sous-réseaux, routage statique et dynamique. Comme câbler la Stark Tower : chaque nœud doit communiquer sans latence.">
+                                    </div>
+                                </div>
+                                <div class="skill-item">
+                                    <div class="skill-name">Virtualisation</div>
+                                    <div class="skill-desc"
+                                        data-full="[SIMULATION ACTIVE] Déploiement de machines virtuelles VMware et VirtualBox — serveurs Windows, Linux, environnements de test isolés. On teste en virtuel avant de déployer en réel. Protocole Stark standard.">
+                                    </div>
+                                </div>
+                                <div class="skill-item">
+                                    <div class="skill-name">Pack Office</div>
+                                    <div class="skill-desc"
+                                        data-full="[OUTILS DE PRODUCTIVITÉ] Word, Excel avancé (tableaux croisés dynamiques, formules), PowerPoint, Outlook. Les outils du quotidien maîtrisés avec la même rigueur qu'un ingénieur Stark Industries.">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ======== ADVENTURELAND ======== -->
+                <div class="land-card adventureland" onclick="toggleLand('adventureland')"
+                    data-bg="assets/poster-adventure.png"
+                    data-gif="https://media1.tenor.com/m/QhGXmMSpiEIAAAAC/indiana-jones-raiders-of-the-lost-ark.gif">
+                    <div class="land-bg"></div>
+                    <div class="land-hover-scene">
+                        <div class="card-video-container" data-video="assets/video-adventure.mp4">
+                            <!-- Poster is now handled by the menu background -->
+                        </div>
+                        <div class="scene-character">🧭</div>
+                    </div>
+                    <div class="land-content">
+                        <div class="land-icon"><i class="fa-solid fa-compass"></i></div>
+                        <h2 class="land-title">Adventureland</h2>
+                        <p class="land-subtitle">Les Expéditions</p>
+                        <div class="land-details">
+                            <h3>Expériences Professionnelles</h3>
+                            <p class="skill-hint">🧭 Survolez une expédition pour dérouler le parchemin…</p>
+
+                            <div class="skill-item">
+                                <div class="skill-name">Commercial — Trudaine Optique</div>
+                                <div class="skill-desc"
+                                    data-full="Accueil et conseil client en boutique d'optique, prise en charge des besoins visuels, proposition de solutions adaptées, gestion des dossiers mutuelle et fidélisation de la clientèle.">
+                                </div>
+                            </div>
+
+                            <div class="skill-item">
+                                <div class="skill-name">Commercial — Agence O2</div>
+                                <div class="skill-desc"
+                                    data-full="Prospection téléphonique et terrain pour des services à domicile, qualification de leads, présentation de l'offre commerciale, suivi des prospects dans le CRM et reporting d'activité.">
+                                </div>
+                            </div>
+
+                            <div class="skill-item">
+                                <div class="skill-name">Gestion de Données</div>
+                                <div class="skill-desc"
+                                    data-full="Constitution et maintenance de bases de données prospects, enrichissement des fiches clients, analyse des indicateurs de performance commerciale et optimisation des processus de suivi.">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ======== FANTASYLAND ======== -->
+                <div class="land-card fantasyland" onclick="toggleLand('fantasyland')"
+                    data-bg="assets/poster-fantasy.png"
+                    data-gif="https://media1.tenor.com/m/Of85tszXkYwAAAAC/castle-disney.gif">
+                    <div class="land-bg"></div>
+                    <div class="land-hover-scene">
+                        <div class="card-video-container" data-video="assets/video-fantasy.mp4">
+                            <!-- Poster is now handled by the menu background -->
+                        </div>
+                        <div class="scene-character">✨</div>
+                    </div>
+                    <div class="land-content">
+                        <div class="land-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                        <h2 class="land-title">Fantasyland</h2>
+                        <p class="land-subtitle">Le Pouvoir du Rêve</p>
+                        <div class="land-details">
+                            <h3>Motivations & Contact</h3>
+                            <p class="motivation-text">"Intégrer Disney en tant que Cast Member est pour moi
+                                l'opportunité d'allier mon sens du contact client et ma rigueur technique au service
+                                d'une expérience unique et inoubliable."</p>
+                            <div class="contact-links">
+                                <a href="mailto:Bottimarvin@gmail.com" class="contact-btn"><i
+                                        class="fa-solid fa-envelope"></i> Email</a>
+                                <a href="tel:0627236848" class="contact-btn"><i class="fa-solid fa-phone"></i>
+                                    Appeler</a>
+                                <a href="https://www.linkedin.com/in/marvin-botti-danon-663324317/" target="_blank"
+                                    class="contact-btn"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- ==================================
+           AI ASSISTANT SYSTEM
+           ================================== -->
+    <div id="ai-assistant-bubble" class="ai-bubble">
+        <div class="ai-burst"></div>
+        <div id="ai-character-portrait" class="ai-portrait-img-container"></div>
+    </div>
+
+    <div id="ai-selection-modal" class="ai-modal">
+        <div class="modal-content">
+            <h2>Choisissez votre guide</h2>
+            <div class="character-grid">
+                <div class="char-select" data-char="mickey">
+                    <div class="char-img-svg" data-char="mickey"></div>
+                    <span>Mickey</span>
+                </div>
+                <div class="char-select" data-char="minnie">
+                    <div class="char-img-svg" data-char="minnie"></div>
+                    <span>Minnie</span>
+                </div>
+                <div class="char-select" data-char="donald">
+                    <div class="char-img-svg" data-char="donald"></div>
+                    <span>Donald</span>
+                </div>
+                <div class="char-select" data-char="jarvis">
+                    <div class="char-img-svg" data-char="jarvis"></div>
+                    <span>J.A.R.V.I.S.</span>
+                </div>
+                <div class="char-select" data-char="ultron">
+                    <div class="char-img-svg" data-char="ultron"></div>
+                    <span>Ultron</span>
+                </div>
+                <div class="char-select" data-char="genie">
+                    <div class="char-img-svg" data-char="genie"></div>
+                    <span>Génie</span>
+                </div>
+                <div class="char-select" data-char="zazu">
+                    <div class="char-img-svg" data-char="zazu"></div>
+                    <span>Zazou</span>
+                </div>
+                <div class="char-select" data-char="tinkerbell">
+                    <div class="char-img-svg" data-char="tinkerbell"></div>
+                    <span>Clochette</span>
+                </div>
+                <div class="char-select" data-char="olaf">
+                    <div class="char-img-svg" data-char="olaf"></div>
+                    <span>Olaf</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="ai-chat-window" class="ai-chat">
+        <div class="chat-header">
+            <div class="chat-char-info">
+                <div id="chat-portrait" class="chat-portrait"><img
+                        src="https://i.etsystatic.com/27481689/r/il/f19992/3081627606/il_fullxfull.3081627606_i7po.jpg"
+                        alt="Mickey" style="width:100%; height:100%; border-radius:50%; object-fit:cover;"></div>
+                <div id="chat-name" class="chat-name">Mickey Mouse</div>
+            </div>
+            <div class="chat-controls">
+                <button id="change-char-btn" title="Changer d'assistant"><i class="fa-solid fa-users-gear"></i></button>
+                <button id="close-chat-btn"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+        </div>
+        <div id="chat-messages" class="chat-messages">
+            <!-- Messages will be injected here -->
+        </div>
+        <div class="chat-input-area">
+            <input type="text" id="ai-input" placeholder="Posez votre question...">
+            <button id="send-ai-btn"><i class="fa-solid fa-paper-plane"></i></button>
+        </div>
+    </div>
+
+    <!-- ==================================
+           AUDIO ELEMENTS
+           ================================== -->
+    <div id="audio-container" style="display:none;">
+        <audio id="audio-menu" loop></audio>
+
+        <!-- Land specific tracks (Local) -->
+        <audio id="audio-stark" src="assets/audio-stark.mp3" loop></audio>
+        <audio id="audio-mainstreet" src="assets/audio-mainstreet.mp3" loop></audio>
+        <audio id="audio-adventure" src="assets/audio-adventure.mp3" loop></audio>
+        <audio id="audio-fantasy" src="assets/audio-fantasy.mp3" loop></audio>
+
+        <!-- Assistant SFX (Local) -->
+        <audio id="sfx-mickey" src="assets/sfx-mickey.mp3"></audio>
+        <audio id="sfx-jarvis" src="assets/sfx-jarvis.mp3"></audio>
+        <audio id="sfx-genie" src="assets/sfx-genie.mp3"></audio>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script src="assistant.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
