@@ -20,6 +20,15 @@ on:
         required: false
         default: '10'
 
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pipeline"
+  cancel-in-progress: false
+
 jobs:
   run-pipeline:
     runs-on: ubuntu-latest
@@ -87,11 +96,12 @@ jobs:
           path: JobFlow-AI/storage/generated_cvs/
           retention-days: 30
 
-      - name: Commit database updates
-        if: success()
+      - name: Commit dashboard data & database updates
+        if: always()
         run: |
           git config user.name "JobFlow-AI Bot"
           git config user.email "bot@jobflow-ai.local"
+          git add JobFlow-AI/dashboard/dashboard-data.json || true
           git add JobFlow-AI/jobflow.db || true
-          git diff --staged --quiet || git commit -m "🤖 Pipeline run $(date -u +%Y-%m-%dT%H:%M:%SZ) — auto-update database"
+          git diff --staged --quiet || git commit -m "🤖 Pipeline run $(date -u +%Y-%m-%dT%H:%M:%SZ) — auto-update data"
           git push || echo "Push failed (likely concurrent run)"

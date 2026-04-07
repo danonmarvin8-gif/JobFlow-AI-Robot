@@ -113,6 +113,9 @@ class PipelineOrchestrator:
             logger.info(f"Pipeline complete: {processed}/{len(new_offers)} offers processed")
             logger.info(f"{'=' * 60}")
 
+            # ═══════════ EXPORT DASHBOARD DATA ═══════════
+            self._export_dashboard_data(db)
+
         except Exception as e:
             logger.error(f"Pipeline fatal error: {e}", exc_info=True)
         finally:
@@ -395,6 +398,117 @@ class PipelineOrchestrator:
                 details=details or {},
             )
             db.add(log)
+
+    def _export_dashboard_data(self, db):
+        """Export pipeline stats as a static JSON file for the GitHub Pages dashboard."""
+        logger.info("📊 Exporting dashboard data...")
+
+        try:
+            # Count stats
+            total_offers = db.query(JobOffer).count()
+            total_sent = db.query(Application).filter(
+                Application.status == "email_sent"
+            ).count()
+            total_opened = db.query(Application).filter(
+                Application.status == "opened"
+            ).count()
+            total_replied = db.query(Application).filter(
+                Application.status == "replied"
+            ).count()
+            total_pending = db.query(Application).filter(
+                Application.status == "pending"
+            ).count()
+            total_errors = db.query(Application).filter(
+                Application.status == "error"
+            ).count()
+            total_cv_generated = db.query(Application).filter(
+                Application.status.in_(["cv_generated", "email_sent", "opened", "replied"])
+            ).count()
+
+            # Recent offers (last 20)
+            recent_offers = db.query(JobOffer).order_by(
+                JobOffer.scraped_at.desc()
+            ).limit(20).all()
+
+            offers_list = []
+            for o in recent_offers:
+                offers_list.append({
+                    "id": o.id,
+                    "title": o.title,
+                    "company": o.company.name if o.company else "Inconnu",
+                    "location": o.location or "",
+                    "offer_type": o.offer_type,
+                    "source_platform": o.source_platform,
+                    "source_url": o.source_url,
+                    "required_skills": o.required_skills or [],
+                    "posted_at": o.posted_at.isoformat() if o.posted_at else None,
+                    "scraped_at": o.scraped_at.isoformat() if o.scraped_at else None,
+                })
+
+            # Recent applications (last 30)
+            recent_apps = db.query(Application).order_by(
+                Application.created_at.desc()
+            ).limit(30).all()
+
+            apps_list = []
+            for a in recent_apps:
+                apps_list.append({
+                    "id": a.id,
+                    "title": a.offer.title if a.offer else "",
+                    "company": a.offer.company.name if a.offer and a.offer.company else "Inconnu",
+                    "contact_name": a.contact.full_name if a.contact else "",
+                    "contact_email": a.contact.email if a.contact else "",
+                    "status": a.status,
+                    "applied_at": a.applied_at.isoformat() if a.applied_at else None,
+                })
+
+            # Recent logs (last 30)
+            recent_logs = db.query(ApplicationLog).order_by(
+                ApplicationLog.created_at.desc()
+            ).limit(30).all()
+
+            activity_list = []
+            for log in recent_logs:
+                activity_list.append({
+                    "event_type": log.event_type,
+                    "message": log.message,
+                    "created_at": log.created_at.isoformat() if log.created_at else None,
+                })
+
+            dashboard_data = {
+                "last_updated": datetime.now(timezone.utc).isoformat(),
+                "campaign_active": True,
+                "stats": {
+                    "offers_scraped": total_offers,
+                    "emails_sent": total_sent,
+                    "emails_opened": total_opened,
+                    "replies": total_replied,
+                    "pending": total_pending,
+                    "errors": total_errors,
+                    "cv_generated": total_cv_generated,
+                },
+                "pipeline": [
+                    total_pending,
+                    0,  # OSINT in progress (transient)
+                    total_cv_generated,
+                    total_sent,
+                    total_replied,
+                ],
+                "offers": offers_list,
+                "applications": apps_list,
+                "activity": activity_list,
+            }
+
+            # Write to dashboard directory
+            output_path = Path(__file__).parent.parent.parent / "dashboard" / "dashboard-data.json"
+            output_path.write_text(
+                json.dumps(dashboard_data, ensure_ascii=False, indent=2),
+                encoding="utf-8",
+            )
+            logger.info(f"✅ Dashboard data exported to {output_path}")
+
+        except Exception as e:
+            logger.error(f"Failed to export dashboard data: {e}")
 
 
 # ── CLI Entry Point ──
