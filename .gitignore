@@ -1,2 +1,26 @@
+# OS metadata
 .DS_Store
+Thumbs.db
+
+# IDEs
 .vscode/
+.idea/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.env
+
+# Node.js
+node_modules/
+dist/
+build/
+.next/
+
+# Project specific
+JobFlow-AI/.env
+JobFlow-AI/server/db.sqlite3
+JobFlow-AI/server/logs/
+JobFlow-AI/server/cv_outputs/
