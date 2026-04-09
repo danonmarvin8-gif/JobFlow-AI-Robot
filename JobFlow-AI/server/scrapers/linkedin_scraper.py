@@ -1,3 +1,4 @@
+from typing import Optional
 """
 JobFlow-AI — LinkedIn Scraper (via Google Dorking)
 Avoids direct LinkedIn scraping by using Google search.
@@ -104,7 +105,7 @@ class LinkedInScraper(BaseScraper):
 
         return results
 
-    async def _parse_google_result(self, result) -> dict | None:
+    async def _parse_google_result(self, result) -> Optional[dict]:
         """Parse a Google search result pointing to LinkedIn jobs."""
         try:
             # Get link
@@ -152,7 +153,7 @@ class LinkedInScraper(BaseScraper):
             logger.debug(f"[LinkedIn/Google] Result parse error: {e}")
             return None
 
-    async def _enrich_from_linkedin(self, page, offer: dict) -> dict | None:
+    async def _enrich_from_linkedin(self, page, offer: dict) -> Optional[dict]:
         """Visit public LinkedIn job page to get more details."""
         try:
             await page.goto(offer["source_url"], wait_until="domcontentloaded", timeout=20000)

@@ -1,3 +1,4 @@
+from typing import Optional
 """
 JobFlow-AI — Welcome to the Jungle Scraper
 Uses WTTJ's semi-public API for job searching.
@@ -79,7 +80,7 @@ class WTTJScraper(BaseScraper):
 
         return results
 
-    def _parse_api_job(self, job: dict) -> dict | None:
+    def _parse_api_job(self, job: dict) -> Optional[dict]:
         """Parse a job from WTTJ API response."""
         try:
             title = job.get("name", job.get("title", ""))

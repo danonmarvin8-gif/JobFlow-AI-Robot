@@ -1,3 +1,4 @@
+from typing import Optional
 """
 JobFlow-AI — Indeed Scraper
 Scrapes Indeed France for IT support jobs using Playwright.
@@ -105,7 +106,7 @@ class IndeedScraper(BaseScraper):
 
         return results
 
-    async def _parse_indeed_card(self, card, page) -> dict | None:
+    async def _parse_indeed_card(self, card, page) -> Optional[dict]:
         """Parse a single Indeed job card."""
         try:
             # Title

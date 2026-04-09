@@ -57,7 +57,7 @@ class EmailFinder:
         self,
         company_name: str,
         company_domain: Optional[str] = None,
-    ) -> dict | None:
+    ) -> Optional[dict]:
         """
         Find HR or IT manager contact for a company.
         Returns: {full_name, email, role, source, confidence_score, osint_profile}
@@ -90,7 +90,7 @@ class EmailFinder:
         self,
         company_name: str,
         domain: Optional[str] = None,
-    ) -> dict | None:
+    ) -> Optional[dict]:
         """Search Hunter.io for HR/recruiter emails."""
         try:
             async with httpx.AsyncClient(timeout=15) as client:
@@ -191,7 +191,7 @@ class EmailFinder:
         self,
         company_name: str,
         domain: str,
-    ) -> dict | None:
+    ) -> Optional[dict]:
         """
         Generate likely email patterns and verify them via Hunter.io verify.
         """

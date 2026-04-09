@@ -23,7 +23,18 @@ from models import (
 from scrapers.indeed_scraper import IndeedScraper
 from scrapers.linkedin_scraper import LinkedInScraper
 from scrapers.wttj_scraper import WTTJScraper
-from osint.email_finder import EmailFinder
+from scrapers.francetravail_scraper import FranceTravailScraper
+from scrapers.hellowork_scraper import HelloWorkScraper
+from scrapers.balancetonalternance_scraper import BalanceTonAlternanceScraper
+from scrapers.apec_scraper import APECScraper
+from scrapers.meteojob_scraper import MeteojobScraper
+from scrapers.lesjeudis_scraper import LesJeudisScraper
+from scrapers.jobteaser_scraper import JobTeaserScraper
+from scrapers.googlejobs_scraper import GoogleJobsScraper
+from scrapers.unjeune1solution_scraper import UnJeuneUneSolutionScraper
+from scrapers.talent_scraper import TalentScraper
+from scrapers.glassdoor_scraper import GlassdoorScraper
+from osint.native_email_finder import NativeEmailFinder
 from tailoring.cv_generator import CVGenerator
 from tailoring.email_writer import EmailWriter
 from tailoring.pdf_renderer import PDFRenderer
@@ -40,8 +51,8 @@ logger = logging.getLogger(__name__)
 class PipelineOrchestrator:
     """
     Complete automated pipeline:
-    1. Scrape job offers from all platforms
-    2. Find HR contacts via OSINT
+    1. Scrape job offers from all platforms (14 sources)
+    2. Find HR contacts via native OSINT (DuckDuckGo + SMTP verify)
     3. Generate tailored CVs using AI
     4. Generate personalized emails
     5. Send emails with CV attached
@@ -49,11 +60,25 @@ class PipelineOrchestrator:
 
     def __init__(self):
         self.scrapers = [
+            # ── Job boards classiques ──
             IndeedScraper(),
-            LinkedInScraper(),
             WTTJScraper(),
+            HelloWorkScraper(),
+            LesJeudisScraper(),
+            MeteojobScraper(),
+            APECScraper(),
+            GlassdoorScraper(),
+            # ── Spécialisés alternance/jeunes ──
+            FranceTravailScraper(),
+            BalanceTonAlternanceScraper(),
+            JobTeaserScraper(),
+            UnJeuneUneSolutionScraper(),
+            # ── Agrégateurs ──
+            GoogleJobsScraper(),
+            TalentScraper(),
+            LinkedInScraper(),
         ]
-        self.email_finder = EmailFinder()
+        self.email_finder = NativeEmailFinder()
         self.cv_generator = CVGenerator()
         self.email_writer = EmailWriter()
         self.pdf_renderer = PDFRenderer()

@@ -27,7 +27,7 @@ class Config:
 
     # ── AI (Google Gemini Free Tier) ──
     GEMINI_API_KEY: str = os.getenv("GEMINI_API_KEY", "")
-    GEMINI_MODEL: str = "gemini-1.5-flash"  # Free, fast, 15 RPM
+    GEMINI_MODEL: str = "gemini-1.5-flash-latest"  # Free, fast, 15 RPM
 
     # ── OSINT (Hunter.io Free: 25 searches/month) ──
     HUNTER_API_KEY: str = os.getenv("HUNTER_API_KEY", "")
@@ -79,6 +79,8 @@ class Config:
         "support utilisateur",
         "technicien informatique",
         "assistant IT",
+        "technicien informatique junior",
+        "support IT junior",
     ]
 
     OFFER_TYPES: list[str] = ["alternance", "job étudiant", "stage"]

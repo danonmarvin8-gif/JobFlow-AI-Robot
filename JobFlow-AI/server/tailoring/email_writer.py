@@ -54,7 +54,7 @@ class EmailWriter:
 
         prompt = self._build_email_prompt(
             job_title, company_name, offer_type,
-            hr_name, hr_role, osint_profile,
+            hr_name, hr_role, hr_email, osint_profile,
             candidate_strengths, tone, job_description
         )
 
@@ -110,6 +110,7 @@ class EmailWriter:
         offer_type: str,
         hr_name: str,
         hr_role: str,
+        hr_email: str,
         osint_profile: dict,
         strengths: list[str],
         tone: str,
