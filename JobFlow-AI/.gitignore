@@ -8,3 +8,5 @@ storage/generated_cvs/*.html
 .cache/
 .venv/
 venv/
+*.db-journal
+dashboard/dashboard-data.json

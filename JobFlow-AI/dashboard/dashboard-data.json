@@ -1,448 +1,512 @@
 {
-  "last_updated": "2026-04-07T19:11:05.820167+00:00",
+  "last_updated": "2026-04-09T16:27:07.210633+00:00",
   "campaign_active": true,
   "stats": {
-    "offers_scraped": 19,
-    "emails_sent": 0,
+    "offers_scraped": 16,
+    "emails_sent": 16,
     "emails_opened": 0,
     "replies": 0,
     "pending": 0,
-    "errors": 10,
-    "cv_generated": 0
+    "errors": 0,
+    "cv_generated": 16
   },
   "pipeline": [
     0,
     0,
-    0,
-    0,
+    16,
+    16,
     0
   ],
   "offers": [
     {
-      "id": "2cb4aea8-b3cd-40a9-99e9-3e074d884dcd",
-      "title": "Apprenticeship - Global IT Service Operations and Support Administrator",
-      "company": "CEVALogistics",
-      "location": "Roissy-en-France (95)",
-      "offer_type": "alternance",
-      "source_platform": "indeed",
-      "source_url": "https://fr.indeed.com/rc/clk?jk=4d076c48962d4ba4&bb=Txw2zplhTKPJsujmyb1puyEmw_9qnW1rAXWyjsfQ-LRdQjy3l_9OyrKtMwp1MUOU0PdV_xVMCmdN04QNO6uMbu4pY7tJJMTcLXoYJ7Y03FdnWdOijQvfOdFfCW2l38Xv&xkcb=SoAZ67M3l0jEdIAPTD0CbzkdCdPP&fccid=9c837fd8e4030f81&vjs=3",
-      "required_skills": [],
-      "posted_at": "2026-04-07T00:00:00",
-      "scraped_at": "2026-04-07T19:09:38.938092"
-    },
-    {
-      "id": "614da076-19e5-4dae-a254-01fa4199f2bf",
-      "title": "Technicien DataCenter, DCO",
-      "company": "Amazon Data Services France SAS",
-      "location": "Paris (75)",
-      "offer_type": "alternance",
-      "source_platform": "indeed",
-      "source_url": "https://fr.indeed.com/rc/clk?jk=fb97a2d28d234c67&bb=Txw2zplhTKPJsujmyb1pu_Y49KKHRGHLVPCLLJ9I58RykH8WIMjxA5wlTNS4HntHF7a-OZOfeXg0twOXgKUABHhi5YQ-GcZOj7meWwGmHd1fc55-OzBl6em7sZrdgb7Q&xkcb=SoCt67M3l0jEdIAPTD0DbzkdCdPP&fccid=fe2d21eef233e94a&vjs=3",
-      "required_skills": [],
-      "posted_at": "2026-04-07T00:00:00",
-      "scraped_at": "2026-04-07T19:09:38.936115"
-    },
-    {
-      "id": "9a6f2bd0-cc7f-4c00-99b0-c4b461523f6e",
-      "title": "Technicien Support / Exploitation Junior",
-      "company": "Lùkla",
-      "location": "La Défense (92)",
-      "offer_type": "alternance",
-      "source_platform": "indeed",
-      "source_url": "https://fr.indeed.com/rc/clk?jk=d6ea9045f1bc44e4&bb=Txw2zplhTKPJsujmyb1pu0Gtzy8Ff4TMABPExIwaTlvI1WoqmyY1fqtC3poyuB7Oi7PglTuUquCU7vjeGA-oQgJEHRNxntkncYmqhsGy56YWHHqHkgLJ92wUW7xu6xGZ&xkcb=SoDw67M3l0jEdIAPTD0NbzkdCdPP&fccid=b850669073f1942e&vjs=3",
-      "required_skills": [],
-      "posted_at": "2026-04-07T00:00:00",
-      "scraped_at": "2026-04-07T19:09:38.933995"
-    },
-    {
-      "id": "e4f5b5b4-e79a-4a62-9728-c6758a1121f8",
-      "title": "Apprenticeship Global IT Service Operations and Support Administrator",
-      "company": "CEVALogistics",
-      "location": "Roissy-en-France (95)",
-      "offer_type": "alternance",
-      "source_platform": "indeed",
-      "source_url": "https://fr.indeed.com/rc/clk?jk=135016afe949968e&bb=Txw2zplhTKPJsujmyb1pu_zWbi9FgxQw65euGE00CMIs8lRvUUdNXDwO6lZqrT3MJhHSGAlpaN5Ukcl9_EGLqHhRTTD147QJBQ1QFNUoYW2Px0MRJad717vwkF7CZ4oC&xkcb=SoBt67M3l0jEdIAPTD0ObzkdCdPP&fccid=9c837fd8e4030f81&vjs=3",
-      "required_skills": [],
-      "posted_at": "2026-04-07T00:00:00",
-      "scraped_at": "2026-04-07T19:09:38.930832"
-    },
-    {
-      "id": "e43bb6c4-2cd4-4112-aa03-1e495dc8674e",
-      "title": "Technicien sav en électroménager pro (H/F)",
-      "company": "Actual Talent Paris Ingénierie 3",
-      "location": "93150 Le Blanc-Mesnil",
-      "offer_type": "alternance",
-      "source_platform": "indeed",
-      "source_url": "https://fr.indeed.com/viewjob?jk=123456789abcdef0",
-      "required_skills": [],
-      "posted_at": "2026-04-07T00:00:00",
-      "scraped_at": "2026-04-07T19:09:38.927801"
-    },
-    {
-      "id": "92bc4aec-9bc8-4a39-a0c9-f8dcef1a5ad4",
-      "title": "Technicien sav en électroménager pro (H/F)",
-      "company": "Actual Talent Paris Ingénierie 3",
-      "location": "93150 Le Blanc-Mesnil",
-      "offer_type": "alternance",
-      "source_platform": "indeed",
-      "source_url": "https://fr.indeed.com/pagead/clk?mo=r&ad=-6NYlbfkN0DblVz8p7m0nbJF1lqo_44jSAcOCLyohP_eGLSe2VoCj8F-ThB03kmE_V41w-eKc2Mb-lYi4JMjJRDgDT73a0wmfM4YDvx0L1QDH53Lc7jJu5yiI5Ea9ZWgGiZdyGOLa7pNUM2ONhr1ZxiWEoH6VnvwpFYSVg9-rgQ4TtSi7i6lwy2zwv4-aPlPrFvusWQg7nMz4GA9D_L_57X0PegaOct6RdyxmMRKrSbdYe_s5MTkF6k7f23u9AK1dTKrGJC1y_9U7ObL59zxfFYXv0I45wgb7uTYh0mfjSmlayIabD-38PUM6-yb9d7HTNFs3hbTzuD1N0773drZvaDO32Pb1BSM7aOnhJreNwv-8A9TJ8X34eG6A1CpIzWyCcK9EBW5yZE24SEjnzhQwOXul3RT8JpFnqT79gfO-QZfA3zmPyHn9aMB19OVHcEVgxm4ZacqT3SEhljByoxzw1ZQCGljf3Tp3EWu4ydkJDifRTrL8gMweux6-DYrtngQ5OkMo9Omo_Qy9jijFcVELDrag8JfEOMZaq1jahEKRKa9hnIDozqK5g1PADpayB4rUgCqQ-4tEhYzQfGfkXc0TqRDB4oULQd_dZzSd7IoGmwJ59eCHB8qETpOMopmG9nE-4bqN6Ck1KSKWsSIoqln9kmOdl8t-NPFo6xlv3gJZGtIWC8xLX9kIMYK9U8_LwxxSrA7k8fworOVTHCzbXZTAZZljmZ3NHBc5YsrGapdci8rbIoQ8OqwuIwOOb6LMhaBzybY98eOIJk=&xkcb=SoAt6_M3l0jEdIAPTD0PbzkdCdPP&camk=ethIe0s0heeP_t4L3QPRNg==&p=4&fvj=0&vjs=3",
-      "required_skills": [],
-      "posted_at": "2026-04-07T00:00:00",
-      "scraped_at": "2026-04-07T19:09:38.924373"
-    },
-    {
-      "id": "7259cade-7063-4103-96f3-1f5906986746",
-      "title": "Technicien support N2 Pantin & Paris",
-      "company": "QR Versailles IT",
-      "location": "93500 Pantin",
-      "offer_type": "alternance",
-      "source_platform": "indeed",
-      "source_url": "https://fr.indeed.com/rc/clk?jk=ea4c3eaf801637d7&bb=Txw2zplhTKPJsujmyb1pu3XftW2_y9ogGy5CpeW6ArVLVwMbzqSKy9lzY7GwclAdxDsfRg3aq1sKcp7NqTMuLgMU-ZGsCyOM3Ft6brKXnxh2eC1hKWTyQj3TT1HSvbkV&xkcb=SoBX67M3l0jEdIAPTD0IbzkdCdPP&fccid=e8e621106ebb4fd4&vjs=3",
-      "required_skills": [
-        "N2"
-      ],
-      "posted_at": "2026-04-07T00:00:00",
-      "scraped_at": "2026-04-07T19:09:38.921116"
-    },
-    {
-      "id": "08153eda-a24e-4687-8857-dba9c57da2fd",
+      "id": "de0ac046-f3b3-43da-9488-505f8f37defc",
       "title": "Technicien Télécom Itinérant (Projets Internationaux)",
       "company": "AZURREO",
       "location": "Paris (75)",
       "offer_type": "alternance",
       "source_platform": "indeed",
-      "source_url": "https://fr.indeed.com/rc/clk?jk=e5ae09674c1874f8&bb=Txw2zplhTKPJsujmyb1pu1ey24mZoyHe5hPllvZ9UdgIJCzOb1RTHFMsTeXDiobdlFWeQd-Zp3o86q1xreeL67ZKm_vHQSEpGv2GyoM0FedS2rIflUSeDLaV-vo87XgW&xkcb=SoDj67M3l0jEdIAPTD0JbzkdCdPP&fccid=716dcba27527e482&vjs=3",
+      "source_url": "https://fr.indeed.com/rc/clk?jk=e5ae09674c1874f8&bb=N3FuhDXapLa2VkSHxg4it8nyjxkKKoOOy0Zuk4hzUkhepmy9gClGp2JwFGPWNVB_dzcsm9BLLmu5AJV4jdFSDkfyYk7uTVzBKIYL6aYZjrGW-rYusGqQSzzn2bzOT9FM&xkcb=SoB-67M3l5oKgdAHGb0FbzkdCdPP&fccid=716dcba27527e482&vjs=3",
       "required_skills": [],
-      "posted_at": "2026-04-07T00:00:00",
-      "scraped_at": "2026-04-07T19:09:38.919867"
+      "posted_at": "2026-04-09T00:00:00",
+      "scraped_at": "2026-04-09T16:08:53.790076"
     },
     {
-      "id": "bc408b58-c71e-4841-a9b0-6d99ee937145",
-      "title": "Technicien support informatique Freelance H/F",
-      "company": "Flexify",
-      "location": "Paris (75)",
-      "offer_type": "alternance",
-      "source_platform": "indeed",
-      "source_url": "https://fr.indeed.com/rc/clk?jk=0e4f180586ebdb3c&bb=Txw2zplhTKPJsujmyb1pu8z3DiPOrJDY8U6OHZDrqpfLR0aBAPx0f6bgl9OP7L_sVK3tYlFchtL9Jcg6mgz_KqXwPTAySt7I8mlGds299rEKa7TFuaWTp3B7ewdfvtCC&xkcb=SoB-67M3l0jEdIAPTD0KbzkdCdPP&fccid=4d205807708c71f5&cmp=Flexify&ti=Technicien+Support+Informatique&vjs=3",
-      "required_skills": [],
-      "posted_at": "2026-04-07T00:00:00",
-      "scraped_at": "2026-04-07T19:09:38.918519"
-    },
-    {
-      "id": "d77c5c93-b8e9-4bbd-85c0-783d37b514c2",
+      "id": "c137f255-afcd-46fe-8809-79863ce85ad7",
       "title": "Technicien Hotline (H/F)",
       "company": "SEATPI",
       "location": "La Défense (92)",
       "offer_type": "alternance",
       "source_platform": "indeed",
-      "source_url": "https://fr.indeed.com/rc/clk?jk=571cfc7ef886fa01&bb=Txw2zplhTKPJsujmyb1pu9n2NccQTSU1Rb1le0FQYhxUGEmn3bzSE_FoNbSNJBQ5e_5fbzQJWbDZiTDiCcc0aGs5TySKceBfT9x7h23IzUjOELVbFb8oV26fxcMTkm6C&xkcb=SoDK67M3l0jEdIAPTD0LbzkdCdPP&fccid=cae5231a281de177&vjs=3",
+      "source_url": "https://fr.indeed.com/viewjob?jk=456789abcdef0123",
       "required_skills": [],
-      "posted_at": "2026-04-07T00:00:00",
-      "scraped_at": "2026-04-07T19:09:38.915924"
+      "posted_at": "2026-04-09T00:00:00",
+      "scraped_at": "2026-04-09T16:08:53.788051"
     },
     {
-      "id": "b7cf92f3-4d2c-4bf6-bb53-1aad977d1b1b",
-      "title": "Apprenticeship - Global IT Service Operations and Support Administrator",
-      "company": "CEVALogistics",
-      "location": "Roissy-en-France (95)",
-      "offer_type": "alternance",
-      "source_platform": "indeed",
-      "source_url": "https://fr.indeed.com/rc/clk?jk=4d076c48962d4ba4&bb=IEjJ-iD1bv_LDcWKpJRThXQaZ28ONlA4Pja6Nsp3QHSSKH1rw4iquHTbQGzbiqiuTQsjv8suQIXRPAe9WZXL3ObJk3aKyYwVapQCXdIbmhYVG1k3vbtnEDvYLj7v2iKtl2wOBPDexE5QhoFTVpoLvFoCo0KXSIl_28dzvS5DzMDRzDKgBRk2X9PN9pHxRAKT&xkcb=SoDs67M3l0i0Q9gwvD0DbzkdCdPP&fccid=9c837fd8e4030f81&vjs=3",
-      "required_skills": [],
-      "posted_at": "2026-04-07T00:00:00",
-      "scraped_at": "2026-04-07T19:07:24.143609"
-    },
-    {
-      "id": "84adc6c0-71d9-4733-8c0b-dbe90a2aaf21",
-      "title": "Technicien DataCenter, DCO",
-      "company": "Amazon Data Services France SAS",
-      "location": "Paris (75)",
-      "offer_type": "alternance",
-      "source_platform": "indeed",
-      "source_url": "https://fr.indeed.com/rc/clk?jk=fb97a2d28d234c67&bb=IEjJ-iD1bv_LDcWKpJRThZiCbg-zUki7skY6HbBp-lUXaEYffHS770c7cAV5v_PfUOWrDmlBItwDTNW8a9dSenBmNwcUtLZyjSHlaMI-MQ5xexzfwVxFfbbvy7nCc6YIszA5184YUPG0RTH9g5DXm9txkkR-TIYlD_vb5jj-XnrRsBYXCZpcSw%3D%3D&xkcb=SoAF67M3l0i0Q9gwvD0MbzkdCdPP&fccid=fe2d21eef233e94a&vjs=3",
-      "required_skills": [],
-      "posted_at": "2026-04-07T00:00:00",
-      "scraped_at": "2026-04-07T19:07:24.141963"
-    },
-    {
-      "id": "ad301987-d9d0-4b5b-942f-42c6fb444170",
-      "title": "Technicien Support / Exploitation Junior",
-      "company": "Lùkla",
-      "location": "La Défense (92)",
-      "offer_type": "alternance",
-      "source_platform": "indeed",
-      "source_url": "https://fr.indeed.com/rc/clk?jk=d6ea9045f1bc44e4&bb=IEjJ-iD1bv_LDcWKpJRThYSNgnvj01oC3zGtk2jhtcsVgXPR7H-BvKq_BRI_D-_djbdFwZUguxWXU7YGGsBT1M1DKfoR66YiJBCvyv9dsJQDCNIPF9NVfpBsh6o5P9I45sqHkjOCbmb5xZ_wiEqy7RW4LCopSHlj56y1_84ubTLwKKNnUEZRfA%3D%3D&xkcb=SoAs67M3l0i0Q9gwvD0ObzkdCdPP&fccid=b850669073f1942e&vjs=3",
-      "required_skills": [],
-      "posted_at": "2026-04-07T00:00:00",
-      "scraped_at": "2026-04-07T19:07:24.140255"
-    },
-    {
-      "id": "6f5ecd0a-a6d6-40df-bc5b-4cf0a600f537",
-      "title": "Technicien sav en électroménager pro (H/F)",
-      "company": "Actual Talent Paris Ingénierie 3",
-      "location": "93150 Le Blanc-Mesnil",
-      "offer_type": "alternance",
-      "source_platform": "indeed",
-      "source_url": "https://fr.indeed.com/pagead/clk?mo=r&ad=-6NYlbfkN0DblVz8p7m0nbJF1lqo_44jSAcOCLyohP_eGLSe2VoCj8F-ThB03kmE_V41w-eKc2Mb-lYi4JMjJRDgDT73a0wmfM4YDvx0L1QDH53Lc7jJu5yiI5Ea9ZWgGiZdyGOLa7pNUM2ONhr1ZxiWEoH6VnvwpFYSVg9-rgQ4TtSi7i6lwy2zwv4-aPlPrFvusWQg7nPGzpS2zt7qGVk6_WArNsIkJaa805r0hNgFuOiEU5TzB_6P4hMcFYUoQoMEQig8FHK4Mwlsm1JzcbpSuYQuez8ycoWM4iC7SKLSqVs3Sf36vekIEkIIr7-f0Toy1uIKXR12Alp7MZVTKZZbwU2cvELBxpeg5DkOuCUVcNLKv8_wZk5cLKaH5ndRStsWc_LWd7cgl8CigIkg7XSlGtHuKpk8TRpqgagwlzWw5aPWEomkYkCuXpp64qw5lXWgZdr_BAKkwUDvHG-MKgAkWoEqH6b6UpgN8jC6cMI9H2kuEfAG0PhtQsoFjmMWPcpxTNV3UyIV4Crcfz4ReL6WE83nkHJuSiw3B7hITClWyvc8_ewxAWZxWp5P_awI4kO4RGbwEscy9YQlgaQey2CETJYFMtOPKpRbdEGmPRuVuJm9XGm8T8Xv9FGa8zxcZgtMcXyvlqSGdUQLOv_dHwIashJu_CoKSJuGgennMpN-u01pGlRv1Wv2i34nSkEg8P6j_KlY7mRRJ0u8fREdkQHcQcasrIExy5-738y1yn6BOo6dzKCB_M_0Bj7AMtEQ8_vej-SeTVY=&xkcb=SoBs6_M3l0i0Q9gwvD0PbzkdCdPP&camk=ethIe0s0heeP_t4L3QPRNg==&p=4&fvj=0&vjs=3",
-      "required_skills": [],
-      "posted_at": "2026-04-07T00:00:00",
-      "scraped_at": "2026-04-07T19:07:24.138606"
-    },
-    {
-      "id": "55060348-00ba-4913-bfd5-07873ab2f73f",
-      "title": "Technicien support N2 Pantin & Paris",
-      "company": "QR Versailles IT",
-      "location": "93500 Pantin",
-      "offer_type": "alternance",
-      "source_platform": "indeed",
-      "source_url": "https://fr.indeed.com/rc/clk?jk=ea4c3eaf801637d7&bb=IEjJ-iD1bv_LDcWKpJRThXTfaj9YgauzKwieb2FNofqL1hAsCeOVB6OeIGk_Awt5R__HGC3JtH_NrLUgpBVR4gItjlHNX_HaDTHsmyWgXsPRki5m5gAktZ9I_4kK0rvMEHdhNQO_bJDzTnLprxMlsu9x5sHeiDd09AcmudXqtKEwM4merdQILs1i8xxHoaAE&xkcb=SoAW67M3l0i0Q9gwvD0IbzkdCdPP&fccid=e8e621106ebb4fd4&vjs=3",
-      "required_skills": [
-        "N2"
-      ],
-      "posted_at": "2026-04-07T00:00:00",
-      "scraped_at": "2026-04-07T19:07:24.136677"
-    },
-    {
-      "id": "4aac2578-32e3-4ba5-9ebb-17908c61d50d",
-      "title": "Technicien Télécom Itinérant (Projets Internationaux)",
-      "company": "AZURREO",
-      "location": "Paris (75)",
-      "offer_type": "alternance",
-      "source_platform": "indeed",
-      "source_url": "https://fr.indeed.com/viewjob?jk=789abcdef0123456",
-      "required_skills": [],
-      "posted_at": "2026-04-07T00:00:00",
-      "scraped_at": "2026-04-07T19:07:24.134937"
-    },
-    {
-      "id": "32d57437-c92d-4a14-b68d-9960b59d92a4",
-      "title": "Technicien Télécom Itinérant (Projets Internationaux)",
-      "company": "AZURREO",
-      "location": "Paris (75)",
-      "offer_type": "alternance",
-      "source_platform": "indeed",
-      "source_url": "https://fr.indeed.com/rc/clk?jk=e5ae09674c1874f8&bb=IEjJ-iD1bv_LDcWKpJRThbldwnBWjicDDB1rtK3xqTjXd8TzKezT57M3BTP_oA-gkA80-ysbtyFTNdUs9C7dGRy2jyye8e1VqTb8LBkiG1-rMpQuGBdree6DZw4z95dHsvO33ytDFEHdvBynt65YD3MJjpNrXdoXJBSvjCPWtO1p3uLBedXk7FoRdX8i1X4p&xkcb=SoCi67M3l0i0Q9gwvD0JbzkdCdPP&fccid=716dcba27527e482&vjs=3",
-      "required_skills": [],
-      "posted_at": "2026-04-07T00:00:00",
-      "scraped_at": "2026-04-07T19:07:24.133646"
-    },
-    {
-      "id": "f37d4c09-0206-43db-8a21-4d3b581191e3",
-      "title": "Technicien support informatique Freelance H/F",
-      "company": "Flexify",
-      "location": "Paris (75)",
-      "offer_type": "alternance",
-      "source_platform": "indeed",
-      "source_url": "https://fr.indeed.com/rc/clk?jk=0e4f180586ebdb3c&bb=IEjJ-iD1bv_LDcWKpJRThQ71jMY1LQqs9iwULUrl0gbvJbPFBm3mQZVMn3_85WPyykek9GcTH9XZM7d8s_Wo9aOr3PiitZ3w7QtwxcQqh3f_w9c7kwO_ffqcCLFwV4s8xL_TlKgRENz4jGXcwTegf2SVAUqOHJ9dLtvs8ElWvwuHfvqFhqgpG59L1Wso1CmZ&xkcb=SoA_67M3l0i0Q9gwvD0KbzkdCdPP&fccid=4d205807708c71f5&cmp=Flexify&ti=Technicien+Support+Informatique&vjs=3",
-      "required_skills": [],
-      "posted_at": "2026-04-07T00:00:00",
-      "scraped_at": "2026-04-07T19:07:24.131957"
-    },
-    {
-      "id": "59cf6081-b413-4f4d-9006-c66267cf2307",
+      "id": "36e17214-97ce-4983-b90a-8a53ae9093fd",
       "title": "Technicien Hotline (H/F)",
       "company": "SEATPI",
       "location": "La Défense (92)",
       "offer_type": "alternance",
       "source_platform": "indeed",
-      "source_url": "https://fr.indeed.com/rc/clk?jk=571cfc7ef886fa01&bb=IEjJ-iD1bv_LDcWKpJRThVFGLwq3IhEHs3dD8F96wZDNODPbZlsEzeosP0u7ob9M5gikpNCb0XVi87UnFxxdyUMaiKFp4x_upncnpZXKNH8pMRj3SyH6OIYzBkvCOveVd-LhQnfwFpRV8s3zc4MyJLM6L300EnbmLtIlhvE3j6zav9K0EXifZWCfEgp3F_8s&xkcb=SoCL67M3l0i0Q9gwvD0LbzkdCdPP&fccid=cae5231a281de177&vjs=3",
+      "source_url": "https://fr.indeed.com/rc/clk?jk=571cfc7ef886fa01&bb=N3FuhDXapLa2VkSHxg4it73B9LDxGVAr3M-Z37ke7bd1qv3Gv4DR8BYEMLARSIy9I0KongfMWm24wdbiOpTHXDR4M-krMldSRP09GPU2_bZO9AQ3Xd2bk9rzmURne2bz&xkcb=SoDj67M3l5oKgdAHGb0GbzkdCdPP&fccid=cae5231a281de177&vjs=3",
       "required_skills": [],
-      "posted_at": "2026-04-07T00:00:00",
-      "scraped_at": "2026-04-07T19:07:24.129241"
+      "posted_at": "2026-04-09T00:00:00",
+      "scraped_at": "2026-04-09T16:08:53.786300"
+    },
+    {
+      "id": "7353eeba-70a1-4164-9824-8e21f7c2b0d6",
+      "title": "Gestionnaire de de parc IT",
+      "company": "YGL consulting",
+      "location": "Paris (75)",
+      "offer_type": "alternance",
+      "source_platform": "indeed",
+      "source_url": "https://fr.indeed.com/rc/clk?jk=eb3651c9c278ffdd&bb=N3FuhDXapLa2VkSHxg4ityB7KOUjoB4zsGItincmLqEo5hqU_g1NR32ovwX_s2d_YsDzN_USQzgNToYCP6pdHxi_RUUtruP-E0iY-i5-JQ6YjCkxMrBpnbw0rqTeASVC&xkcb=SoBX67M3l5oKgdAHGb0HbzkdCdPP&fccid=531c7e8e8045d4b0&vjs=3",
+      "required_skills": [],
+      "posted_at": "2026-04-09T00:00:00",
+      "scraped_at": "2026-04-09T16:08:53.783989"
+    },
+    {
+      "id": "4c87919d-438b-41bf-802e-6378d0b59f82",
+      "title": "Alternance Technicien de support H/F",
+      "company": "Leon Grosse",
+      "location": "78000 Versailles",
+      "offer_type": "alternance",
+      "source_platform": "indeed",
+      "source_url": "https://fr.indeed.com/rc/clk?jk=9dfe99b82bbe4217&bb=N3FuhDXapLa2VkSHxg4itzrUFqTPYBxPNaluEIDcrq4L33nJgzgjilWMI2lz03OjO6vAcZ4etNKI0spA_ETmxTK_CWFfP6ybiYaaF-kytFiH7YKELPUwvQ_vIZexjskx&xkcb=SoDZ67M3l5oKgdAHGb0AbzkdCdPP&fccid=00d7d7477a7aa316&vjs=3",
+      "required_skills": [],
+      "posted_at": "2026-04-09T00:00:00",
+      "scraped_at": "2026-04-09T16:08:53.782128"
+    },
+    {
+      "id": "12fc4212-9f6f-410d-8720-8e4093ce6322",
+      "title": "TECHNICIEN SUPPORT INFORMATIQUE H/F",
+      "company": "Homebox",
+      "location": "92110 Clichy",
+      "offer_type": "alternance",
+      "source_platform": "indeed",
+      "source_url": "https://fr.indeed.com/rc/clk?jk=c0ff957e817203ee&bb=N3FuhDXapLa2VkSHxg4it2OiRV0RF-gKpWs1e3GLUUd4ljriNA3ya2KOK2irzC32Nc4xb5XEvzwi082r8TVGMK9rcEULIkbd5JJ0tHRisXB3nASnSAhSX6eT1dlz_rfO&xkcb=SoBt67M3l5oKgdAHGb0BbzkdCdPP&fccid=77a7794b41fe82aa&vjs=3",
+      "required_skills": [],
+      "posted_at": "2026-04-09T00:00:00",
+      "scraped_at": "2026-04-09T16:08:53.780286"
+    },
+    {
+      "id": "b01e4a5e-7c55-4a66-9b60-f332ed823439",
+      "title": "ALTERNANCE - Technicien(ne) support informatique (H/F)",
+      "company": "Grand Paris Aménagement",
+      "location": "75004 Paris",
+      "offer_type": "alternance",
+      "source_platform": "indeed",
+      "source_url": "https://fr.indeed.com/rc/clk?jk=c66f6c074aedb1af&bb=N3FuhDXapLa2VkSHxg4itz_I2omdOo9R7DD3bsUO7RLjSmBGgQrI1LIOPAy7v2NGMDUa7AHCjZ0WAqukg-oFrVIUh17mR0lGSya8oYcKIJEijpyyTvJmKkirz6SrK42a&xkcb=SoDw67M3l5oKgdAHGb0CbzkdCdPP&fccid=7c3a5fe8bc0221ee&vjs=3",
+      "required_skills": [],
+      "posted_at": "2026-04-09T00:00:00",
+      "scraped_at": "2026-04-09T16:08:53.778360"
+    },
+    {
+      "id": "e80368d6-f259-406c-9246-8add6e3ebe4b",
+      "title": "Pilote Gestion de Parc IT & Asset Management",
+      "company": "UMANTIC",
+      "location": "75015 Paris",
+      "offer_type": "alternance",
+      "source_platform": "indeed",
+      "source_url": "https://fr.indeed.com/rc/clk?jk=0c2360fca813dbda&bb=N3FuhDXapLa2VkSHxg4ityjCPwW8nLLIW8qJg18LnRDiWPPwEEPX4TxY6EO-MpGv4waZt8miIhcm6hnOLe-_ikD23gNAEoSCBLfOcHwsO8f_JE2tWlYVd8mKgDIGo4pD&xkcb=SoBE67M3l5oKgdAHGb0DbzkdCdPP&fccid=563b4a91cbf572fd&vjs=3",
+      "required_skills": [],
+      "posted_at": "2026-04-09T00:00:00",
+      "scraped_at": "2026-04-09T16:08:53.775058"
+    },
+    {
+      "id": "66ec0cbd-fa95-42b1-9ed2-367e0e9f218d",
+      "title": "Pilote Gestion de Parc IT & Asset Management (H/F)",
+      "company": "UMANTIC TECHNOLOGIES",
+      "location": "75015 Paris",
+      "offer_type": "alternance",
+      "source_platform": "indeed",
+      "source_url": "https://fr.indeed.com/rc/clk?jk=8c76bb8832b93792&bb=N3FuhDXapLa2VkSHxg4it68HCCkuAxePE7qwTlZ1pKRMYDWseHsYIzI8N_9bBMS5_uXYM9T2B5X2GCCGTh-tfDrC-MPSG8AXDp5QjaShTurC1DP5q0Lap3PNnOmCQDaP&xkcb=SoCt67M3l5oKgdAHGb0MbzkdCdPP&fccid=13bda779c10a53a7&vjs=3",
+      "required_skills": [],
+      "posted_at": "2026-04-09T00:00:00",
+      "scraped_at": "2026-04-09T16:08:53.773126"
+    },
+    {
+      "id": "e6baa6fd-cde8-407e-8911-6db211430978",
+      "title": "Technicien(ne) Informatique en Alternance H/F",
+      "company": "Septodont",
+      "location": "Saint-Maur-des-Fossés (94)",
+      "offer_type": "alternance",
+      "source_platform": "indeed",
+      "source_url": "https://fr.indeed.com/rc/clk?jk=2d7c70769e9875d7&bb=N3FuhDXapLa2VkSHxg4it3mOkw1Gbhp9DmdmFBJzHrb3a3SWKFrA7OIxTdRL_ahKLrkoqK62H_NCVUXf5rvMGDTnKh7j43kNY7Kgiy5f6uWEmwFUQH48dOKgb3e3NF5F&xkcb=SoAZ67M3l5oKgdAHGb0NbzkdCdPP&fccid=d5f063c5b6417fe6&vjs=3",
+      "required_skills": [],
+      "posted_at": "2026-04-09T00:00:00",
+      "scraped_at": "2026-04-09T16:08:53.771031"
+    },
+    {
+      "id": "14d29ebf-ba6c-48c3-8b65-468d97847875",
+      "title": "CDI - Technicien IT Digital Workplace (H/F)",
+      "company": "Marionnaud",
+      "location": "Paris (75)",
+      "offer_type": "alternance",
+      "source_platform": "indeed",
+      "source_url": "https://fr.indeed.com/rc/clk?jk=6643712ec275cbfa&bb=N3FuhDXapLa2VkSHxg4it5TlXXnOb_nrWlWHbYwJairl_5LjzBr04m5NzWjHxL5TfJi4QJ1XWs4bU4RphptXUKHhoRUKoUn743H9BB1AcoExuCcmt9y8CcUO6WwkWE1L&xkcb=SoCE67M3l5oKgdAHGb0ObzkdCdPP&fccid=f580d571c9bc71ab&vjs=3",
+      "required_skills": [],
+      "posted_at": "2026-04-09T00:00:00",
+      "scraped_at": "2026-04-09T16:08:53.769002"
+    },
+    {
+      "id": "cc7b93bb-2179-4eab-bbf6-a4f617162323",
+      "title": "Team Leader Informatique (H/F)",
+      "company": "DFM",
+      "location": "94000 Créteil",
+      "offer_type": "alternance",
+      "source_platform": "indeed",
+      "source_url": "https://fr.indeed.com/pagead/clk?mo=r&ad=-6NYlbfkN0AioUhNK-Pp4ZzEAmLZ0ZPwhMB1sQPDAP0a0BlqfJ-OYAidUxDTZJmdKHpF4b2TT2eeHTTrdSpTJVTWxVNX3MPWkqBIo2fJndN8vDvXI6GMotcEfWKxfCC2u3OsZgAkQOb3MOZK2KBMC_nnsUkCd1BUh2EY-09p04EqMjX8ScNJ22WzzAlUYdTWSO3SB97qL5QdbuI1sjhBZqHPErN7PJYskMao_3TfaUAKfFKUTTx4HTwfkThf_N825O0gORGL6Trh33crLIGTTvGqUHAtO0Gj5ciJe-jOc2mUvwagRPLBRtUisoGiOICi4kXhhgvfgrr2BITQti2ClYDtg_EaJw4a6lLoOUS-MwLtWPwpS_m_9MKmpWvRFTKesIO74WRSxD6QHYT5cwK8-a7itfXjw9J4ZcizgshHc6l8jwQa0jJV_aAc9VJnzRdOUSD9XilAfOWfzE-KZKhffZhZ5Vp9KCOtcvjmfs0tZNhdnVWLx3aEk2u6GWYsjdK7DZKr-pAo0gVoqSGKw-zVZyHnN5kWkEHrmf8s_KOd5JYMkxcGVojupOXJ_GFX7S4WVTl2_D0zEL7L4tOpkOz3DptW0_r0GDmtry5wDpAb03QQl4n_0iyWRchZfTfQ-nrPBE8zpQLVJsk9RoALZWVmneLFSuOxeH3o86Nr4OF1iO1oanyDTYdlJ6qSIC8AEpv5ddl6FYnfrEZpxotVPWb-2EtvmX6ckXoXKp88lYrvnzNbssapx7C5Tw==&xkcb=SoDE6_M3l5oKgdAHGb0PbzkdCdPP&camk=C3EPSzFlQw8_93_2RX9Rmw==&p=4&fvj=0&vjs=3",
+      "required_skills": [],
+      "posted_at": "2026-04-09T00:00:00",
+      "scraped_at": "2026-04-09T16:08:53.766954"
+    },
+    {
+      "id": "9a960a09-bae7-4ff9-be05-4df01afc3173",
+      "title": "Pilote Gestion de Parc IT & Asset Management",
+      "company": "Quodagis Consulting",
+      "location": "Paris 15e (75)",
+      "offer_type": "alternance",
+      "source_platform": "indeed",
+      "source_url": "https://fr.indeed.com/rc/clk?jk=436935556deb28b2&bb=N3FuhDXapLa2VkSHxg4it-lfDK-GkO6HHon-9P5zd_9W7s3Zn5ZriC-X-FpzncfpBLyDvWYb2_amoaaxxOEM1bcbHnqGPEn4CENCFGwYhRjFhWWXsgk2qNUO3jjnmP1_&xkcb=SoC-67M3l5oKgdAHGb0IbzkdCdPP&fccid=e24aa0cc72726276&vjs=3",
+      "required_skills": [],
+      "posted_at": "2026-04-09T00:00:00",
+      "scraped_at": "2026-04-09T16:08:53.764734"
+    },
+    {
+      "id": "55888445-a2a5-4ddd-989b-e4d43db17369",
+      "title": "Technicien Informatique (CDI)",
+      "company": "AURANEXT",
+      "location": "92110 Clichy",
+      "offer_type": "alternance",
+      "source_platform": "indeed",
+      "source_url": "https://fr.indeed.com/rc/clk?jk=0f97fcd893fdcbc6&bb=N3FuhDXapLa2VkSHxg4itzE9S3kfXb7EVPvrRu7iyHnID79_uUayLqQ4BVSr5EAvzVyUcBWbvNXgpnlobZme5zufTvg68FobVqQMTzdYnEiGP9imKV9MLxQC9NmA6g4G&xkcb=SoAK67M3l5oKgdAHGb0JbzkdCdPP&fccid=ec62831bf7863c57&cmp=AURANEXT&ti=Technicien+En+Informatique&vjs=3",
+      "required_skills": [],
+      "posted_at": "2026-04-09T00:00:00",
+      "scraped_at": "2026-04-09T16:08:53.762291"
+    },
+    {
+      "id": "229ad6a7-8244-45d8-b2a2-f0ec998b5db9",
+      "title": "Technicien Informatique proximité VIP H/F",
+      "company": "Econocom",
+      "location": "Paris (75)",
+      "offer_type": "alternance",
+      "source_platform": "indeed",
+      "source_url": "https://fr.indeed.com/rc/clk?jk=4c5184b47d5a7aec&bb=N3FuhDXapLa2VkSHxg4it23ZgNoWcw2PVyjlYygPPIkoM7805-ywHsCqWKKW7mN4kxXvvdDIT30qMqrkPg-z7pHZwKA2cn5v-OSrjZ29RAdEQGl-Z0REihv7b2N4mEwF&xkcb=SoCX67M3l5oKgdAHGb0KbzkdCdPP&fccid=153dc9187de1d154&vjs=3",
+      "required_skills": [],
+      "posted_at": "2026-04-09T00:00:00",
+      "scraped_at": "2026-04-09T16:08:53.760119"
+    },
+    {
+      "id": "2868fdf7-5361-423b-b658-2e03fa2a4038",
+      "title": "Coordinateur pilotage parc & stocks IT - Service Now (IT) / Freelance",
+      "company": "INSYCO",
+      "location": "Paris (75)",
+      "offer_type": "alternance",
+      "source_platform": "indeed",
+      "source_url": "https://fr.indeed.com/rc/clk?jk=1140ea8c37f198aa&bb=N3FuhDXapLa2VkSHxg4it2qYmiY_XczT9Fib9xMQLaFKVasOzonJK6ZHJMDUDF7dkdl3-aVfVoOJrYxfvSWkPWsg1spd1E1dRF5JAg4Ks-P4Dh3wh0qf-1NwfkPWROdL&xkcb=SoAj67M3l5oKgdAHGb0LbzkdCdPP&fccid=bd4c1881df73cbcc&vjs=3",
+      "required_skills": [],
+      "posted_at": "2026-04-09T00:00:00",
+      "scraped_at": "2026-04-09T16:08:53.756857"
     }
   ],
   "applications": [
     {
-      "id": "769b190c-f779-4a8d-9d0e-c872defd0437",
-      "title": "Apprenticeship - Global IT Service Operations and Support Administrator",
-      "company": "CEVALogistics",
-      "contact_name": "Service Recrutement",
-      "contact_email": "recrutement@cevalogistics.com",
-      "status": "error",
-      "applied_at": null
-    },
-    {
-      "id": "ab057fe1-5a99-4eb1-9980-c984423fd944",
-      "title": "Technicien DataCenter, DCO",
-      "company": "Amazon Data Services France SAS",
-      "contact_name": "Service Recrutement",
-      "contact_email": "recrutement@amazon.com",
-      "status": "error",
-      "applied_at": null
-    },
-    {
-      "id": "ca8cbf06-16b1-4928-825b-eef0b5acc30b",
-      "title": "Technicien Support / Exploitation Junior",
-      "company": "Lùkla",
-      "contact_name": "Service Recrutement",
-      "contact_email": "recrutement@lukla.com",
-      "status": "error",
-      "applied_at": null
-    },
-    {
-      "id": "0de8b1f4-fce5-4eee-8e9a-94ffbd17f511",
-      "title": "Apprenticeship Global IT Service Operations and Support Administrator",
-      "company": "CEVALogistics",
-      "contact_name": "Service Recrutement",
-      "contact_email": "recrutement@cevalogistics.com",
-      "status": "error",
-      "applied_at": null
-    },
-    {
-      "id": "2f908832-4d18-4519-9bcc-e26595351559",
-      "title": "Technicien sav en électroménager pro (H/F)",
-      "company": "Actual Talent Paris Ingénierie 3",
-      "contact_name": "Service Recrutement",
-      "contact_email": "recrutement@actualtalentparisingenierie3.com",
-      "status": "error",
-      "applied_at": null
-    },
-    {
-      "id": "d96d8d09-b5cd-4366-b7c9-b82f28d12493",
-      "title": "Technicien sav en électroménager pro (H/F)",
-      "company": "Actual Talent Paris Ingénierie 3",
-      "contact_name": "Service Recrutement",
-      "contact_email": "recrutement@actualtalentparisingenierie3.com",
-      "status": "error",
-      "applied_at": null
-    },
-    {
-      "id": "67fe039d-e98a-4689-b40a-051ee9880f2e",
-      "title": "Technicien support N2 Pantin & Paris",
-      "company": "QR Versailles IT",
-      "contact_name": "Service Recrutement",
-      "contact_email": "recrutement@qrversaillesit.com",
-      "status": "error",
-      "applied_at": null
-    },
-    {
-      "id": "748ccfb4-30c0-4990-bfd5-4bff4438a711",
+      "id": "f36a46e7-2fee-4601-bf10-b1496d21a6d5",
       "title": "Technicien Télécom Itinérant (Projets Internationaux)",
       "company": "AZURREO",
-      "contact_name": "Service Recrutement",
-      "contact_email": "recrutement@azurreo.com",
-      "status": "error",
-      "applied_at": null
+      "contact_name": "Suzanne Boucher",
+      "contact_email": "suzanne.boucher@azurreo.com",
+      "status": "email_sent",
+      "applied_at": "2026-04-09T16:27:02.152499"
     },
     {
-      "id": "26708208-efb0-40cc-a01d-224e6614c908",
-      "title": "Technicien support informatique Freelance H/F",
-      "company": "Flexify",
-      "contact_name": "Service Recrutement",
-      "contact_email": "recrutement@flexify.com",
-      "status": "error",
-      "applied_at": null
-    },
-    {
-      "id": "31681578-1e63-4919-89ff-d83bfed270c6",
+      "id": "8b07bf21-ddab-4a0c-8e4a-47a75f069124",
       "title": "Technicien Hotline (H/F)",
       "company": "SEATPI",
       "contact_name": "Service Recrutement",
       "contact_email": "recrutement@seatpi.com",
-      "status": "error",
-      "applied_at": null
+      "status": "email_sent",
+      "applied_at": "2026-04-09T16:26:42.466483"
+    },
+    {
+      "id": "1db66b0e-40b1-4c01-99dc-d37e8927e331",
+      "title": "Technicien Hotline (H/F)",
+      "company": "SEATPI",
+      "contact_name": "Marion Vallet",
+      "contact_email": "marion.vallet@seatpi.com",
+      "status": "email_sent",
+      "applied_at": "2026-04-09T16:26:35.148840"
+    },
+    {
+      "id": "7c9ead31-f8c5-417e-917d-43918f9c19c1",
+      "title": "Gestionnaire de de parc IT",
+      "company": "YGL consulting",
+      "contact_name": "Yola CHOISI",
+      "contact_email": "yola.choisi@yglconsulting.com",
+      "status": "email_sent",
+      "applied_at": "2026-04-09T16:26:19.037026"
+    },
+    {
+      "id": "c3de9136-b1b7-4a14-b366-b409409d484f",
+      "title": "Alternance Technicien de support H/F",
+      "company": "Leon Grosse",
+      "contact_name": "Marc Augusti",
+      "contact_email": "marc.augusti@leongrosse.com",
+      "status": "email_sent",
+      "applied_at": "2026-04-09T16:26:08.795227"
+    },
+    {
+      "id": "c5ce4337-c269-490a-9bfe-a769a878063e",
+      "title": "TECHNICIEN SUPPORT INFORMATIQUE H/F",
+      "company": "Homebox",
+      "contact_name": "Patrick Grang",
+      "contact_email": "patrick.grang@homebox.com",
+      "status": "email_sent",
+      "applied_at": "2026-04-09T16:25:59.183382"
+    },
+    {
+      "id": "b51671eb-3b3e-4d6c-b6dc-0c8f3cf0e58f",
+      "title": "ALTERNANCE - Technicien(ne) support informatique (H/F)",
+      "company": "Grand Paris Aménagement",
+      "contact_name": "Loïc Jordan",
+      "contact_email": "loic.jordan@grandparisamenagement.com",
+      "status": "email_sent",
+      "applied_at": "2026-04-09T16:25:48.708876"
+    },
+    {
+      "id": "9980ed15-6a6d-4d90-9510-90830efac489",
+      "title": "Pilote Gestion de Parc IT & Asset Management",
+      "company": "UMANTIC",
+      "contact_name": "Pierre FREYCHE",
+      "contact_email": "pierre.freyche@umantic.com",
+      "status": "email_sent",
+      "applied_at": "2026-04-09T16:24:16.425863"
+    },
+    {
+      "id": "cdc4e048-4d97-4100-8a06-8a48333cbeec",
+      "title": "Pilote Gestion de Parc IT & Asset Management (H/F)",
+      "company": "UMANTIC TECHNOLOGIES",
+      "contact_name": "Séverine Houdayer",
+      "contact_email": "severine.houdayer@umantictechnologies.com",
+      "status": "email_sent",
+      "applied_at": "2026-04-09T16:24:03.289819"
+    },
+    {
+      "id": "9cf53e80-5cb8-4e57-ae2e-00cc1b4ea131",
+      "title": "Technicien(ne) Informatique en Alternance H/F",
+      "company": "Septodont",
+      "contact_name": "Manuelle ZANZOURI",
+      "contact_email": "manuelle.zanzouri@septodont.com",
+      "status": "email_sent",
+      "applied_at": "2026-04-09T16:23:47.349340"
+    },
+    {
+      "id": "8c40af72-45f6-4db5-bacd-eba8d3300ee5",
+      "title": "CDI - Technicien IT Digital Workplace (H/F)",
+      "company": "Marionnaud",
+      "contact_name": "Service Recrutement",
+      "contact_email": "recrutement@marionnaud.com",
+      "status": "email_sent",
+      "applied_at": "2026-04-09T16:21:53.770316"
+    },
+    {
+      "id": "72c7aa8d-8c28-46de-8d73-6f2adc8d60b2",
+      "title": "Team Leader Informatique (H/F)",
+      "company": "DFM",
+      "contact_name": "Barbara Obadia",
+      "contact_email": "barbara.obadia@dfm.com",
+      "status": "email_sent",
+      "applied_at": "2026-04-09T16:20:28.962727"
+    },
+    {
+      "id": "1e533401-b960-418b-8000-f85e53782224",
+      "title": "Pilote Gestion de Parc IT & Asset Management",
+      "company": "Quodagis Consulting",
+      "contact_name": "Chamseddine OULD",
+      "contact_email": "chamseddine.ould@quodagisconsulting.com",
+      "status": "email_sent",
+      "applied_at": "2026-04-09T16:18:56.326764"
+    },
+    {
+      "id": "ceed4eb9-09f8-481b-9ea5-69f35e48ddf6",
+      "title": "Technicien Informatique (CDI)",
+      "company": "AURANEXT",
+      "contact_name": "Auriane TAHON",
+      "contact_email": "auriane.tahon@auranext.com",
+      "status": "email_sent",
+      "applied_at": "2026-04-09T16:18:43.497451"
+    },
+    {
+      "id": "2a789e34-ffa4-401b-b864-953bc33bbdc3",
+      "title": "Technicien Informatique proximité VIP H/F",
+      "company": "Econocom",
+      "contact_name": "Blandine BERERD",
+      "contact_email": "blandine.bererd@econocom.com",
+      "status": "email_sent",
+      "applied_at": "2026-04-09T16:17:06.571393"
+    },
+    {
+      "id": "2370fa41-dfd1-4b07-be5e-94409d50bd65",
+      "title": "Coordinateur pilotage parc & stocks IT - Service Now (IT) / Freelance",
+      "company": "INSYCO",
+      "contact_name": "Devenir Chargée De Recrutement",
+      "contact_email": "devenir.recrutement@insyco.com",
+      "status": "email_sent",
+      "applied_at": "2026-04-09T16:15:16.619883"
     }
   ],
   "activity": [
     {
-      "event_type": "error",
-      "message": "Email failed: SMTP authentication failed: (535, b'5.7.8 Authentication failed')",
-      "created_at": "2026-04-07T19:11:00.784294"
+      "event_type": "email_send",
+      "message": "Email sent to suzanne.boucher@azurreo.com",
+      "created_at": "2026-04-09T16:27:02.154299"
     },
     {
       "event_type": "cv_gen",
-      "message": "CV generated: /Users/marvin/Portfolio/Mon portfolio/JobFlow-AI/storage/generated_cvs/CV_Marvin_CEVALogistics_2cb4aea8.html",
-      "created_at": "2026-04-07T19:11:00.784274"
+      "message": "CV generated: /Users/marvin/Portfolio/Mon portfolio/JobFlow-AI/storage/generated_cvs/CV_Marvin_AZURREO_de0ac046.html",
+      "created_at": "2026-04-09T16:27:02.154282"
     },
     {
-      "event_type": "error",
-      "message": "Email failed: SMTP authentication failed: (535, b'5.7.8 Authentication failed')",
-      "created_at": "2026-04-07T19:10:54.396227"
-    },
-    {
-      "event_type": "cv_gen",
-      "message": "CV generated: /Users/marvin/Portfolio/Mon portfolio/JobFlow-AI/storage/generated_cvs/CV_Marvin_Amazon Data Services France SAS_614da076.html",
-      "created_at": "2026-04-07T19:10:54.396207"
-    },
-    {
-      "event_type": "error",
-      "message": "Email failed: SMTP authentication failed: (535, b'5.7.8 Authentication failed')",
-      "created_at": "2026-04-07T19:10:48.014570"
+      "event_type": "email_send",
+      "message": "Email sent to recrutement@seatpi.com",
+      "created_at": "2026-04-09T16:26:42.468469"
     },
     {
       "event_type": "cv_gen",
-      "message": "CV generated: /Users/marvin/Portfolio/Mon portfolio/JobFlow-AI/storage/generated_cvs/CV_Marvin_Lùkla_9a6f2bd0.html",
-      "created_at": "2026-04-07T19:10:48.014550"
+      "message": "CV generated: /Users/marvin/Portfolio/Mon portfolio/JobFlow-AI/storage/generated_cvs/CV_Marvin_SEATPI_c137f255.html",
+      "created_at": "2026-04-09T16:26:42.468453"
     },
     {
-      "event_type": "error",
-      "message": "Email failed: SMTP authentication failed: (535, b'5.7.8 Authentication failed')",
-      "created_at": "2026-04-07T19:10:41.357417"
-    },
-    {
-      "event_type": "cv_gen",
-      "message": "CV generated: /Users/marvin/Portfolio/Mon portfolio/JobFlow-AI/storage/generated_cvs/CV_Marvin_CEVALogistics_e4f5b5b4.html",
-      "created_at": "2026-04-07T19:10:41.357404"
-    },
-    {
-      "event_type": "error",
-      "message": "Email failed: SMTP authentication failed: (535, b'5.7.8 Authentication failed')",
-      "created_at": "2026-04-07T19:10:35.107320"
+      "event_type": "email_send",
+      "message": "Email sent to marion.vallet@seatpi.com",
+      "created_at": "2026-04-09T16:26:35.151408"
     },
     {
       "event_type": "cv_gen",
-      "message": "CV generated: /Users/marvin/Portfolio/Mon portfolio/JobFlow-AI/storage/generated_cvs/CV_Marvin_Actual Talent Paris Ingénierie 3_e43bb6c4.html",
-      "created_at": "2026-04-07T19:10:35.107307"
+      "message": "CV generated: /Users/marvin/Portfolio/Mon portfolio/JobFlow-AI/storage/generated_cvs/CV_Marvin_SEATPI_36e17214.html",
+      "created_at": "2026-04-09T16:26:35.151385"
     },
     {
-      "event_type": "error",
-      "message": "Email failed: SMTP authentication failed: (535, b'5.7.8 Authentication failed')",
-      "created_at": "2026-04-07T19:10:28.815370"
-    },
-    {
-      "event_type": "cv_gen",
-      "message": "CV generated: /Users/marvin/Portfolio/Mon portfolio/JobFlow-AI/storage/generated_cvs/CV_Marvin_Actual Talent Paris Ingénierie 3_92bc4aec.html",
-      "created_at": "2026-04-07T19:10:28.815357"
-    },
-    {
-      "event_type": "error",
-      "message": "Email failed: SMTP authentication failed: (535, b'5.7.8 Authentication failed')",
-      "created_at": "2026-04-07T19:10:21.608885"
+      "event_type": "email_send",
+      "message": "Email sent to yola.choisi@yglconsulting.com",
+      "created_at": "2026-04-09T16:26:19.039096"
     },
     {
       "event_type": "cv_gen",
-      "message": "CV generated: /Users/marvin/Portfolio/Mon portfolio/JobFlow-AI/storage/generated_cvs/CV_Marvin_QR Versailles IT_7259cade.html",
-      "created_at": "2026-04-07T19:10:21.608870"
+      "message": "CV generated: /Users/marvin/Portfolio/Mon portfolio/JobFlow-AI/storage/generated_cvs/CV_Marvin_YGL consulting_7353eeba.html",
+      "created_at": "2026-04-09T16:26:19.039067"
     },
     {
-      "event_type": "error",
-      "message": "Email failed: SMTP authentication failed: (535, b'5.7.8 Authentication failed')",
-      "created_at": "2026-04-07T19:10:14.258156"
-    },
-    {
-      "event_type": "cv_gen",
-      "message": "CV generated: /Users/marvin/Portfolio/Mon portfolio/JobFlow-AI/storage/generated_cvs/CV_Marvin_AZURREO_08153eda.html",
-      "created_at": "2026-04-07T19:10:14.258140"
-    },
-    {
-      "event_type": "error",
-      "message": "Email failed: SMTP authentication failed: (535, b'5.7.8 Authentication failed')",
-      "created_at": "2026-04-07T19:10:07.910568"
+      "event_type": "email_send",
+      "message": "Email sent to marc.augusti@leongrosse.com",
+      "created_at": "2026-04-09T16:26:08.798134"
     },
     {
       "event_type": "cv_gen",
-      "message": "CV generated: /Users/marvin/Portfolio/Mon portfolio/JobFlow-AI/storage/generated_cvs/CV_Marvin_Flexify_bc408b58.html",
-      "created_at": "2026-04-07T19:10:07.910554"
+      "message": "CV generated: /Users/marvin/Portfolio/Mon portfolio/JobFlow-AI/storage/generated_cvs/CV_Marvin_Leon Grosse_4c87919d.html",
+      "created_at": "2026-04-09T16:26:08.798111"
     },
     {
-      "event_type": "error",
-      "message": "Email failed: SMTP authentication failed: (535, b'5.7.8 Authentication failed')",
-      "created_at": "2026-04-07T19:10:01.143519"
+      "event_type": "email_send",
+      "message": "Email sent to patrick.grang@homebox.com",
+      "created_at": "2026-04-09T16:25:59.186066"
     },
     {
       "event_type": "cv_gen",
-      "message": "CV generated: /Users/marvin/Portfolio/Mon portfolio/JobFlow-AI/storage/generated_cvs/CV_Marvin_SEATPI_d77c5c93.html",
-      "created_at": "2026-04-07T19:10:01.143507"
+      "message": "CV generated: /Users/marvin/Portfolio/Mon portfolio/JobFlow-AI/storage/generated_cvs/CV_Marvin_Homebox_12fc4212.html",
+      "created_at": "2026-04-09T16:25:59.186045"
+    },
+    {
+      "event_type": "email_send",
+      "message": "Email sent to loic.jordan@grandparisamenagement.com",
+      "created_at": "2026-04-09T16:25:48.711442"
+    },
+    {
+      "event_type": "cv_gen",
+      "message": "CV generated: /Users/marvin/Portfolio/Mon portfolio/JobFlow-AI/storage/generated_cvs/CV_Marvin_Grand Paris Aménagement_b01e4a5e.html",
+      "created_at": "2026-04-09T16:25:48.711418"
+    },
+    {
+      "event_type": "email_send",
+      "message": "Email sent to pierre.freyche@umantic.com",
+      "created_at": "2026-04-09T16:24:16.428794"
+    },
+    {
+      "event_type": "cv_gen",
+      "message": "CV generated: /Users/marvin/Portfolio/Mon portfolio/JobFlow-AI/storage/generated_cvs/CV_Marvin_UMANTIC_e80368d6.html",
+      "created_at": "2026-04-09T16:24:16.428772"
+    },
+    {
+      "event_type": "email_send",
+      "message": "Email sent to severine.houdayer@umantictechnologies.com",
+      "created_at": "2026-04-09T16:24:03.292568"
+    },
+    {
+      "event_type": "cv_gen",
+      "message": "CV generated: /Users/marvin/Portfolio/Mon portfolio/JobFlow-AI/storage/generated_cvs/CV_Marvin_UMANTIC TECHNOLOGIES_66ec0cbd.html",
+      "created_at": "2026-04-09T16:24:03.292545"
+    },
+    {
+      "event_type": "email_send",
+      "message": "Email sent to manuelle.zanzouri@septodont.com",
+      "created_at": "2026-04-09T16:23:47.351256"
+    },
+    {
+      "event_type": "cv_gen",
+      "message": "CV generated: /Users/marvin/Portfolio/Mon portfolio/JobFlow-AI/storage/generated_cvs/CV_Marvin_Septodont_e6baa6fd.html",
+      "created_at": "2026-04-09T16:23:47.351237"
+    },
+    {
+      "event_type": "email_send",
+      "message": "Email sent to recrutement@marionnaud.com",
+      "created_at": "2026-04-09T16:21:53.773002"
+    },
+    {
+      "event_type": "cv_gen",
+      "message": "CV generated: /Users/marvin/Portfolio/Mon portfolio/JobFlow-AI/storage/generated_cvs/CV_Marvin_Marionnaud_14d29ebf.html",
+      "created_at": "2026-04-09T16:21:53.772980"
+    },
+    {
+      "event_type": "email_send",
+      "message": "Email sent to barbara.obadia@dfm.com",
+      "created_at": "2026-04-09T16:20:28.965473"
+    },
+    {
+      "event_type": "cv_gen",
+      "message": "CV generated: /Users/marvin/Portfolio/Mon portfolio/JobFlow-AI/storage/generated_cvs/CV_Marvin_DFM_cc7b93bb.html",
+      "created_at": "2026-04-09T16:20:28.965451"
+    },
+    {
+      "event_type": "email_send",
+      "message": "Email sent to chamseddine.ould@quodagisconsulting.com",
+      "created_at": "2026-04-09T16:18:56.329515"
+    },
+    {
+      "event_type": "cv_gen",
+      "message": "CV generated: /Users/marvin/Portfolio/Mon portfolio/JobFlow-AI/storage/generated_cvs/CV_Marvin_Quodagis Consulting_9a960a09.html",
+      "created_at": "2026-04-09T16:18:56.329492"
+    },
+    {
+      "event_type": "email_send",
+      "message": "Email sent to auriane.tahon@auranext.com",
+      "created_at": "2026-04-09T16:18:43.500318"
+    },
+    {
+      "event_type": "cv_gen",
+      "message": "CV generated: /Users/marvin/Portfolio/Mon portfolio/JobFlow-AI/storage/generated_cvs/CV_Marvin_AURANEXT_55888445.html",
+      "created_at": "2026-04-09T16:18:43.500296"
+    },
+    {
+      "event_type": "email_send",
+      "message": "Email sent to blandine.bererd@econocom.com",
+      "created_at": "2026-04-09T16:17:06.574750"
+    },
+    {
+      "event_type": "cv_gen",
+      "message": "CV generated: /Users/marvin/Portfolio/Mon portfolio/JobFlow-AI/storage/generated_cvs/CV_Marvin_Econocom_229ad6a7.html",
+      "created_at": "2026-04-09T16:17:06.574728"
     }
   ]
 }
