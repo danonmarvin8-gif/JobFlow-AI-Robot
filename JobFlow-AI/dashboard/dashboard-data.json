@@ -1,13 +1,13 @@
 {
-  "last_updated": "2026-07-23T08:24:10.224693+00:00",
+  "last_updated": "2026-07-23T10:49:13.537991+00:00",
   "campaign_active": true,
   "stats": {
-    "offers_scraped": 0,
+    "offers_scraped": 10,
     "emails_sent": 0,
     "emails_opened": 0,
     "replies": 0,
     "pending": 0,
-    "errors": 0,
+    "errors": 10,
     "cv_generated": 0
   },
   "pipeline": [
@@ -17,7 +17,355 @@
     0,
     0
   ],
-  "offers": [],
-  "applications": [],
-  "activity": []
+  "offers": [
+    {
+      "id": "1b1ec4ed-df8a-48c7-bb9b-da5578dbcaeb",
+      "title": "Technicien de support informatique en alternance H/F",
+      "company": "Entreprise",
+      "location": "Paris 12e",
+      "offer_type": "alternance",
+      "source_platform": "linkedin",
+      "source_url": "https://fr.linkedin.com/jobs/view/technicien-de-support-informatique-en-alternance-h-f-at-alice-bob-4426417742",
+      "required_skills": [
+        "Helpdesk"
+      ],
+      "posted_at": "2026-07-23T00:00:00",
+      "scraped_at": "2026-07-23T10:44:44.437467"
+    },
+    {
+      "id": "01ba7897-467c-49b6-97c9-c279040b68fe",
+      "title": "Technicien système réseau Informatique- Alternance",
+      "company": "Entreprise",
+      "location": "Paris",
+      "offer_type": "alternance",
+      "source_platform": "linkedin",
+      "source_url": "https://fr.linkedin.com/jobs/view/technicien-syst%C3%A8me-r%C3%A9seau-informatique-alternance-at-it-id-4432560387",
+      "required_skills": [
+        "Réseau"
+      ],
+      "posted_at": "2026-07-23T00:00:00",
+      "scraped_at": "2026-07-23T10:44:44.436646"
+    },
+    {
+      "id": "e7afa5a4-b1f6-4b7f-86ca-c6696f1d1543",
+      "title": "Technicien Support Informatique Niveau 1 (H/F)",
+      "company": "Alternance",
+      "location": "Paris 12e",
+      "offer_type": "alternance",
+      "source_platform": "linkedin",
+      "source_url": "https://fr.linkedin.com/jobs/view/technicien-support-informatique-niveau-1-h-f-alternance-at-institut-f2i-4366022127",
+      "required_skills": [
+        "Helpdesk"
+      ],
+      "posted_at": "2026-07-23T00:00:00",
+      "scraped_at": "2026-07-23T10:44:44.435818"
+    },
+    {
+      "id": "f331067c-34b0-47e3-995c-3dee31c7fda9",
+      "title": "Ingénieur support (H/F)",
+      "company": "Davidson consulting",
+      "location": "Paris",
+      "offer_type": "alternance",
+      "source_platform": "linkedin",
+      "source_url": "https://fr.linkedin.com/jobs/view/ing%C3%A9nieur-support-h-f-at-davidson-consulting-4402520318",
+      "required_skills": [],
+      "posted_at": "2026-07-23T00:00:00",
+      "scraped_at": "2026-07-23T10:44:44.434765"
+    },
+    {
+      "id": "2eeeba8d-1bef-4208-a011-19652b5a53ec",
+      "title": "Apprenti – Technicien Informatique Junior BTS SIO – SISR",
+      "company": "Entreprise",
+      "location": "PARIS",
+      "offer_type": "alternance",
+      "source_platform": "linkedin",
+      "source_url": "https://fr.linkedin.com/jobs/view/apprenti-%E2%80%93-technicien-informatique-junior-bts-sio-%E2%80%93-sisr-at-alternance-professionnelle-4430752419",
+      "required_skills": [],
+      "posted_at": "2026-07-23T00:00:00",
+      "scraped_at": "2026-07-23T10:44:44.433701"
+    },
+    {
+      "id": "86caf0e7-7e7b-4095-936f-d4e3d41617e7",
+      "title": "Sahar recrute pour des postes de Alternance Support IT ...",
+      "company": "Sahar",
+      "location": "Ville de Paris",
+      "offer_type": "alternance",
+      "source_platform": "linkedin",
+      "source_url": "https://fr.linkedin.com/jobs/view/alternance-support-it-at-sahar-4436708051",
+      "required_skills": [
+        "MacOS",
+        "VPN",
+        "ITIL",
+        "N1",
+        "N2",
+        "Python",
+        "Bash",
+        "Réseau"
+      ],
+      "posted_at": "2026-07-23T00:00:00",
+      "scraped_at": "2026-07-23T10:44:44.432631"
+    },
+    {
+      "id": "bc17f818-2eb6-4153-86f6-b7d385c9a544",
+      "title": "Technicien Support Informatique en Alternance H/F",
+      "company": "Cramif",
+      "location": "Paris",
+      "offer_type": "alternance",
+      "source_platform": "linkedin",
+      "source_url": "https://fr.linkedin.com/jobs/view/technicien-support-informatique-en-alternance-h-f-at-cramif-4434894561",
+      "required_skills": [
+        "Windows",
+        "Windows 11",
+        "Active Directory",
+        "DHCP",
+        "DNS",
+        "VPN",
+        "Réseau"
+      ],
+      "posted_at": "2026-07-23T00:00:00",
+      "scraped_at": "2026-07-23T10:44:44.431559"
+    },
+    {
+      "id": "6e7752bb-78ba-4ebd-ab61-3922fc9cbd93",
+      "title": "Alternance Technicien informatique chez XEFI",
+      "company": "M2I",
+      "location": "Ville de Paris",
+      "offer_type": "alternance",
+      "source_platform": "linkedin",
+      "source_url": "https://fr.linkedin.com/jobs/view/alternance-technicien-informatique-chez-xefi-at-m2i-4438479400",
+      "required_skills": [
+        "Réseau"
+      ],
+      "posted_at": "2026-07-23T00:00:00",
+      "scraped_at": "2026-07-23T10:44:44.430477"
+    },
+    {
+      "id": "403a955c-34cb-4925-b8e4-bf713a5f0713",
+      "title": "APPRENTICE Alternance technicien support IT (H/F)",
+      "company": "Howmet Aerospace",
+      "location": "Gennevilliers",
+      "offer_type": "alternance",
+      "source_platform": "linkedin",
+      "source_url": "https://fr.linkedin.com/jobs/view/apprentice-alternance-technicien-support-it-h-f-at-howmet-aerospace-4392391850",
+      "required_skills": [
+        "Windows",
+        "Réseau"
+      ],
+      "posted_at": "2026-07-23T00:00:00",
+      "scraped_at": "2026-07-23T10:44:44.429318"
+    },
+    {
+      "id": "19e0ce07-f60c-40db-a73c-027d71c153c8",
+      "title": "IT Support Specialist",
+      "company": "Kolecto",
+      "location": "Paris",
+      "offer_type": "alternance",
+      "source_platform": "linkedin",
+      "source_url": "https://fr.linkedin.com/jobs/view/it-support-specialist-alternance-h-f-x-at-kolecto-4435349131",
+      "required_skills": [
+        "Windows",
+        "MacOS",
+        "DHCP",
+        "DNS",
+        "VLAN",
+        "Réseau"
+      ],
+      "posted_at": "2026-07-23T00:00:00",
+      "scraped_at": "2026-07-23T10:44:44.427851"
+    }
+  ],
+  "applications": [
+    {
+      "id": "03fa0088-f484-48ad-9892-f30ef05f91da",
+      "title": "Technicien de support informatique en alternance H/F",
+      "company": "Entreprise",
+      "contact_name": "Maëlys RIVAT",
+      "contact_email": "maelys.rivat@entreprise.com",
+      "status": "error",
+      "applied_at": null
+    },
+    {
+      "id": "e6bfe7b9-8d60-4a13-84f8-b5fd936dc60c",
+      "title": "Technicien système réseau Informatique- Alternance",
+      "company": "Entreprise",
+      "contact_name": "Stella Lubin",
+      "contact_email": "stella.lubin@entreprise.com",
+      "status": "error",
+      "applied_at": null
+    },
+    {
+      "id": "06d5aaae-a49c-41c8-8c02-f08887e70e07",
+      "title": "Technicien Support Informatique Niveau 1 (H/F)",
+      "company": "Alternance",
+      "contact_name": "Margaux Gendre",
+      "contact_email": "margaux.gendre@alternance.com",
+      "status": "error",
+      "applied_at": null
+    },
+    {
+      "id": "fc3acc9a-b597-4dbb-bb8d-86315fe8e37c",
+      "title": "Ingénieur support (H/F)",
+      "company": "Davidson consulting",
+      "contact_name": "Diana Ibragimov",
+      "contact_email": "diana.ibragimov@davidsonconsulting.com",
+      "status": "error",
+      "applied_at": null
+    },
+    {
+      "id": "0a953278-6827-4d92-85e9-6561d45fafb1",
+      "title": "Apprenti – Technicien Informatique Junior BTS SIO – SISR",
+      "company": "Entreprise",
+      "contact_name": "Maëlys RIVAT",
+      "contact_email": "maelys.rivat@entreprise.com",
+      "status": "error",
+      "applied_at": null
+    },
+    {
+      "id": "cc66f482-8e4b-4795-b8e1-73041a67159e",
+      "title": "Sahar recrute pour des postes de Alternance Support IT ...",
+      "company": "Sahar",
+      "contact_name": "Yassine BEN",
+      "contact_email": "yassine.ben@sahar.com",
+      "status": "error",
+      "applied_at": null
+    },
+    {
+      "id": "5852a34f-afc7-4bea-b378-8fc2fd8ecdab",
+      "title": "Technicien Support Informatique en Alternance H/F",
+      "company": "Cramif",
+      "contact_name": "Ghislain NORMAND",
+      "contact_email": "ghislain.normand@cramif.com",
+      "status": "error",
+      "applied_at": null
+    },
+    {
+      "id": "89ab7aec-9c0a-4d02-a323-3c426d0ab32b",
+      "title": "Alternance Technicien informatique chez XEFI",
+      "company": "M2I",
+      "contact_name": "Élie Toupart",
+      "contact_email": "elie.toupart@m2i.com",
+      "status": "error",
+      "applied_at": null
+    },
+    {
+      "id": "9871ea33-2f15-40ee-a910-e2ca4e75faf7",
+      "title": "APPRENTICE Alternance technicien support IT (H/F)",
+      "company": "Howmet Aerospace",
+      "contact_name": "Stéphane Langlet",
+      "contact_email": "stephane.langlet@howmetaerospace.com",
+      "status": "error",
+      "applied_at": null
+    },
+    {
+      "id": "dd6622a4-3932-4d1f-8032-247993c73311",
+      "title": "IT Support Specialist",
+      "company": "Kolecto",
+      "contact_name": "Charlotte Mosnier",
+      "contact_email": "charlotte.mosnier@kolecto.com",
+      "status": "error",
+      "applied_at": null
+    }
+  ],
+  "activity": [
+    {
+      "event_type": "error",
+      "message": "Email failed: SMTP authentication failed: (535, b'5.7.8 Authentication failed')",
+      "created_at": "2026-07-23T10:49:08.511224"
+    },
+    {
+      "event_type": "cv_gen",
+      "message": "CV generated: /home/runner/work/JobFlow-AI-Robot/JobFlow-AI-Robot/JobFlow-AI/storage/generated_cvs/CV_Marvin_Entreprise_1b1ec4ed.pdf",
+      "created_at": "2026-07-23T10:49:08.511216"
+    },
+    {
+      "event_type": "error",
+      "message": "Email failed: SMTP authentication failed: (535, b'5.7.8 Authentication failed')",
+      "created_at": "2026-07-23T10:48:51.517751"
+    },
+    {
+      "event_type": "cv_gen",
+      "message": "CV generated: /home/runner/work/JobFlow-AI-Robot/JobFlow-AI-Robot/JobFlow-AI/storage/generated_cvs/CV_Marvin_Entreprise_01ba7897.pdf",
+      "created_at": "2026-07-23T10:48:51.517743"
+    },
+    {
+      "event_type": "error",
+      "message": "Email failed: SMTP authentication failed: (535, b'5.7.8 Authentication failed')",
+      "created_at": "2026-07-23T10:48:34.842941"
+    },
+    {
+      "event_type": "cv_gen",
+      "message": "CV generated: /home/runner/work/JobFlow-AI-Robot/JobFlow-AI-Robot/JobFlow-AI/storage/generated_cvs/CV_Marvin_Alternance_e7afa5a4.pdf",
+      "created_at": "2026-07-23T10:48:34.842933"
+    },
+    {
+      "event_type": "error",
+      "message": "Email failed: SMTP authentication failed: (535, b'5.7.8 Authentication failed')",
+      "created_at": "2026-07-23T10:48:17.324028"
+    },
+    {
+      "event_type": "cv_gen",
+      "message": "CV generated: /home/runner/work/JobFlow-AI-Robot/JobFlow-AI-Robot/JobFlow-AI/storage/generated_cvs/CV_Marvin_Davidson consulting_f331067c.pdf",
+      "created_at": "2026-07-23T10:48:17.324020"
+    },
+    {
+      "event_type": "error",
+      "message": "Email failed: SMTP authentication failed: (535, b'5.7.8 Authentication failed')",
+      "created_at": "2026-07-23T10:47:58.968880"
+    },
+    {
+      "event_type": "cv_gen",
+      "message": "CV generated: /home/runner/work/JobFlow-AI-Robot/JobFlow-AI-Robot/JobFlow-AI/storage/generated_cvs/CV_Marvin_Entreprise_2eeeba8d.pdf",
+      "created_at": "2026-07-23T10:47:58.968871"
+    },
+    {
+      "event_type": "error",
+      "message": "Email failed: SMTP authentication failed: (535, b'5.7.8 Authentication failed')",
+      "created_at": "2026-07-23T10:47:42.093691"
+    },
+    {
+      "event_type": "cv_gen",
+      "message": "CV generated: /home/runner/work/JobFlow-AI-Robot/JobFlow-AI-Robot/JobFlow-AI/storage/generated_cvs/CV_Marvin_Sahar_86caf0e7.pdf",
+      "created_at": "2026-07-23T10:47:42.093682"
+    },
+    {
+      "event_type": "error",
+      "message": "Email failed: SMTP authentication failed: (535, b'5.7.8 Authentication failed')",
+      "created_at": "2026-07-23T10:46:03.170918"
+    },
+    {
+      "event_type": "cv_gen",
+      "message": "CV generated: /home/runner/work/JobFlow-AI-Robot/JobFlow-AI-Robot/JobFlow-AI/storage/generated_cvs/CV_Marvin_Cramif_bc17f818.pdf",
+      "created_at": "2026-07-23T10:46:03.170909"
+    },
+    {
+      "event_type": "error",
+      "message": "Email failed: SMTP authentication failed: (535, b'5.7.8 Authentication failed')",
+      "created_at": "2026-07-23T10:45:47.732189"
+    },
+    {
+      "event_type": "cv_gen",
+      "message": "CV generated: /home/runner/work/JobFlow-AI-Robot/JobFlow-AI-Robot/JobFlow-AI/storage/generated_cvs/CV_Marvin_M2I_6e7752bb.pdf",
+      "created_at": "2026-07-23T10:45:47.732180"
+    },
+    {
+      "event_type": "error",
+      "message": "Email failed: SMTP authentication failed: (535, b'5.7.8 Authentication failed')",
+      "created_at": "2026-07-23T10:45:25.152695"
+    },
+    {
+      "event_type": "cv_gen",
+      "message": "CV generated: /home/runner/work/JobFlow-AI-Robot/JobFlow-AI-Robot/JobFlow-AI/storage/generated_cvs/CV_Marvin_Howmet Aerospace_403a955c.pdf",
+      "created_at": "2026-07-23T10:45:25.152686"
+    },
+    {
+      "event_type": "error",
+      "message": "Email failed: SMTP authentication failed: (535, b'5.7.8 Authentication failed')",
+      "created_at": "2026-07-23T10:45:10.741087"
+    },
+    {
+      "event_type": "cv_gen",
+      "message": "CV generated: /home/runner/work/JobFlow-AI-Robot/JobFlow-AI-Robot/JobFlow-AI/storage/generated_cvs/CV_Marvin_Kolecto_19e0ce07.pdf",
+      "created_at": "2026-07-23T10:45:10.741078"
+    }
+  ]
 }
