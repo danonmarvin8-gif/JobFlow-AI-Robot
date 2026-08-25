@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-24T20:56:28.232486+00:00",
+  "last_updated": "2026-08-25T06:43:20.386457+00:00",
   "campaign_active": true,
   "stats": {
     "offers_scraped": 10,
@@ -19,43 +19,45 @@
   ],
   "offers": [
     {
-      "id": "5e0c1e53-f12f-4ee9-bafa-d4103e32c9b2",
-      "title": "Technicien Support Informatique Niveau 1 (H/F)",
-      "company": "Alternance",
+      "id": "6d1f4352-0927-408f-a5a6-8f117c54e41f",
+      "title": "Deloitte recrute pour des postes de Stage Support IT F/H ...",
+      "company": "Entreprise",
       "location": "Paris",
-      "offer_type": "alternance",
+      "offer_type": "stage",
       "source_platform": "linkedin",
-      "source_url": "https://fr.linkedin.com/jobs/view/technicien-support-informatique-niveau-1-h-f-alternance-at-institut-f2i-4385012302",
+      "source_url": "https://fr.linkedin.com/jobs/view/stage-support-it-f-h-at-deloitte-4434689127",
       "required_skills": [],
-      "posted_at": "2026-08-24T00:00:00",
-      "scraped_at": "2026-08-24T20:53:25.010697"
+      "posted_at": "2026-08-25T00:00:00",
+      "scraped_at": "2026-08-25T06:39:44.645697"
     },
     {
-      "id": "8efcab4c-39a7-40a1-ab40-553855b3db83",
+      "id": "577daa37-6d66-4457-874d-1798b9bb2a5e",
       "title": "Stage Ingénieur Hardware",
       "company": "IT Support (H/F)",
       "location": "Paris",
       "offer_type": "alternance",
       "source_platform": "linkedin",
-      "source_url": "https://fr.linkedin.com/jobs/view/stage-ing%C3%A9nieur-hardware-it-support-h-f-canada-at-eic-experience-internship-canada-4456811190",
+      "source_url": "https://fr.linkedin.com/jobs/view/stage-ing%C3%A9nieur-hardware-it-support-h-f-canada-at-eic-experience-internship-canada-4456635916",
       "required_skills": [],
-      "posted_at": "2026-08-24T00:00:00",
-      "scraped_at": "2026-08-24T20:53:25.009783"
+      "posted_at": "2026-08-25T00:00:00",
+      "scraped_at": "2026-08-25T06:39:44.644494"
     },
     {
-      "id": "88586e52-d391-4df2-bce5-27d327529886",
+      "id": "3e9e478c-282e-499c-bf59-e4197717f72d",
       "title": "Technicien Support Informatique Niveau 2&3 (H/F)",
       "company": "Alternance",
       "location": "Paris",
       "offer_type": "alternance",
       "source_platform": "linkedin",
-      "source_url": "https://fr.linkedin.com/jobs/view/technicien-support-informatique-niveau-2-3-h-f-alternance-at-institut-f2i-4370422157",
-      "required_skills": [],
-      "posted_at": "2026-08-24T00:00:00",
-      "scraped_at": "2026-08-24T20:53:25.008600"
+      "source_url": "https://fr.linkedin.com/jobs/view/technicien-support-informatique-niveau-2-3-h-f-alternance-at-institut-f2i-4377280221",
+      "required_skills": [
+        "Réseau"
+      ],
+      "posted_at": "2026-08-25T00:00:00",
+      "scraped_at": "2026-08-25T06:39:44.643286"
     },
     {
-      "id": "071f41b4-14c5-491a-ad0a-34723287af1a",
+      "id": "2ae7af41-a457-4aca-87e6-a8ac1354ab86",
       "title": "Alternance",
       "company": "Technicien IT (H/F)",
       "location": "Paris",
@@ -67,11 +69,11 @@
         "N1",
         "N2"
       ],
-      "posted_at": "2026-08-24T00:00:00",
-      "scraped_at": "2026-08-24T20:53:25.007402"
+      "posted_at": "2026-08-25T00:00:00",
+      "scraped_at": "2026-08-25T06:39:44.642098"
     },
     {
-      "id": "5755e2a3-25b7-43d1-9f02-0e6450789331",
+      "id": "68d13a10-9c5b-4fa0-aaef-3e6ae4a685b8",
       "title": "Technicien Système & Réseau",
       "company": "Alternance (H/F)",
       "location": "Paris",
@@ -81,11 +83,11 @@
       "required_skills": [
         "Réseau"
       ],
-      "posted_at": "2026-08-24T00:00:00",
-      "scraped_at": "2026-08-24T20:53:25.006202"
+      "posted_at": "2026-08-25T00:00:00",
+      "scraped_at": "2026-08-25T06:39:44.640904"
     },
     {
-      "id": "cb39cc4c-a58f-40c2-9028-444e98bd386b",
+      "id": "94eb9362-187e-4e55-bf2e-9e65f26de382",
       "title": "Alternance",
       "company": "FM Logistic",
       "location": "Longueil-Sainte-Marie",
@@ -93,11 +95,11 @@
       "source_platform": "linkedin",
       "source_url": "https://fr.linkedin.com/jobs/view/alternance-technicien-support-utilisateurs-h-f-at-fm-logistic-4397558924",
       "required_skills": [],
-      "posted_at": "2026-08-24T00:00:00",
-      "scraped_at": "2026-08-24T20:53:25.004967"
+      "posted_at": "2026-08-25T00:00:00",
+      "scraped_at": "2026-08-25T06:39:44.639670"
     },
     {
-      "id": "2e60dab5-37f1-4d20-85d6-b0ca758275fa",
+      "id": "5867fd64-32b6-4476-969a-6cc054b52166",
       "title": "Stage Stage",
       "company": "Les Bons Artisans",
       "location": "Paris",
@@ -108,25 +110,23 @@
         "Windows",
         "Réseau"
       ],
-      "posted_at": "2026-08-24T00:00:00",
-      "scraped_at": "2026-08-24T20:53:25.003739"
+      "posted_at": "2026-08-25T00:00:00",
+      "scraped_at": "2026-08-25T06:39:44.638432"
     },
     {
-      "id": "e3093ca0-f418-48ab-8dde-096bca26ede6",
+      "id": "d91acd83-e03b-4445-a08d-148ee77ecf4d",
       "title": "Alternance Technicien informatique chez XEFI",
-      "company": "Twikit",
-      "location": "Cases-de-Pène",
+      "company": "Optimum Tracker",
+      "location": "Meyreuil",
       "offer_type": "alternance",
       "source_platform": "linkedin",
       "source_url": "https://fr.linkedin.com/jobs/view/alternance-technicien-informatique-chez-xefi-at-m2i-4438479400",
-      "required_skills": [
-        "Windows"
-      ],
-      "posted_at": "2026-08-24T00:00:00",
-      "scraped_at": "2026-08-24T20:53:25.002528"
+      "required_skills": [],
+      "posted_at": "2026-08-25T00:00:00",
+      "scraped_at": "2026-08-25T06:39:44.637178"
     },
     {
-      "id": "c8911225-50f0-4bd4-a261-9fe9dfff3229",
+      "id": "d2f0b6a6-716a-4156-8dce-314652b03787",
       "title": "IT Support Specialist",
       "company": "Kolecto",
       "location": "Paris",
@@ -141,11 +141,11 @@
         "VLAN",
         "Réseau"
       ],
-      "posted_at": "2026-08-24T00:00:00",
-      "scraped_at": "2026-08-24T20:53:25.001241"
+      "posted_at": "2026-08-25T00:00:00",
+      "scraped_at": "2026-08-25T06:39:44.635769"
     },
     {
-      "id": "9f651bac-f453-4432-95f3-5be657c2a1eb",
+      "id": "27dbcd5d-0888-42cc-b013-bec4553629a4",
       "title": "APPRENTICE Alternance technicien support IT (H/F)",
       "company": "Howmet Aerospace",
       "location": "Gennevilliers",
@@ -156,22 +156,22 @@
         "Windows",
         "Réseau"
       ],
-      "posted_at": "2026-08-24T00:00:00",
-      "scraped_at": "2026-08-24T20:53:24.999537"
+      "posted_at": "2026-08-25T00:00:00",
+      "scraped_at": "2026-08-25T06:39:44.634232"
     }
   ],
   "applications": [
     {
-      "id": "d4b1d090-c7af-4cf5-bf51-b4dd6aa6f63c",
-      "title": "Technicien Support Informatique Niveau 1 (H/F)",
-      "company": "Alternance",
-      "contact_name": "Julie TORRES",
-      "contact_email": "julie.torres@alternance.com",
+      "id": "102b23a7-60e3-443a-8bc9-ccd14383c7af",
+      "title": "Deloitte recrute pour des postes de Stage Support IT F/H ...",
+      "company": "Entreprise",
+      "contact_name": "Stella Lubin",
+      "contact_email": "stella.lubin@entreprise.com",
       "status": "error",
       "applied_at": null
     },
     {
-      "id": "6868562d-ed5c-466f-8b60-7a7916668b19",
+      "id": "684fb80d-8db4-43ac-bc8a-76d85dfa8637",
       "title": "Stage Ingénieur Hardware",
       "company": "IT Support (H/F)",
       "contact_name": "Service Recrutement",
@@ -180,16 +180,16 @@
       "applied_at": null
     },
     {
-      "id": "0a1be45e-2e3d-4264-a1ba-55d7e3d61e12",
+      "id": "d70b111b-2543-4aa6-8021-3e98709777e7",
       "title": "Technicien Support Informatique Niveau 2&3 (H/F)",
       "company": "Alternance",
-      "contact_name": "Julie TORRES",
-      "contact_email": "julie.torres@alternance.com",
+      "contact_name": "Élie Toupart",
+      "contact_email": "elie.toupart@alternance.com",
       "status": "error",
       "applied_at": null
     },
     {
-      "id": "7d221175-3837-443c-95f0-786c2a5c71ef",
+      "id": "5d8bdfb1-b13f-463c-b45b-ede895b06c8d",
       "title": "Alternance",
       "company": "Technicien IT (H/F)",
       "contact_name": "Service Recrutement",
@@ -198,7 +198,7 @@
       "applied_at": null
     },
     {
-      "id": "19f02d48-a6dc-4157-baed-cac1048acce5",
+      "id": "da6661fb-2c19-416c-bdbd-95f7ca561f37",
       "title": "Technicien Système & Réseau",
       "company": "Alternance (H/F)",
       "contact_name": "Myriam Humbrecht",
@@ -207,7 +207,7 @@
       "applied_at": null
     },
     {
-      "id": "af1a2b1c-2244-451e-b8a9-55820b12f98d",
+      "id": "6d0b5e39-1e54-4f54-bb81-e06c602180fd",
       "title": "Alternance",
       "company": "FM Logistic",
       "contact_name": "Sakina BENNINI",
@@ -216,7 +216,7 @@
       "applied_at": null
     },
     {
-      "id": "22261e53-a0be-4c43-ae15-243ddc2a9ac9",
+      "id": "cde66bb7-c45e-40e7-ba8f-8cf38757eb45",
       "title": "Stage Stage",
       "company": "Les Bons Artisans",
       "contact_name": "Service Recrutement",
@@ -225,16 +225,16 @@
       "applied_at": null
     },
     {
-      "id": "b59592b9-e73f-409b-97d0-af945e56e307",
+      "id": "25dff930-547d-4b60-aaca-a0b9ed4d3436",
       "title": "Alternance Technicien informatique chez XEFI",
-      "company": "Twikit",
+      "company": "Optimum Tracker",
       "contact_name": "Service Recrutement",
-      "contact_email": "recrutement@twikit.com",
+      "contact_email": "recrutement@optimumtracker.com",
       "status": "error",
       "applied_at": null
     },
     {
-      "id": "b5e7acdd-7d4a-4b35-9ee8-ba98e3f62fde",
+      "id": "4131e925-543d-490d-8481-3fc790e74988",
       "title": "IT Support Specialist",
       "company": "Kolecto",
       "contact_name": "Guillaume Evrard",
@@ -243,11 +243,11 @@
       "applied_at": null
     },
     {
-      "id": "2f329120-074e-44fd-818a-ad9755b9943f",
+      "id": "f6727867-824b-4fa7-b7fb-3910e183d17e",
       "title": "APPRENTICE Alternance technicien support IT (H/F)",
       "company": "Howmet Aerospace",
-      "contact_name": "Camille Haure",
-      "contact_email": "camille.haure@howmetaerospace.com",
+      "contact_name": "Alyssa Papas",
+      "contact_email": "alyssa.papas@howmetaerospace.com",
       "status": "error",
       "applied_at": null
     }
@@ -256,72 +256,72 @@
     {
       "event_type": "error",
       "message": "Email failed: SMTP authentication failed: (535, b'5.7.8 Authentication failed')",
-      "created_at": "2026-08-24T20:56:23.203654"
+      "created_at": "2026-08-25T06:43:15.357656"
     },
     {
       "event_type": "cv_gen",
-      "message": "CV generated: /home/runner/work/JobFlow-AI-Robot/JobFlow-AI-Robot/JobFlow-AI/storage/generated_cvs/CV_Marvin_Alternance_5e0c1e53.pdf",
-      "created_at": "2026-08-24T20:56:23.203646"
+      "message": "CV generated: /home/runner/work/JobFlow-AI-Robot/JobFlow-AI-Robot/JobFlow-AI/storage/generated_cvs/CV_Marvin_Entreprise_6d1f4352.pdf",
+      "created_at": "2026-08-25T06:43:15.357648"
     },
     {
       "event_type": "error",
       "message": "Email failed: SMTP authentication failed: (535, b'5.7.8 Authentication failed')",
-      "created_at": "2026-08-24T20:55:48.778922"
+      "created_at": "2026-08-25T06:42:43.299120"
     },
     {
       "event_type": "cv_gen",
-      "message": "CV generated: /home/runner/work/JobFlow-AI-Robot/JobFlow-AI-Robot/JobFlow-AI/storage/generated_cvs/CV_Marvin_Alternance_88586e52.pdf",
-      "created_at": "2026-08-24T20:55:48.778913"
+      "message": "CV generated: /home/runner/work/JobFlow-AI-Robot/JobFlow-AI-Robot/JobFlow-AI/storage/generated_cvs/CV_Marvin_Alternance_3e9e478c.pdf",
+      "created_at": "2026-08-25T06:42:43.299112"
     },
     {
       "event_type": "error",
       "message": "Email failed: SMTP authentication failed: (535, b'5.7.8 Authentication failed')",
-      "created_at": "2026-08-24T20:54:58.326650"
+      "created_at": "2026-08-25T06:41:46.386728"
     },
     {
       "event_type": "cv_gen",
-      "message": "CV generated: /home/runner/work/JobFlow-AI-Robot/JobFlow-AI-Robot/JobFlow-AI/storage/generated_cvs/CV_Marvin_FM Logistic_cb39cc4c.pdf",
-      "created_at": "2026-08-24T20:54:58.326643"
+      "message": "CV generated: /home/runner/work/JobFlow-AI-Robot/JobFlow-AI-Robot/JobFlow-AI/storage/generated_cvs/CV_Marvin_FM Logistic_94eb9362.pdf",
+      "created_at": "2026-08-25T06:41:46.386720"
     },
     {
       "event_type": "error",
       "message": "Email failed: SMTP authentication failed: (535, b'5.7.8 Authentication failed')",
-      "created_at": "2026-08-24T20:54:40.256149"
+      "created_at": "2026-08-25T06:41:19.586210"
     },
     {
       "event_type": "cv_gen",
-      "message": "CV generated: /home/runner/work/JobFlow-AI-Robot/JobFlow-AI-Robot/JobFlow-AI/storage/generated_cvs/CV_Marvin_Les Bons Artisans_2e60dab5.pdf",
-      "created_at": "2026-08-24T20:54:40.256140"
+      "message": "CV generated: /home/runner/work/JobFlow-AI-Robot/JobFlow-AI-Robot/JobFlow-AI/storage/generated_cvs/CV_Marvin_Les Bons Artisans_5867fd64.pdf",
+      "created_at": "2026-08-25T06:41:19.586201"
     },
     {
       "event_type": "error",
       "message": "Email failed: SMTP authentication failed: (535, b'5.7.8 Authentication failed')",
-      "created_at": "2026-08-24T20:54:25.870018"
+      "created_at": "2026-08-25T06:40:56.954880"
     },
     {
       "event_type": "cv_gen",
-      "message": "CV generated: /home/runner/work/JobFlow-AI-Robot/JobFlow-AI-Robot/JobFlow-AI/storage/generated_cvs/CV_Marvin_Twikit_e3093ca0.pdf",
-      "created_at": "2026-08-24T20:54:25.870010"
+      "message": "CV generated: /home/runner/work/JobFlow-AI-Robot/JobFlow-AI-Robot/JobFlow-AI/storage/generated_cvs/CV_Marvin_Optimum Tracker_d91acd83.pdf",
+      "created_at": "2026-08-25T06:40:56.954871"
     },
     {
       "event_type": "error",
       "message": "Email failed: SMTP authentication failed: (535, b'5.7.8 Authentication failed')",
-      "created_at": "2026-08-24T20:54:00.661256"
+      "created_at": "2026-08-25T06:40:37.748351"
     },
     {
       "event_type": "cv_gen",
-      "message": "CV generated: /home/runner/work/JobFlow-AI-Robot/JobFlow-AI-Robot/JobFlow-AI/storage/generated_cvs/CV_Marvin_Kolecto_c8911225.pdf",
-      "created_at": "2026-08-24T20:54:00.661247"
+      "message": "CV generated: /home/runner/work/JobFlow-AI-Robot/JobFlow-AI-Robot/JobFlow-AI/storage/generated_cvs/CV_Marvin_Kolecto_d2f0b6a6.pdf",
+      "created_at": "2026-08-25T06:40:37.748343"
     },
     {
       "event_type": "error",
       "message": "Email failed: SMTP authentication failed: (535, b'5.7.8 Authentication failed')",
-      "created_at": "2026-08-24T20:53:42.356861"
+      "created_at": "2026-08-25T06:40:09.026287"
     },
     {
       "event_type": "cv_gen",
-      "message": "CV generated: /home/runner/work/JobFlow-AI-Robot/JobFlow-AI-Robot/JobFlow-AI/storage/generated_cvs/CV_Marvin_Howmet Aerospace_9f651bac.pdf",
-      "created_at": "2026-08-24T20:53:42.356852"
+      "message": "CV generated: /home/runner/work/JobFlow-AI-Robot/JobFlow-AI-Robot/JobFlow-AI/storage/generated_cvs/CV_Marvin_Howmet Aerospace_27dbcd5d.pdf",
+      "created_at": "2026-08-25T06:40:09.026278"
     }
   ]
 }
