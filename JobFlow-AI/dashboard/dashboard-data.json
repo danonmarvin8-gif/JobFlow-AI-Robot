@@ -1,13 +1,13 @@
 {
-  "last_updated": "2026-10-22T22:49:45.373330+00:00",
+  "last_updated": "2026-10-23T10:54:55.055433+00:00",
   "campaign_active": true,
   "stats": {
-    "offers_scraped": 0,
+    "offers_scraped": 3,
     "emails_sent": 0,
     "emails_opened": 0,
     "replies": 0,
     "pending": 0,
-    "errors": 0,
+    "errors": 3,
     "cv_generated": 0
   },
   "pipeline": [
@@ -17,7 +17,103 @@
     0,
     0
   ],
-  "offers": [],
-  "applications": [],
-  "activity": []
+  "offers": [
+    {
+      "id": "1483c3d6-ff37-4a86-8455-113a349ba7b4",
+      "title": "Le Service Civique, pour acquérir de l'expérience et préparer son avenir",
+      "company": "Entreprise",
+      "location": "",
+      "offer_type": "alternance",
+      "source_platform": "1jeune1solution",
+      "source_url": "https://www.1jeune1solution.gouv.fr/service-civique",
+      "required_skills": [],
+      "posted_at": "2026-10-23T00:00:00",
+      "scraped_at": "2026-10-23T10:53:29.483714"
+    },
+    {
+      "id": "5fe6547e-2977-4e83-a30e-889d97a2a825",
+      "title": "Besoin d‘informations sur les métiers ?",
+      "company": "Entreprise",
+      "location": "",
+      "offer_type": "alternance",
+      "source_platform": "1jeune1solution",
+      "source_url": "https://www.1jeune1solution.gouv.fr/decouvrir-les-metiers",
+      "required_skills": [],
+      "posted_at": "2026-10-23T00:00:00",
+      "scraped_at": "2026-10-23T10:53:29.482222"
+    },
+    {
+      "id": "8a9d7da9-f27c-44e8-9fc1-65c765865b59",
+      "title": "Et si vous contactiez directement les entreprises ?",
+      "company": "Entreprise",
+      "location": "",
+      "offer_type": "alternance",
+      "source_platform": "1jeune1solution",
+      "source_url": "https://labonneboite.francetravail.fr/",
+      "required_skills": [],
+      "posted_at": "2026-10-23T00:00:00",
+      "scraped_at": "2026-10-23T10:53:29.480302"
+    }
+  ],
+  "applications": [
+    {
+      "id": "2bab9faf-75e1-45f9-befd-30f21c7b643a",
+      "title": "Le Service Civique, pour acquérir de l'expérience et préparer son avenir",
+      "company": "Entreprise",
+      "contact_name": "Nicole Cain",
+      "contact_email": "nicole.cain@entreprise.com",
+      "status": "error",
+      "applied_at": null
+    },
+    {
+      "id": "d2abba38-1065-447a-9b00-f9ded95f3146",
+      "title": "Besoin d‘informations sur les métiers ?",
+      "company": "Entreprise",
+      "contact_name": "Pascal Lorne",
+      "contact_email": "pascal.lorne@entreprise.com",
+      "status": "error",
+      "applied_at": null
+    },
+    {
+      "id": "fc251b44-dc6e-4e85-ab50-0899696dc603",
+      "title": "Et si vous contactiez directement les entreprises ?",
+      "company": "Entreprise",
+      "contact_name": "Nicole Cain",
+      "contact_email": "nicole.cain@entreprise.com",
+      "status": "error",
+      "applied_at": null
+    }
+  ],
+  "activity": [
+    {
+      "event_type": "error",
+      "message": "Email failed: SMTP authentication failed: (535, b'5.7.8 Authentication failed')",
+      "created_at": "2026-10-23T10:54:50.032374"
+    },
+    {
+      "event_type": "cv_gen",
+      "message": "CV generated: /home/runner/work/JobFlow-AI-Robot/JobFlow-AI-Robot/JobFlow-AI/storage/generated_cvs/CV_Marvin_Entreprise_1483c3d6.pdf",
+      "created_at": "2026-10-23T10:54:50.032366"
+    },
+    {
+      "event_type": "error",
+      "message": "Email failed: SMTP authentication failed: (535, b'5.7.8 Authentication failed')",
+      "created_at": "2026-10-23T10:54:33.397358"
+    },
+    {
+      "event_type": "cv_gen",
+      "message": "CV generated: /home/runner/work/JobFlow-AI-Robot/JobFlow-AI-Robot/JobFlow-AI/storage/generated_cvs/CV_Marvin_Entreprise_5fe6547e.pdf",
+      "created_at": "2026-10-23T10:54:33.397349"
+    },
+    {
+      "event_type": "error",
+      "message": "Email failed: SMTP authentication failed: (535, b'5.7.8 Authentication failed')",
+      "created_at": "2026-10-23T10:54:16.472363"
+    },
+    {
+      "event_type": "cv_gen",
+      "message": "CV generated: /home/runner/work/JobFlow-AI-Robot/JobFlow-AI-Robot/JobFlow-AI/storage/generated_cvs/CV_Marvin_Entreprise_8a9d7da9.pdf",
+      "created_at": "2026-10-23T10:54:16.472355"
+    }
+  ]
 }
