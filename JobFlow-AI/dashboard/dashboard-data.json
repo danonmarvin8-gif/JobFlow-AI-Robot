@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-10-28T17:54:59.016900+00:00",
+  "last_updated": "2026-10-28T22:09:47.035196+00:00",
   "campaign_active": true,
   "stats": {
     "offers_scraped": 3,
@@ -19,7 +19,7 @@
   ],
   "offers": [
     {
-      "id": "fac2a317-3fad-438f-a1ae-61c50b7440f6",
+      "id": "4c35685d-2579-48ac-81ad-7c1ef2bae8e0",
       "title": "Le Service Civique, pour acquérir de l'expérience et préparer son avenir",
       "company": "Entreprise",
       "location": "",
@@ -28,10 +28,10 @@
       "source_url": "https://www.1jeune1solution.gouv.fr/service-civique",
       "required_skills": [],
       "posted_at": "2026-10-28T00:00:00",
-      "scraped_at": "2026-10-28T17:53:27.609441"
+      "scraped_at": "2026-10-28T22:07:53.046683"
     },
     {
-      "id": "59b0a172-8e02-482f-8e40-8ed6a98ba286",
+      "id": "39324855-a908-4ffd-913d-28fd2914a810",
       "title": "Besoin d‘informations sur les métiers ?",
       "company": "Entreprise",
       "location": "",
@@ -40,10 +40,10 @@
       "source_url": "https://www.1jeune1solution.gouv.fr/decouvrir-les-metiers",
       "required_skills": [],
       "posted_at": "2026-10-28T00:00:00",
-      "scraped_at": "2026-10-28T17:53:27.607838"
+      "scraped_at": "2026-10-28T22:07:53.045081"
     },
     {
-      "id": "67e7bd03-e8f7-42cd-b9c6-e17504f0d800",
+      "id": "107e43ad-a337-41a8-98c7-518af7773ff8",
       "title": "Et si vous contactiez directement les entreprises ?",
       "company": "Entreprise",
       "location": "",
@@ -52,34 +52,34 @@
       "source_url": "https://labonneboite.francetravail.fr/",
       "required_skills": [],
       "posted_at": "2026-10-28T00:00:00",
-      "scraped_at": "2026-10-28T17:53:27.605820"
+      "scraped_at": "2026-10-28T22:07:53.043100"
     }
   ],
   "applications": [
     {
-      "id": "6d6e7de2-cb6d-4aac-ab04-131d70aa8a32",
+      "id": "c729b6c5-e8fe-4660-8432-c75620b9d392",
       "title": "Le Service Civique, pour acquérir de l'expérience et préparer son avenir",
       "company": "Entreprise",
-      "contact_name": "Nicole Cain",
-      "contact_email": "nicole.cain@entreprise.com",
+      "contact_name": "Target Corporation",
+      "contact_email": "target.corporation@entreprise.com",
       "status": "error",
       "applied_at": null
     },
     {
-      "id": "ce61a07f-50a6-44bc-bb73-91bbd72072e4",
+      "id": "910fc3fa-2aed-4342-a527-d9814496347b",
       "title": "Besoin d‘informations sur les métiers ?",
       "company": "Entreprise",
-      "contact_name": "Nicole Cain",
-      "contact_email": "nicole.cain@entreprise.com",
+      "contact_name": "Free Porn Videos",
+      "contact_email": "free.videos@entreprise.com",
       "status": "error",
       "applied_at": null
     },
     {
-      "id": "75c1ac6b-d7e6-4ba7-82d9-4bb118d8ae1b",
+      "id": "e90b1fd1-493b-40df-91dd-b0ec5501608f",
       "title": "Et si vous contactiez directement les entreprises ?",
       "company": "Entreprise",
-      "contact_name": "Nicole Cain",
-      "contact_email": "nicole.cain@entreprise.com",
+      "contact_name": "Yerba Buena Island",
+      "contact_email": "yerba.island@entreprise.com",
       "status": "error",
       "applied_at": null
     }
@@ -88,32 +88,32 @@
     {
       "event_type": "error",
       "message": "Email failed: SMTP authentication failed: (535, b'5.7.8 Authentication failed')",
-      "created_at": "2026-10-28T17:54:53.993540"
+      "created_at": "2026-10-28T22:09:42.010300"
     },
     {
       "event_type": "cv_gen",
-      "message": "CV generated: /home/runner/work/JobFlow-AI-Robot/JobFlow-AI-Robot/JobFlow-AI/storage/generated_cvs/CV_Marvin_Entreprise_fac2a317.pdf",
-      "created_at": "2026-10-28T17:54:53.993529"
+      "message": "CV generated: /home/runner/work/JobFlow-AI-Robot/JobFlow-AI-Robot/JobFlow-AI/storage/generated_cvs/CV_Marvin_Entreprise_4c35685d.pdf",
+      "created_at": "2026-10-28T22:09:42.010292"
     },
     {
       "event_type": "error",
       "message": "Email failed: SMTP authentication failed: (535, b'5.7.8 Authentication failed')",
-      "created_at": "2026-10-28T17:54:35.402029"
+      "created_at": "2026-10-28T22:09:20.925861"
     },
     {
       "event_type": "cv_gen",
-      "message": "CV generated: /home/runner/work/JobFlow-AI-Robot/JobFlow-AI-Robot/JobFlow-AI/storage/generated_cvs/CV_Marvin_Entreprise_59b0a172.pdf",
-      "created_at": "2026-10-28T17:54:35.402021"
+      "message": "CV generated: /home/runner/work/JobFlow-AI-Robot/JobFlow-AI-Robot/JobFlow-AI/storage/generated_cvs/CV_Marvin_Entreprise_39324855.pdf",
+      "created_at": "2026-10-28T22:09:20.925853"
     },
     {
       "event_type": "error",
       "message": "Email failed: SMTP authentication failed: (535, b'5.7.8 Authentication failed')",
-      "created_at": "2026-10-28T17:54:16.448743"
+      "created_at": "2026-10-28T22:08:50.129250"
     },
     {
       "event_type": "cv_gen",
-      "message": "CV generated: /home/runner/work/JobFlow-AI-Robot/JobFlow-AI-Robot/JobFlow-AI/storage/generated_cvs/CV_Marvin_Entreprise_67e7bd03.pdf",
-      "created_at": "2026-10-28T17:54:16.448735"
+      "message": "CV generated: /home/runner/work/JobFlow-AI-Robot/JobFlow-AI-Robot/JobFlow-AI/storage/generated_cvs/CV_Marvin_Entreprise_107e43ad.pdf",
+      "created_at": "2026-10-28T22:08:50.129242"
     }
   ]
 }
